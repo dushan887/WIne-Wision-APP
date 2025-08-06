@@ -12,6 +12,7 @@ import { ProfileScreen, EditProfileScreen } from '../screens/Profile';
 import { NewsScreen } from '../screens/News';
 import { NotificationsScreen } from '../screens/Notifications';
 import { ComingSoonScreen } from '../screens/Errors';
+import { FontTest } from '../components/demo';
 
 // Define navigation types
 export type AuthStackParamList = {
@@ -26,6 +27,7 @@ export type MainStackParamList = {
   News: undefined;
   Notifications: undefined;
   ComingSoon: undefined;
+  FontTest: undefined;
 };
 
 export type RootStackParamList = AuthStackParamList & MainStackParamList;
@@ -106,6 +108,11 @@ export const AppNavigator: React.FC = () => {
           name="ComingSoon" 
           component={ComingSoonScreen}
           options={{ title: 'Coming Soon' }}
+        />
+        <Stack.Screen 
+          name="FontTest" 
+          component={FontTest}
+          options={{ title: 'Font Test - Wine Vision' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

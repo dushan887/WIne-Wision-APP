@@ -5,6 +5,7 @@ import tw from 'twrnc';
 import { Card, UnreadBadge } from '../../components/common';
 import { ExhibitorCard } from '../../components/dashboard';
 import { InteractiveHall } from '../../components/svg';
+import { WineVisionStyles } from '../../utils/wineVisionDesign';
 
 type HomeScreenNavigationProp = StackNavigationProp<any, 'Home'>;
 
@@ -23,81 +24,93 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={tw`flex-1 bg-gray-50`}>
-      <View style={tw`px-4 py-6`}>
+    <ScrollView style={tw`flex-1 bg-c_5`}>
+      <View style={tw`px-20 py-24`}>
         {/* Welcome Section */}
-        <View style={tw`mb-6`}>
-          <Text style={tw`text-2xl font-bold text-wine-800 mb-2`}>
+        <View style={tw`mb-24`}>
+          <Text style={[tw`mb-8`, WineVisionStyles.h1]}>
             Welcome to Wine Vision 2025
           </Text>
-          <Text style={tw`text-gray-600`}>
+          <Text style={WineVisionStyles.body}>
             Discover exceptional wines and connect with industry professionals.
           </Text>
         </View>
 
         {/* Interactive Hall */}
         <Card variant="elevated">
-          <Text style={tw`text-lg font-semibold mb-4 text-center`}>
+          <Text style={[tw`text-center mb-16`, WineVisionStyles.h3]}>
             Exhibition Hall
           </Text>
           <InteractiveHall onBoothPress={handleBoothPress} />
-          <Text style={tw`text-sm text-gray-600 text-center mt-2`}>
+          <Text style={[tw`text-center mt-8`, WineVisionStyles.caption]}>
             Tap on booths to explore exhibitors
           </Text>
         </Card>
 
         {/* Quick Actions Menu */}
-        <View style={tw`mt-6`}>
-          <Text style={tw`text-lg font-semibold mb-4`}>Quick Actions</Text>
+        <View style={tw`mt-24`}>
+          <Text style={[tw`mb-16`, WineVisionStyles.h3]}>Quick Actions</Text>
           
           <View style={tw`flex-row flex-wrap justify-between`}>
             <TouchableOpacity
-              style={tw`w-[48%] mb-4`}
+              style={tw`w-48% mb-16`}
               onPress={() => handleMenuPress('News')}
             >
               <Card variant="outlined">
-                <Text style={tw`font-semibold text-wine-700 mb-1`}>News</Text>
-                <Text style={tw`text-sm text-gray-600`}>
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>News</Text>
+                <Text style={WineVisionStyles.bodySmall}>
                   Latest updates and articles
                 </Text>
               </Card>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={tw`w-[48%] mb-4 relative`}
+              style={tw`w-48% mb-16 relative`}
               onPress={() => handleMenuPress('Notifications')}
             >
               <Card variant="outlined">
                 <UnreadBadge count={3} />
-                <Text style={tw`font-semibold text-wine-700 mb-1`}>
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>
                   Announcements
                 </Text>
-                <Text style={tw`text-sm text-gray-600`}>
+                <Text style={WineVisionStyles.bodySmall}>
                   Important notifications
                 </Text>
               </Card>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={tw`w-[48%] mb-4`}
+              style={tw`w-48% mb-16`}
               onPress={() => handleMenuPress('Profile')}
             >
               <Card variant="outlined">
-                <Text style={tw`font-semibold text-wine-700 mb-1`}>Profile</Text>
-                <Text style={tw`text-sm text-gray-600`}>
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>Profile</Text>
+                <Text style={WineVisionStyles.bodySmall}>
                   Manage your account
                 </Text>
               </Card>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={tw`w-[48%] mb-4`}
+              style={tw`w-48% mb-16`}
               onPress={() => handleMenuPress('ComingSoon')}
             >
               <Card variant="outlined">
-                <Text style={tw`font-semibold text-wine-700 mb-1`}>Events</Text>
-                <Text style={tw`text-sm text-gray-600`}>
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>Events</Text>
+                <Text style={WineVisionStyles.bodySmall}>
                   Upcoming sessions
+                </Text>
+              </Card>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={tw`w-48% mb-16`}
+              onPress={() => handleMenuPress('FontTest')}
+            >
+              <Card variant="outlined">
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>Font Test</Text>
+                <Text style={WineVisionStyles.bodySmall}>
+                  Test Wine Vision fonts
                 </Text>
               </Card>
             </TouchableOpacity>
@@ -105,8 +118,8 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         </View>
 
         {/* Featured Exhibitors */}
-        <View style={tw`mt-6`}>
-          <Text style={tw`text-lg font-semibold mb-4`}>Featured Exhibitors</Text>
+        <View style={tw`mt-24`}>
+          <Text style={[tw`mb-16`, WineVisionStyles.h3]}>Featured Exhibitors</Text>
           
           <ExhibitorCard
             name="Vineyard Premium Wines"

@@ -1,3 +1,66 @@
+﻿
+==================================================
+FILE: app.json
+==================================================
+{
+  "expo": {
+    "name": "wv-app",
+    "slug": "wv-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-font"
+    ]
+  }
+}
+
+
+==================================================
+FILE: App.tsx
+==================================================
+import App from './src/App';
+
+export default App;
+
+
+==================================================
+FILE: index.ts
+==================================================
+import { registerRootComponent } from 'expo';
+
+import App from './App';
+
+// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
+// It also ensures that whether you load the app in Expo Go or in a native build,
+// the environment is set up appropriately
+registerRootComponent(App);
+
+
+==================================================
+FILE: package-lock.json
+==================================================
 {
   "name": "wv-app",
   "version": "1.0.0",
@@ -16,7 +79,6 @@
         "expo": "~53.0.20",
         "expo-dev-client": "~5.2.4",
         "expo-font": "~13.3.2",
-        "expo-linear-gradient": "~12.0.1",
         "expo-secure-store": "~14.2.3",
         "expo-status-bar": "~2.2.3",
         "react": "19.0.0",
@@ -4714,15 +4776,6 @@
       "peerDependencies": {
         "expo": "*",
         "react": "*"
-      }
-    },
-    "node_modules/expo-linear-gradient": {
-      "version": "12.0.1",
-      "resolved": "https://registry.npmjs.org/expo-linear-gradient/-/expo-linear-gradient-12.0.1.tgz",
-      "integrity": "sha512-TMl/wBTVQOliL4S3DS5Aa3UFfVySr0mdJEHLG6kfBdMCLkr+tfLI2rGyJ+scS7xgMsvhTIaurhf1+Z0sL3aLCg==",
-      "license": "MIT",
-      "peerDependencies": {
-        "expo": "*"
       }
     },
     "node_modules/expo-manifests": {
@@ -9789,3 +9842,3401 @@
     }
   }
 }
+
+
+==================================================
+FILE: package.json
+==================================================
+{
+  "name": "wv-app",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo-google-fonts/inter": "^0.4.1",
+    "@react-navigation/native": "^7.1.17",
+    "@react-navigation/stack": "^7.4.5",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.11.0",
+    "expo": "~53.0.20",
+    "expo-dev-client": "~5.2.4",
+    "expo-font": "~13.3.2",
+    "expo-secure-store": "~14.2.3",
+    "expo-status-bar": "~2.2.3",
+    "react": "19.0.0",
+    "react-native": "0.79.5",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "15.11.2",
+    "react-native-vector-icons": "^10.3.0",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
+    "twrnc": "^4.9.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.0.10",
+    "@types/react-native-vector-icons": "^6.4.18",
+    "@types/react-redux": "^7.1.34",
+    "typescript": "~5.8.3"
+  },
+  "private": true
+}
+
+
+==================================================
+FILE: README.md
+==================================================
+# WIne-Wision-APP
+
+
+==================================================
+FILE: tailwind.config.js
+==================================================
+const { Dimensions } = require('react-native');
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
+// Custom plugin for rem-like scaling (e.g., 1rem = 16px base, scaled by screen)
+function remPlugin({ addUtilities }) {
+  const baseFontSize = 16; // Adjust as needed
+  const remToPx = (rem) => `${rem * baseFontSize}px`;
+  const utilities = {};
+  for (let i = 0.5; i <= 10; i += 0.25) {
+    utilities[`.text-${i}rem`] = { fontSize: remToPx(i) };
+    utilities[`.p-${i}rem`] = { padding: remToPx(i) };
+    utilities[`.m-${i}rem`] = { margin: remToPx(i) };
+    // Add more (e.g., spacing, borders) as needed
+  }
+  addUtilities(utilities);
+}
+
+module.exports = {
+  content: [
+    "./App.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}"
+  ],
+  theme: {
+    extend: {
+      // Spacers (px, but scalable via % where needed)
+      spacing: {
+        0: '0',
+        4: '4px',
+        8: '8px',
+        12: '12px',
+        16: '16px',
+        20: '20px',
+        24: '24px',
+        30: '30px',
+        32: '32px',
+        36: '36px',
+        40: '40px',
+        48: '48px',
+        64: '64px',
+        128: '128px',
+        // Dynamic % for full scalability
+        'screen-w': `${screenWidth}px`,
+        'screen-h': `${screenHeight}px`,
+        '10%': '10%',
+        '20%': '20%',
+        '30%': '30%',
+        '40%': '40%',
+        '50%': '50%',
+        '60%': '60%',
+        '70%': '70%',
+        '80%': '80%',
+        '90%': '90%',
+        '100%': '100%',
+      },
+      // Font sizes (px base, but use rem utilities for scaling)
+      fontSize: {
+        12: '12px',
+        14: '14px',
+        16: '16px',
+        18: '18px',
+        20: '20px',
+        22: '22px',
+        24: '24px',
+        30: '30px',
+        32: '32px',
+        36: '36px',
+        40: '40px',
+        48: '48px',
+        64: '64px',
+        128: '128px',
+      },
+      // Line-heights (unitless, scales with fontSize)
+      lineHeight: {
+        1: '1',
+        '1-1': '1.1',
+        '1-15': '1.15',
+        '1-2': '1.2',
+        '1-25': '1.25',
+        '1-3': '1.3',
+        '1-4': '1.4',
+        '1-5': '1.5',
+        '1-6': '1.6',
+        2: '2',
+      },
+      // Letter-spacing (em, scales with fontSize)
+      letterSpacing: {
+        0: '0',
+        1: '0.025em',
+        2: '0.05em',
+        3: '0.075em',
+        4: '0.1em',
+        5: '0.125em',
+        6: '0.15em',
+        7: '0.175em',
+        8: '0.2em',
+      },
+      // Border widths (px)
+      borderWidth: {
+        0: '0',
+        1: '1px',
+        2: '2px',
+        4: '4px',
+        6: '6px',
+        8: '8px',
+      },
+      // Border radii (px)
+      borderRadius: {
+        0: '0',
+        1: '1px',
+        2: '2px',
+        4: '4px',
+        6: '6px',
+        8: '8px',
+        12: '12px',
+        16: '16px',
+        24: '24px',
+        32: '32px',
+        36: '36px',
+        40: '40px',
+        48: '48px',
+        64: '64px',
+        128: '128px',
+        200: '200px',
+      },
+      // Font weights
+      fontWeight: {
+        100: '100',
+        200: '200',
+        300: '300',
+        400: '400',
+        500: '500',
+        600: '600',
+        700: '700',
+        800: '800',
+        900: '900',
+      },
+      // Wine Vision custom colors (complete from _main.scss)
+      colors: {
+        // Carbon
+        c: 'rgb(11,5,28)',
+        c_95: 'rgb(23,18,39)',
+        c_90: 'rgb(35,30,51)',
+        c_80: 'rgb(60,55,73)',
+        c_70: 'rgb(84,80,96)',
+        c_50: 'rgb(133,130,142)',
+        c_20: 'rgb(206,205,210)',
+        c_10: 'rgb(231,230,232)',
+        c_5: 'rgb(243,243,244)',
+        c_3: 'rgb(248,248,248)',
+
+        // Velvet (Exhibitors)
+        v_dark: 'rgb(50,10,100)',
+        v: 'rgb(110,15,215)',
+        v_80: 'rgb(139,63,223)',
+        v_70: 'rgb(154,87,227)',
+        v_50: 'rgb(183,135,235)',
+        v_20: 'rgb(226,207,247)',
+        v_10: 'rgb(241,231,251)',
+
+        // Edit
+        e: 'rgb(90,135,165)',
+        e_10: 'rgb(239,243,246)',
+
+        // Ultramarine (Upcoming Meetings)
+        u: 'rgb(40,70,190)',
+        u_85: 'rgb(72,98,200)',
+        u_60: 'rgb(126,144,216)',
+        u_40: 'rgb(169,181,229)',
+        u_20: 'rgb(212,218,242)',
+
+        // Green (Confirmations)
+        g: 'rgb(0,200,100)',
+        g_30: 'rgb(179,239,209)',
+        g_15: 'rgb(217,247,232)',
+
+        // Blue (Scheduled Meetings)
+        b: 'rgb(0,135,255)',
+        b_70: 'rgb(77,171,255)',
+        b_50: 'rgb(128,195,255)',
+        b_20: 'rgb(204,231,255)',
+        b_10: 'rgb(230,243,255)',
+
+        // Yellow (Buyers)
+        y: 'rgb(250,165,0)',
+        y_50: 'rgb(253,210,128)',
+        y_20: 'rgb(254,237,204)',
+        y_10: 'rgb(255,246,230)',
+
+        // Terracotta (Buyers)
+        t: 'rgb(160,100,70)',
+        t_70: 'rgb(189,147,126)',
+
+        // Orange (Canceled Meetings)
+        o: 'rgb(220,80,25)',
+        o_70: 'rgb(231,133,94)',
+        o_50: 'rgb(238,168,140)',
+        o_20: 'rgb(248,220,209)',
+        o_10: 'rgb(252,238,232)',
+
+        // Red (Visitors)
+        r_dark: 'rgb(130,0,40)',
+        r: 'rgb(235,0,55)',
+        r_70: 'rgb(241,77,115)',
+        r_50: 'rgb(245,128,155)',
+        r_30: 'rgb(249,179,195)',
+
+        // Hot (Alerts, Delete)
+        h: 'rgb(255,20,40)',
+        h_70: 'rgb(255,91,105)',
+        h_50: 'rgb(255,138,147)',
+        h_10: 'rgb(255,232,234)',
+
+        // White
+        w: 'rgb(255,255,255)',
+
+        // Stand Colors
+        '9m2': 'rgb(0,180,0)',
+        '9m2_30': 'rgb(179,233,179)',
+        '24m2': 'rgb(0,135,255)',
+        '24m2_30': 'rgb(179,219,255)',
+        '12m2': 'rgb(0,190,180)',
+        '12m2_30': 'rgb(179,235,233)',
+        '49m2': 'rgb(0,50,240)',
+        '49m2_30': 'rgb(179,194,251)',
+        custom: 'rgb(250,90,0)',
+        custom_30: 'rgb(253,205,179)',
+
+        // Wine (Products)
+        'wine-white': 'rgb(200,160,120)',
+        'wine-rose': 'rgb(255,140,170)',
+        'wine-orange': 'rgb(250,110,60)',
+        'wine-red': 'rgb(220,20,60)',
+        'wine-sparkling': 'rgb(145,150,170)',
+
+        // Spirits (Products)
+        plum: 'rgb(110,85,200)',
+        quince: 'rgb(200,150,20)',
+        pear: 'rgb(180,180,90)',
+        grape: 'rgb(140,190,140)',
+
+        // Wine (Masterclass)
+        w_100: 'rgb(180,110,40)',
+        w_80: 'rgb(195,139,83)',
+        w_20: 'rgb(240,226,212)',
+
+        // Food (Masterclass)
+        f_100: 'rgb(0,160,70)',
+        f_80: 'rgb(51,179,107)',
+        f_20: 'rgb(204,236,218)',
+
+        // Spirits (Masterclass)
+        s_100: 'rgb(215,65,40)',
+        s_80: 'rgb(223,103,83)',
+        s_20: 'rgb(247,217,212)',
+      },
+      // Gradients (backgroundImage)
+      backgroundImage: {
+        'carbon-gradient-up': 'linear-gradient(rgb(11,5,28), rgb(35,30,51))',
+        'carbon-gradient-down': 'linear-gradient(rgb(35,30,51), rgb(11,5,28))',
+        'idle-day-gradient': 'linear-gradient(rgb(60,55,73), rgb(35,30,51))',
+        'visitor-gradient': 'linear-gradient(rgb(130,0,40), rgb(235,0,55))',
+        'exhibitor-gradient-dark': 'linear-gradient(rgb(50,10,100), rgb(110,15,215))',
+        'exhibitor-gradient-light': 'linear-gradient(rgb(110,15,215), rgb(154,87,227))',
+        'buyer-gradient': 'linear-gradient(rgb(160,100,70), rgb(250,165,0))',
+        'header-gradient': 'linear-gradient(rgb(255,255,255), rgb(206,205,210))',
+        'wv-gradient': 'linear-gradient(rgb(250,165,0), rgb(235,0,55), rgb(110,15,215))',
+        // Add more if in full _main.scss
+      },
+      // Fonts
+      fontFamily: {
+        'inter': ['Inter_400Regular'],
+        'inter-semibold': ['Inter_600SemiBold'],
+        'inter-bold': ['Inter_700Bold'],
+        'inter-tight': ['InterTight-VariableFont_wght', 'sans-serif'],
+        'inter-tight-italic': ['InterTight-Italic-VariableFont_wght', 'sans-serif'],
+        'wine-vision': ['Wine-Vision'],
+        icons: ['Wine-Vision'],
+      },
+    },
+  },
+  plugins: [remPlugin], // From previous snippet; add if not defined
+};
+
+==================================================
+FILE: tsconfig.json
+==================================================
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "react-native",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/screens/*": ["src/screens/*"],
+      "@/navigation/*": ["src/navigation/*"],
+      "@/store/*": ["src/store/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/api/*": ["src/api/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
+==================================================
+FILE: FONTS_README.md
+==================================================
+# Wine Vision Fonts
+
+This directory should contain the Wine Vision brand fonts:
+
+## Required Font Files:
+1. `InterTight-VariableFont_wght.ttf` - Inter Tight variable weight font
+2. `InterTight-Italic-VariableFont_wght.ttf` - Inter Tight italic variable weight font  
+3. `Wine-Vision.ttf` - Wine Vision custom icon font
+
+## Installation Instructions:
+1. Download the Inter Tight fonts from Google Fonts or the Wine Vision brand assets
+2. Place the font files in this directory
+3. Ensure the file names match exactly as listed above
+4. Restart the Expo development server after adding the fonts
+
+## Font Usage in Code:
+- Use `fontFamily: 'inter-tight'` in Tailwind classes
+- Use `fontFamily: 'wine-vision'` for icons
+- Reference Wine Vision colors using the `c_`, `v_`, `u_`, etc. color classes
+
+## Fallbacks:
+The app includes fallback Inter fonts from Expo Google Fonts if the custom fonts fail to load.
+
+
+==================================================
+FILE: README.md
+==================================================
+# Wine Vision App Assets
+
+## Fonts Directory
+This directory should contain custom fonts:
+
+- `InterTight-VariableFont_wght.ttf` - Inter Tight variable font
+- `Wine-Vision.ttf` - Custom Wine Vision font from Icomoon
+
+## Usage
+Fonts are loaded in the main App component using Expo Font.
+
+
+==================================================
+FILE: README.md
+==================================================
+# Interactive Halls Directory
+
+This directory contains SVG files for interactive exhibition halls:
+
+- `hall-1.svg` - Main exhibition hall layout
+- `hall-2.svg` - Secondary hall layout
+- Additional hall layouts as needed
+
+## Usage
+SVG files are imported as React components and rendered with interactive touch areas for booth selection.
+
+
+==================================================
+FILE: App.tsx
+==================================================
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { StatusBar } from 'expo-status-bar';
+import { useFonts } from 'expo-font';
+import { LoadingSpinner } from './components/common';
+import { AppNavigator } from './navigation/AppNavigator';
+import { store } from './store';
+import { checkAuthStatus } from './store/actions';
+
+export default function App() {
+  const [fontsLoaded] = useFonts({
+    // Inter Tight Variable Fonts (Wine Vision brand fonts)
+    'InterTight-VariableFont_wght': require('../assets/fonts/InterTight-VariableFont_wght.ttf'),
+    'InterTight-Italic-VariableFont_wght': require('../assets/fonts/InterTight-Italic-VariableFont_wght.ttf'),
+    
+    // Wine Vision Icon Font
+    'Wine-Vision': require('../assets/fonts/Wine-Vision.ttf'),
+    
+    // Fallback Inter fonts
+    'Inter_400Regular': require('@expo-google-fonts/inter/Inter_400Regular.ttf'),
+    'Inter_600SemiBold': require('@expo-google-fonts/inter/Inter_600SemiBold.ttf'),
+    'Inter_700Bold': require('@expo-google-fonts/inter/Inter_700Bold.ttf'),
+  });
+
+  useEffect(() => {
+    // Check authentication status on app start
+    store.dispatch(checkAuthStatus());
+  }, []);
+
+  if (!fontsLoaded) {
+    return <LoadingSpinner text="Loading Wine Vision fonts..." />;
+  }
+
+  return (
+    <Provider store={store}>
+      <StatusBar style="light" backgroundColor="rgb(11,5,28)" />
+      <AppNavigator />
+    </Provider>
+  );
+}
+
+
+==================================================
+FILE: index.ts
+==================================================
+export * from './components';
+export * from './screens';
+export * from './navigation';
+export * from './store';
+export * from './features';
+export * from './utils';
+export * from './api';
+
+
+==================================================
+FILE: index.ts
+==================================================
+import axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
+
+// Base API configuration
+const API_BASE_URL = 'https://dev6.dushan887mob3.com/wp-json/';
+
+// Create axios instance
+const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Request interceptor to add auth token
+apiClient.interceptors.request.use(
+  async (config) => {
+    try {
+      const token = await SecureStore.getItemAsync('authToken');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (error) {
+      console.error('Error retrieving auth token:', error);
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor for error handling
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response?.status === 401) {
+      // Token expired or invalid
+      await SecureStore.deleteItemAsync('authToken');
+      // You can dispatch a logout action here
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default apiClient;
+
+// API endpoints
+export const endpoints = {
+  auth: {
+    login: '/wp/v2/auth/login',
+    register: '/wp/v2/auth/register',
+    refresh: '/wp/v2/auth/refresh',
+  },
+  user: {
+    profile: '/wp/v2/users/me',
+    updateProfile: '/wp/v2/users/me',
+  },
+  news: {
+    articles: '/wp/v2/posts',
+    article: (id: number) => `/wp/v2/posts/${id}`,
+  },
+  notifications: {
+    announcements: '/wp/v2/announcements',
+    markRead: (id: number) => `/wp/v2/announcements/${id}/read`,
+  },
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export * from './common';
+export * from './dashboard';
+export * from './demo';
+export * from './notifications';
+export * from './svg';
+
+
+==================================================
+FILE: Button.tsx
+==================================================
+import React from 'react';
+import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import tw from 'twrnc';
+
+interface ButtonProps {
+  title: string;
+  onPress: () => void;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'small' | 'medium' | 'large';
+  disabled?: boolean;
+  loading?: boolean;
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  title,
+  onPress,
+  variant = 'primary',
+  size = 'medium',
+  disabled = false,
+  loading = false,
+}) => {
+  const getButtonStyles = () => {
+    const baseStyles = 'rounded-lg flex-row items-center justify-center';
+    
+    const sizeStyles = {
+      small: 'px-4 py-2',
+      medium: 'px-6 py-3',
+      large: 'px-8 py-4',
+    };
+
+    const variantStyles = {
+      primary: 'bg-wine-600',
+      secondary: 'bg-gray-600',
+      outline: 'border-2 border-wine-600 bg-transparent',
+    };
+
+    const disabledStyles = disabled || loading ? 'opacity-50' : '';
+
+    return `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${disabledStyles}`;
+  };
+
+  const getTextStyles = () => {
+    const baseStyles = 'font-semibold';
+    
+    const sizeStyles = {
+      small: 'text-sm',
+      medium: 'text-base',
+      large: 'text-lg',
+    };
+
+    const variantStyles = {
+      primary: 'text-white',
+      secondary: 'text-white',
+      outline: 'text-wine-600',
+    };
+
+    return `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]}`;
+  };
+
+  return (
+    <TouchableOpacity
+      style={tw`${getButtonStyles()}`}
+      onPress={onPress}
+      disabled={disabled || loading}
+    >
+      {loading ? (
+        <ActivityIndicator
+          size="small"
+          color={variant === 'outline' ? '#7c2d12' : '#ffffff'}
+          style={tw`mr-2`}
+        />
+      ) : null}
+      <Text style={tw`${getTextStyles()}`}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+
+
+==================================================
+FILE: Card.tsx
+==================================================
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import tw from 'twrnc';
+
+interface CardProps {
+  children: React.ReactNode;
+  onPress?: () => void;
+  variant?: 'default' | 'elevated' | 'outlined';
+}
+
+export const Card: React.FC<CardProps> = ({
+  children,
+  onPress,
+  variant = 'default',
+}) => {
+  const getCardStyles = () => {
+    const baseStyles = 'bg-white rounded-lg p-4 m-2';
+    
+    const variantStyles = {
+      default: 'shadow-sm',
+      elevated: 'shadow-lg elevation-5',
+      outlined: 'border border-gray-200',
+    };
+
+    return `${baseStyles} ${variantStyles[variant]}`;
+  };
+
+  if (onPress) {
+    return (
+      <TouchableOpacity
+        style={tw`${getCardStyles()}`}
+        onPress={onPress}
+        activeOpacity={0.7}
+      >
+        {children}
+      </TouchableOpacity>
+    );
+  }
+
+  return (
+    <View style={tw`${getCardStyles()}`}>
+      {children}
+    </View>
+  );
+};
+
+
+==================================================
+FILE: ErrorMessage.tsx
+==================================================
+import React from 'react';
+import { View, Text } from 'react-native';
+import tw from 'twrnc';
+import { Button } from './Button';
+
+interface ErrorMessageProps {
+  title?: string;
+  message: string;
+  onRetry?: () => void;
+  retryText?: string;
+}
+
+export const ErrorMessage: React.FC<ErrorMessageProps> = ({
+  title = 'Something went wrong',
+  message,
+  onRetry,
+  retryText = 'Try Again',
+}) => {
+  return (
+    <View style={tw`flex-1 justify-center items-center p-6`}>
+      <Text style={tw`text-xl font-bold text-red-600 mb-2 text-center`}>
+        {title}
+      </Text>
+      <Text style={tw`text-gray-600 text-center mb-6`}>
+        {message}
+      </Text>
+      {onRetry && (
+        <Button
+          title={retryText}
+          onPress={onRetry}
+          variant="outline"
+        />
+      )}
+    </View>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { Button } from './Button';
+export { LoadingSpinner } from './LoadingSpinner';
+export { ErrorMessage } from './ErrorMessage';
+export { Card } from './Card';
+export { UnreadBadge } from './UnreadBadge';
+
+
+==================================================
+FILE: LoadingSpinner.tsx
+==================================================
+import React from 'react';
+import { View, ActivityIndicator, Text } from 'react-native';
+import tw from 'twrnc';
+
+interface LoadingSpinnerProps {
+  size?: 'small' | 'large';
+  color?: string;
+  text?: string;
+}
+
+export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
+  size = 'large',
+  color = '#7c2d12',
+  text,
+}) => {
+  return (
+    <View style={tw`flex-1 justify-center items-center p-4`}>
+      <ActivityIndicator size={size} color={color} />
+      {text && (
+        <Text style={tw`mt-4 text-gray-600 text-center`}>{text}</Text>
+      )}
+    </View>
+  );
+};
+
+
+==================================================
+FILE: UnreadBadge.tsx
+==================================================
+import React from 'react';
+import { View, Text } from 'react-native';
+import tw from 'twrnc';
+
+interface UnreadBadgeProps {
+  count: number;
+  size?: 'small' | 'medium' | 'large';
+  color?: string;
+}
+
+export const UnreadBadge: React.FC<UnreadBadgeProps> = ({
+  count,
+  size = 'medium',
+  color = 'bg-red-500',
+}) => {
+  if (count <= 0) return null;
+
+  const getSizeStyles = () => {
+    switch (size) {
+      case 'small':
+        return 'w-4 h-4 text-xs';
+      case 'large':
+        return 'w-8 h-8 text-base';
+      default:
+        return 'w-6 h-6 text-sm';
+    }
+  };
+
+  const displayCount = count > 99 ? '99+' : count.toString();
+
+  return (
+    <View
+      style={tw`${color} ${getSizeStyles()} rounded-full items-center justify-center absolute -top-2 -right-2`}
+    >
+      <Text style={tw`text-white font-bold text-center`}>
+        {displayCount}
+      </Text>
+    </View>
+  );
+};
+
+
+==================================================
+FILE: ExhibitorCard.tsx
+==================================================
+import React from 'react';
+import { View, Text, Image } from 'react-native';
+import tw from 'twrnc';
+import { Card } from '../common';
+
+interface ExhibitorCardProps {
+  name: string;
+  description: string;
+  logo?: string;
+  booth?: string;
+  category?: string;
+  onPress?: () => void;
+}
+
+export const ExhibitorCard: React.FC<ExhibitorCardProps> = ({
+  name,
+  description,
+  logo,
+  booth,
+  category,
+  onPress,
+}) => {
+  return (
+    <Card onPress={onPress} variant="elevated">
+      <View style={tw`flex-row`}>
+        {logo && (
+          <Image
+            source={{ uri: logo }}
+            style={tw`w-16 h-16 rounded-lg mr-4`}
+            resizeMode="cover"
+          />
+        )}
+        <View style={tw`flex-1`}>
+          <Text style={tw`font-bold text-lg text-gray-900 mb-1`}>
+            {name}
+          </Text>
+          {category && (
+            <Text style={tw`text-wine-600 text-sm font-medium mb-1`}>
+              {category}
+            </Text>
+          )}
+          {booth && (
+            <Text style={tw`text-gray-600 text-sm mb-2`}>
+              Booth: {booth}
+            </Text>
+          )}
+          <Text style={tw`text-gray-700 text-sm`} numberOfLines={3}>
+            {description}
+          </Text>
+        </View>
+      </View>
+    </Card>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { ExhibitorCard } from './ExhibitorCard';
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { WineVisionDemo } from './WineVisionDemo';
+
+
+==================================================
+FILE: WineVisionDemo.tsx
+==================================================
+import React from 'react';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import tw from 'twrnc';
+import { WineVisionStyles, WineVisionColors } from '../../utils/wineVisionDesign';
+
+/**
+ * Wine Vision Design System Demo Component
+ * 
+ * This component demonstrates all the Wine Vision colors, fonts, and styling patterns.
+ * Use this as a reference for implementing the Wine Vision brand consistently across the app.
+ */
+export const WineVisionDemo: React.FC = () => {
+  return (
+    <ScrollView style={tw`flex-1 bg-c_5`}>
+      <View style={tw`p-20`}>
+        
+        {/* Typography Demo */}
+        <View style={tw`mb-32`}>
+          <Text style={WineVisionStyles.h1}>Typography Showcase</Text>
+          <Text style={[WineVisionStyles.h2, tw`mt-16`]}>Heading 2 - Inter Tight Semi-Bold</Text>
+          <Text style={[WineVisionStyles.h3, tw`mt-12`]}>Heading 3 - Inter Tight Medium</Text>
+          <Text style={[WineVisionStyles.h4, tw`mt-8`]}>Heading 4 - Inter Tight Medium</Text>
+          <Text style={[WineVisionStyles.body, tw`mt-12`]}>
+            Body text using Inter Tight Regular. This demonstrates the primary font for content and descriptions.
+          </Text>
+          <Text style={[WineVisionStyles.bodySmall, tw`mt-8`]}>
+            Small body text for secondary information and captions.
+          </Text>
+          <Text style={[WineVisionStyles.caption, tw`mt-4`]}>
+            Caption text for minimal information display.
+          </Text>
+        </View>
+
+        {/* Color Palette Demo */}
+        <View style={tw`mb-32`}>
+          <Text style={WineVisionStyles.h2}>Color Palette</Text>
+          
+          {/* Carbon Colors */}
+          <Text style={[WineVisionStyles.h4, tw`mt-20 mb-12`]}>Carbon (Dark Theme)</Text>
+          <View style={tw`flex-row flex-wrap`}>
+            <ColorSwatch color="c" label="Carbon Primary" />
+            <ColorSwatch color="c_95" label="Carbon 95%" />
+            <ColorSwatch color="c_90" label="Carbon 90%" />
+            <ColorSwatch color="c_80" label="Carbon 80%" />
+            <ColorSwatch color="c_50" label="Carbon 50%" />
+            <ColorSwatch color="c_20" label="Carbon 20%" />
+            <ColorSwatch color="c_10" label="Carbon 10%" />
+          </View>
+
+          {/* Velvet Colors */}
+          <Text style={[WineVisionStyles.h4, tw`mt-20 mb-12`]}>Velvet (Exhibitors)</Text>
+          <View style={tw`flex-row flex-wrap`}>
+            <ColorSwatch color="v_dark" label="Velvet Dark" />
+            <ColorSwatch color="v" label="Velvet Primary" />
+            <ColorSwatch color="v_80" label="Velvet 80%" />
+            <ColorSwatch color="v_70" label="Velvet 70%" />
+            <ColorSwatch color="v_20" label="Velvet 20%" />
+            <ColorSwatch color="v_10" label="Velvet 10%" />
+          </View>
+
+          {/* Status Colors */}
+          <Text style={[WineVisionStyles.h4, tw`mt-20 mb-12`]}>Status Colors</Text>
+          <View style={tw`flex-row flex-wrap`}>
+            <ColorSwatch color="g" label="Success Green" />
+            <ColorSwatch color="b" label="Info Blue" />
+            <ColorSwatch color="y" label="Warning Yellow" />
+            <ColorSwatch color="r" label="Error Red" />
+            <ColorSwatch color="h" label="Danger Hot" />
+          </View>
+
+          {/* Wine Colors */}
+          <Text style={[WineVisionStyles.h4, tw`mt-20 mb-12`]}>Wine Product Colors</Text>
+          <View style={tw`flex-row flex-wrap`}>
+            <ColorSwatch color="wine-white" label="White Wine" />
+            <ColorSwatch color="wine-rose" label="RosÃ© Wine" />
+            <ColorSwatch color="wine-orange" label="Orange Wine" />
+            <ColorSwatch color="wine-red" label="Red Wine" />
+            <ColorSwatch color="wine-sparkling" label="Sparkling" />
+          </View>
+        </View>
+
+        {/* Button Styles Demo */}
+        <View style={tw`mb-32`}>
+          <Text style={WineVisionStyles.h2}>Button Styles</Text>
+          
+          <TouchableOpacity style={[WineVisionStyles.primaryButton, tw`mt-16`]}>
+            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Primary Button</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={[WineVisionStyles.secondaryButton, tw`mt-12`]}>
+            <Text style={tw`text-c font-inter-tight font-500 text-center`}>Secondary Button</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Status Badges Demo */}
+        <View style={tw`mb-32`}>
+          <Text style={WineVisionStyles.h2}>Status Badges</Text>
+          
+          <View style={tw`flex-row flex-wrap mt-16`}>
+            <View style={[WineVisionStyles.successBadge, tw`mr-8 mb-8`]}>
+              <Text>Success</Text>
+            </View>
+            <View style={[WineVisionStyles.errorBadge, tw`mr-8 mb-8`]}>
+              <Text>Error</Text>
+            </View>
+            <View style={[WineVisionStyles.warningBadge, tw`mr-8 mb-8`]}>
+              <Text>Warning</Text>
+            </View>
+            <View style={[WineVisionStyles.infoBadge, tw`mr-8 mb-8`]}>
+              <Text>Info</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Gradient Demo */}
+        <View style={tw`mb-32`}>
+          <Text style={WineVisionStyles.h2}>Gradient Backgrounds</Text>
+          
+          <View style={tw`bg-carbon-gradient-up p-20 rounded-12 mt-16 mb-12`}>
+            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Carbon Gradient</Text>
+          </View>
+          
+          <View style={tw`bg-exhibitor-gradient-light p-20 rounded-12 mb-12`}>
+            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Velvet Gradient</Text>
+          </View>
+          
+          <View style={tw`bg-wv-gradient p-20 rounded-12 mb-12`}>
+            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Wine Vision Brand Gradient</Text>
+          </View>
+        </View>
+
+        {/* Card Demo */}
+        <View style={tw`mb-32`}>
+          <Text style={WineVisionStyles.h2}>Card Components</Text>
+          
+          <View style={[WineVisionStyles.card, tw`mt-16`]}>
+            <Text style={WineVisionStyles.cardHeader}>Sample Card</Text>
+            <Text style={WineVisionStyles.body}>
+              This card demonstrates the Wine Vision styling with proper padding, shadows, and typography.
+            </Text>
+            <TouchableOpacity style={[WineVisionStyles.primaryButton, tw`mt-16`]}>
+              <Text style={tw`text-w font-inter-tight font-600 text-center`}>Action Button</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+      </View>
+    </ScrollView>
+  );
+};
+
+// Helper component for color swatches
+const ColorSwatch: React.FC<{ color: string; label: string }> = ({ color, label }) => (
+  <View style={tw`mr-8 mb-12`}>
+    <View style={tw`w-60 h-40 bg-${color} rounded-8 mb-4`} />
+    <Text style={[WineVisionStyles.caption, tw`text-center w-60`]}>{label}</Text>
+  </View>
+);
+
+export default WineVisionDemo;
+
+
+==================================================
+FILE: AnnouncementItem.tsx
+==================================================
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import tw from 'twrnc';
+import { Card, UnreadBadge } from '../common';
+
+interface AnnouncementItemProps {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  isRead: boolean;
+  onPress?: () => void;
+  onMarkAsRead?: (id: string) => void;
+}
+
+export const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
+  id,
+  title,
+  content,
+  date,
+  isRead,
+  onPress,
+  onMarkAsRead,
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handlePress = () => {
+    setIsExpanded(!isExpanded);
+    if (!isRead && onMarkAsRead) {
+      onMarkAsRead(id);
+    }
+    onPress?.();
+  };
+
+  return (
+    <Card onPress={handlePress} variant="outlined">
+      <View style={tw`relative`}>
+        {!isRead && <UnreadBadge count={1} size="small" />}
+        
+        <View style={tw`flex-row justify-between items-start mb-2`}>
+          <Text
+            style={tw`font-bold text-lg text-gray-900 flex-1 mr-2 ${
+              !isRead ? 'text-wine-700' : ''
+            }`}
+          >
+            {title}
+          </Text>
+          <Text style={tw`text-gray-500 text-sm`}>
+            {new Date(date).toLocaleDateString()}
+          </Text>
+        </View>
+
+        <Text
+          style={tw`text-gray-700 text-sm leading-5`}
+          numberOfLines={isExpanded ? undefined : 2}
+        >
+          {content}
+        </Text>
+
+        {content.length > 100 && (
+          <TouchableOpacity style={tw`mt-2`} onPress={handlePress}>
+            <Text style={tw`text-wine-600 text-sm font-medium`}>
+              {isExpanded ? 'Show less' : 'Read more'}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </Card>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { AnnouncementItem } from './AnnouncementItem';
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { InteractiveHall } from './InteractiveHall';
+
+
+==================================================
+FILE: InteractiveHall.tsx
+==================================================
+import React from 'react';
+import { View, TouchableOpacity } from 'react-native';
+import Svg, { Path, Rect, Circle } from 'react-native-svg';
+import tw from 'twrnc';
+
+interface InteractiveHallProps {
+  width?: number;
+  height?: number;
+  onBoothPress?: (boothId: string) => void;
+}
+
+export const InteractiveHall: React.FC<InteractiveHallProps> = ({
+  width = 300,
+  height = 200,
+  onBoothPress,
+}) => {
+  const handleBoothPress = (boothId: string) => {
+    onBoothPress?.(boothId);
+  };
+
+  return (
+    <View style={tw`items-center justify-center`}>
+      <Svg width={width} height={height} viewBox="0 0 300 200">
+        {/* Hall background */}
+        <Rect
+          x="0"
+          y="0"
+          width="300"
+          height="200"
+          fill="#f8f9fa"
+          stroke="#e9ecef"
+          strokeWidth="2"
+        />
+        
+        {/* Booth 1 */}
+        <TouchableOpacity onPress={() => handleBoothPress('booth-1')}>
+          <Rect
+            x="20"
+            y="20"
+            width="60"
+            height="40"
+            fill="#7c2d12"
+            stroke="#451a03"
+            strokeWidth="1"
+            rx="4"
+          />
+        </TouchableOpacity>
+        
+        {/* Booth 2 */}
+        <TouchableOpacity onPress={() => handleBoothPress('booth-2')}>
+          <Rect
+            x="100"
+            y="20"
+            width="60"
+            height="40"
+            fill="#7c2d12"
+            stroke="#451a03"
+            strokeWidth="1"
+            rx="4"
+          />
+        </TouchableOpacity>
+        
+        {/* Booth 3 */}
+        <TouchableOpacity onPress={() => handleBoothPress('booth-3')}>
+          <Rect
+            x="180"
+            y="20"
+            width="60"
+            height="40"
+            fill="#7c2d12"
+            stroke="#451a03"
+            strokeWidth="1"
+            rx="4"
+          />
+        </TouchableOpacity>
+        
+        {/* Booth 4 */}
+        <TouchableOpacity onPress={() => handleBoothPress('booth-4')}>
+          <Rect
+            x="20"
+            y="140"
+            width="60"
+            height="40"
+            fill="#7c2d12"
+            stroke="#451a03"
+            strokeWidth="1"
+            rx="4"
+          />
+        </TouchableOpacity>
+        
+        {/* Booth 5 */}
+        <TouchableOpacity onPress={() => handleBoothPress('booth-5')}>
+          <Rect
+            x="100"
+            y="140"
+            width="60"
+            height="40"
+            fill="#7c2d12"
+            stroke="#451a03"
+            strokeWidth="1"
+            rx="4"
+          />
+        </TouchableOpacity>
+        
+        {/* Booth 6 */}
+        <TouchableOpacity onPress={() => handleBoothPress('booth-6')}>
+          <Rect
+            x="180"
+            y="140"
+            width="60"
+            height="40"
+            fill="#7c2d12"
+            stroke="#451a03"
+            strokeWidth="1"
+            rx="4"
+          />
+        </TouchableOpacity>
+        
+        {/* Central area - could be for networking */}
+        <Circle
+          cx="150"
+          cy="100"
+          r="30"
+          fill="#fef7cd"
+          stroke="#f59e0b"
+          strokeWidth="2"
+        />
+        
+        {/* Pathways */}
+        <Path
+          d="M 90 100 L 210 100"
+          stroke="#d1d5db"
+          strokeWidth="4"
+          strokeDasharray="5,5"
+        />
+        <Path
+          d="M 150 70 L 150 130"
+          stroke="#d1d5db"
+          strokeWidth="4"
+          strokeDasharray="5,5"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export * from './auth';
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { useMultiStepRegistration } from './useMultiStepRegistration';
+export type { RegistrationData, RegistrationStep } from './useMultiStepRegistration';
+
+
+==================================================
+FILE: useMultiStepRegistration.ts
+==================================================
+import { useState } from 'react';
+
+export interface RegistrationStep {
+  id: number;
+  title: string;
+  description: string;
+}
+
+export interface RegistrationData {
+  // Step 1: Basic Info
+  email: string;
+  password: string;
+  confirmPassword: string;
+  
+  // Step 2: Personal Info
+  firstName: string;
+  lastName: string;
+  phone: string;
+  
+  // Step 3: Professional Info
+  company: string;
+  position: string;
+  industry: string;
+  
+  // Step 4: Role Selection
+  role: 'visitor' | 'exhibitor' | 'organizer';
+  
+  // Step 5: Preferences
+  interests: string[];
+  notifications: boolean;
+}
+
+const REGISTRATION_STEPS: RegistrationStep[] = [
+  {
+    id: 1,
+    title: 'Account Details',
+    description: 'Create your login credentials',
+  },
+  {
+    id: 2,
+    title: 'Personal Information',
+    description: 'Tell us about yourself',
+  },
+  {
+    id: 3,
+    title: 'Professional Details',
+    description: 'Your work information',
+  },
+  {
+    id: 4,
+    title: 'Role Selection',
+    description: 'Choose your role at the event',
+  },
+  {
+    id: 5,
+    title: 'Preferences',
+    description: 'Customize your experience',
+  },
+];
+
+export const useMultiStepRegistration = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [registrationData, setRegistrationData] = useState<RegistrationData>({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    company: '',
+    position: '',
+    industry: '',
+    role: 'visitor',
+    interests: [],
+    notifications: true,
+  });
+
+  const nextStep = () => {
+    if (currentStep < REGISTRATION_STEPS.length) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const updateData = (data: Partial<RegistrationData>) => {
+    setRegistrationData(prev => ({ ...prev, ...data }));
+  };
+
+  const isStepValid = (step: number): boolean => {
+    switch (step) {
+      case 1:
+        return !!(
+          registrationData.email &&
+          registrationData.password &&
+          registrationData.confirmPassword &&
+          registrationData.password === registrationData.confirmPassword
+        );
+      case 2:
+        return !!(
+          registrationData.firstName &&
+          registrationData.lastName &&
+          registrationData.phone
+        );
+      case 3:
+        return !!(
+          registrationData.company &&
+          registrationData.position &&
+          registrationData.industry
+        );
+      case 4:
+        return !!registrationData.role;
+      case 5:
+        return true; // Preferences are optional
+      default:
+        return false;
+    }
+  };
+
+  const canProceed = isStepValid(currentStep);
+  const isFirstStep = currentStep === 1;
+  const isLastStep = currentStep === REGISTRATION_STEPS.length;
+
+  return {
+    currentStep,
+    steps: REGISTRATION_STEPS,
+    registrationData,
+    nextStep,
+    prevStep,
+    updateData,
+    canProceed,
+    isFirstStep,
+    isLastStep,
+    isStepValid,
+  };
+};
+
+
+==================================================
+FILE: AppNavigator.tsx
+==================================================
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/index';
+
+// Import screens
+import { LoginScreen } from '../screens/Auth';
+import { RegisterScreen } from '../screens/Auth';
+import { HomeScreen } from '../screens/Dashboard';
+import { ProfileScreen, EditProfileScreen } from '../screens/Profile';
+import { NewsScreen } from '../screens/News';
+import { NotificationsScreen } from '../screens/Notifications';
+import { ComingSoonScreen } from '../screens/Errors';
+
+// Define navigation types
+export type AuthStackParamList = {
+  Login: undefined;
+  Register: undefined;
+};
+
+export type MainStackParamList = {
+  Home: undefined;
+  Profile: undefined;
+  EditProfile: undefined;
+  News: undefined;
+  Notifications: undefined;
+  ComingSoon: undefined;
+};
+
+export type RootStackParamList = AuthStackParamList & MainStackParamList;
+
+const Stack = createStackNavigator<RootStackParamList>();
+
+export const AppNavigator: React.FC = () => {
+  const { user, isAuthenticated } = useSelector((state: RootState) => state.user);
+
+  if (!isAuthenticated) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#7c2d12',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          <Stack.Screen 
+            name="Login" 
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="Register" 
+            component={RegisterScreen}
+            options={{ title: 'Create Account' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#7c2d12',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen}
+          options={{ title: 'Wine Vision' }}
+        />
+        <Stack.Screen 
+          name="Profile" 
+          component={ProfileScreen}
+          options={{ title: 'My Profile' }}
+        />
+        <Stack.Screen 
+          name="EditProfile" 
+          component={EditProfileScreen}
+          options={{ title: 'Edit Profile' }}
+        />
+        <Stack.Screen 
+          name="News" 
+          component={NewsScreen}
+          options={{ title: 'News & Articles' }}
+        />
+        <Stack.Screen 
+          name="Notifications" 
+          component={NotificationsScreen}
+          options={{ title: 'Announcements' }}
+        />
+        <Stack.Screen 
+          name="ComingSoon" 
+          component={ComingSoonScreen}
+          options={{ title: 'Coming Soon' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { AppNavigator } from './AppNavigator';
+export type { 
+  RootStackParamList,
+  AuthStackParamList,
+  MainStackParamList 
+} from './AppNavigator';
+
+
+==================================================
+FILE: index.ts
+==================================================
+export * from './Auth';
+export * from './Dashboard';
+export * from './Profile';
+export * from './News';
+export * from './Notifications';
+export * from './Errors';
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { LoginScreen } from './Login';
+export { RegisterScreen } from './Register';
+
+
+==================================================
+FILE: Login.tsx
+==================================================
+import React, { useState } from 'react';
+import { View, Text, TextInput, Alert } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { Button, LoadingSpinner } from '../../components/common';
+
+type LoginScreenNavigationProp = StackNavigationProp<any, 'Login'>;
+
+interface Props {
+  navigation: LoginScreenNavigationProp;
+}
+
+export const LoginScreen: React.FC<Props> = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // TODO: Implement actual login logic with Redux
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+      Alert.alert('Success', 'Logged in successfully!');
+    } catch (error) {
+      Alert.alert('Error', 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRegister = () => {
+    navigation.navigate('Register');
+  };
+
+  if (loading) {
+    return <LoadingSpinner text="Logging in..." />;
+  }
+
+  return (
+    <View style={tw`flex-1 bg-white px-6 justify-center`}>
+      <View style={tw`mb-8`}>
+        <Text style={tw`text-3xl font-bold text-wine-800 text-center mb-2`}>
+          Wine Vision
+        </Text>
+        <Text style={tw`text-gray-600 text-center`}>
+          Welcome back! Please sign in to continue.
+        </Text>
+      </View>
+
+      <View style={tw`mb-6`}>
+        <Text style={tw`text-gray-700 font-medium mb-2`}>Email</Text>
+        <TextInput
+          style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+          placeholder="Enter your email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+      </View>
+
+      <View style={tw`mb-6`}>
+        <Text style={tw`text-gray-700 font-medium mb-2`}>Password</Text>
+        <TextInput
+          style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+          placeholder="Enter your password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+      </View>
+
+      <Button
+        title="Sign In"
+        onPress={handleLogin}
+        variant="primary"
+        size="large"
+        disabled={loading}
+      />
+
+      <View style={tw`mt-6 flex-row justify-center`}>
+        <Text style={tw`text-gray-600`}>Don't have an account? </Text>
+        <Button
+          title="Sign Up"
+          onPress={handleRegister}
+          variant="outline"
+          size="small"
+        />
+      </View>
+    </View>
+  );
+};
+
+
+==================================================
+FILE: Register.tsx
+==================================================
+import React from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { Button } from '../../components/common';
+import { useMultiStepRegistration } from '../../features/auth';
+
+type RegisterScreenNavigationProp = StackNavigationProp<any, 'Register'>;
+
+interface Props {
+  navigation: RegisterScreenNavigationProp;
+}
+
+export const RegisterScreen: React.FC<Props> = ({ navigation }) => {
+  const {
+    currentStep,
+    steps,
+    registrationData,
+    nextStep,
+    prevStep,
+    updateData,
+    canProceed,
+    isFirstStep,
+    isLastStep,
+  } = useMultiStepRegistration();
+
+  const handleNext = () => {
+    if (isLastStep) {
+      // TODO: Submit registration
+      console.log('Submitting registration:', registrationData);
+      navigation.navigate('Login');
+    } else {
+      nextStep();
+    }
+  };
+
+  const handleBack = () => {
+    if (isFirstStep) {
+      navigation.goBack();
+    } else {
+      prevStep();
+    }
+  };
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <View>
+            <Text style={tw`text-lg font-semibold mb-4`}>Account Details</Text>
+            {/* TODO: Add form fields for step 1 */}
+            <Text style={tw`text-gray-600`}>
+              Email, password, and confirm password fields will go here.
+            </Text>
+          </View>
+        );
+      case 2:
+        return (
+          <View>
+            <Text style={tw`text-lg font-semibold mb-4`}>Personal Information</Text>
+            {/* TODO: Add form fields for step 2 */}
+            <Text style={tw`text-gray-600`}>
+              First name, last name, and phone fields will go here.
+            </Text>
+          </View>
+        );
+      case 3:
+        return (
+          <View>
+            <Text style={tw`text-lg font-semibold mb-4`}>Professional Details</Text>
+            {/* TODO: Add form fields for step 3 */}
+            <Text style={tw`text-gray-600`}>
+              Company, position, and industry fields will go here.
+            </Text>
+          </View>
+        );
+      case 4:
+        return (
+          <View>
+            <Text style={tw`text-lg font-semibold mb-4`}>Role Selection</Text>
+            {/* TODO: Add role selection */}
+            <Text style={tw`text-gray-600`}>
+              Role selection (visitor, exhibitor, organizer) will go here.
+            </Text>
+          </View>
+        );
+      case 5:
+        return (
+          <View>
+            <Text style={tw`text-lg font-semibold mb-4`}>Preferences</Text>
+            {/* TODO: Add preferences */}
+            <Text style={tw`text-gray-600`}>
+              Interests and notification preferences will go here.
+            </Text>
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <ScrollView style={tw`flex-1 bg-white`}>
+      <View style={tw`px-6 py-4`}>
+        {/* Progress indicator */}
+        <View style={tw`flex-row mb-6`}>
+          {steps.map((step) => (
+            <View
+              key={step.id}
+              style={tw`flex-1 mx-1 h-2 rounded ${
+                step.id <= currentStep ? 'bg-wine-600' : 'bg-gray-200'
+              }`}
+            />
+          ))}
+        </View>
+
+        <Text style={tw`text-2xl font-bold text-wine-800 mb-2`}>
+          Step {currentStep} of {steps.length}
+        </Text>
+        <Text style={tw`text-gray-600 mb-6`}>
+          {steps[currentStep - 1]?.description}
+        </Text>
+
+        {renderStepContent()}
+
+        <View style={tw`flex-row justify-between mt-8`}>
+          <Button
+            title={isFirstStep ? 'Cancel' : 'Back'}
+            onPress={handleBack}
+            variant="outline"
+            size="medium"
+          />
+          <Button
+            title={isLastStep ? 'Complete' : 'Next'}
+            onPress={handleNext}
+            variant="primary"
+            size="medium"
+            disabled={!canProceed}
+          />
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
+
+==================================================
+FILE: Home.tsx
+==================================================
+import React from 'react';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { Card, UnreadBadge } from '../../components/common';
+import { ExhibitorCard } from '../../components/dashboard';
+import { InteractiveHall } from '../../components/svg';
+import { WineVisionStyles } from '../../utils/wineVisionDesign';
+
+type HomeScreenNavigationProp = StackNavigationProp<any, 'Home'>;
+
+interface Props {
+  navigation: HomeScreenNavigationProp;
+}
+
+export const HomeScreen: React.FC<Props> = ({ navigation }) => {
+  const handleBoothPress = (boothId: string) => {
+    console.log('Booth pressed:', boothId);
+    // TODO: Navigate to booth details or exhibitor profile
+  };
+
+  const handleMenuPress = (screen: string) => {
+    navigation.navigate(screen);
+  };
+
+  return (
+    <ScrollView style={tw`flex-1 bg-c_5`}>
+      <View style={tw`px-20 py-24`}>
+        {/* Welcome Section */}
+        <View style={tw`mb-24`}>
+          <Text style={[tw`mb-8`, WineVisionStyles.h1]}>
+            Welcome to Wine Vision 2025
+          </Text>
+          <Text style={WineVisionStyles.body}>
+            Discover exceptional wines and connect with industry professionals.
+          </Text>
+        </View>
+
+        {/* Interactive Hall */}
+        <Card variant="elevated">
+          <Text style={[tw`text-center mb-16`, WineVisionStyles.h3]}>
+            Exhibition Hall
+          </Text>
+          <InteractiveHall onBoothPress={handleBoothPress} />
+          <Text style={[tw`text-center mt-8`, WineVisionStyles.caption]}>
+            Tap on booths to explore exhibitors
+          </Text>
+        </Card>
+
+        {/* Quick Actions Menu */}
+        <View style={tw`mt-24`}>
+          <Text style={[tw`mb-16`, WineVisionStyles.h3]}>Quick Actions</Text>
+          
+          <View style={tw`flex-row flex-wrap justify-between`}>
+            <TouchableOpacity
+              style={tw`w-48% mb-16`}
+              onPress={() => handleMenuPress('News')}
+            >
+              <Card variant="outlined">
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>News</Text>
+                <Text style={WineVisionStyles.bodySmall}>
+                  Latest updates and articles
+                </Text>
+              </Card>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={tw`w-48% mb-16 relative`}
+              onPress={() => handleMenuPress('Notifications')}
+            >
+              <Card variant="outlined">
+                <UnreadBadge count={3} />
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>
+                  Announcements
+                </Text>
+                <Text style={WineVisionStyles.bodySmall}>
+                  Important notifications
+                </Text>
+              </Card>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={tw`w-48% mb-16`}
+              onPress={() => handleMenuPress('Profile')}
+            >
+              <Card variant="outlined">
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>Profile</Text>
+                <Text style={WineVisionStyles.bodySmall}>
+                  Manage your account
+                </Text>
+              </Card>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={tw`w-48% mb-16`}
+              onPress={() => handleMenuPress('ComingSoon')}
+            >
+              <Card variant="outlined">
+                <Text style={[tw`mb-4`, WineVisionStyles.cardHeader]}>Events</Text>
+                <Text style={WineVisionStyles.bodySmall}>
+                  Upcoming sessions
+                </Text>
+              </Card>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Featured Exhibitors */}
+        <View style={tw`mt-24`}>
+          <Text style={[tw`mb-16`, WineVisionStyles.h3]}>Featured Exhibitors</Text>
+          
+          <ExhibitorCard
+            name="Vineyard Premium Wines"
+            description="Discover our collection of award-winning wines from the finest vineyards across Europe."
+            logo="https://via.placeholder.com/64"
+            booth="A-12"
+            category="Premium Wines"
+            onPress={() => console.log('Exhibitor pressed')}
+          />
+          
+          <ExhibitorCard
+            name="Wine Tech Solutions"
+            description="Innovative technology solutions for modern wine production and distribution."
+            logo="https://via.placeholder.com/64"
+            booth="B-08"
+            category="Technology"
+            onPress={() => console.log('Exhibitor pressed')}
+          />
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { HomeScreen } from './Home';
+
+
+==================================================
+FILE: ComingSoon.tsx
+==================================================
+import React from 'react';
+import { View, Text } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { Button } from '../../components/common';
+
+type ComingSoonScreenNavigationProp = StackNavigationProp<any, 'ComingSoon'>;
+
+interface Props {
+  navigation: ComingSoonScreenNavigationProp;
+}
+
+export const ComingSoonScreen: React.FC<Props> = ({ navigation }) => {
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  return (
+    <View style={tw`flex-1 bg-white justify-center items-center px-6`}>
+      <View style={tw`items-center`}>
+        {/* Icon placeholder */}
+        <View style={tw`w-24 h-24 bg-wine-100 rounded-full items-center justify-center mb-6`}>
+          <Text style={tw`text-wine-600 text-4xl`}>ðŸš§</Text>
+        </View>
+
+        <Text style={tw`text-3xl font-bold text-wine-800 mb-4 text-center`}>
+          Coming Soon
+        </Text>
+
+        <Text style={tw`text-gray-600 text-center text-lg leading-6 mb-8`}>
+          This feature is currently under development and will be available soon.
+          We're working hard to bring you the best experience possible.
+        </Text>
+
+        <View style={tw`bg-wine-50 rounded-lg p-4 mb-8`}>
+          <Text style={tw`text-wine-700 text-center font-medium mb-2`}>
+            Expected features:
+          </Text>
+          <Text style={tw`text-wine-600 text-center`}>
+            â€¢ Event Calendar{'\n'}
+            â€¢ Meeting Scheduler{'\n'}
+            â€¢ Live Chat{'\n'}
+            â€¢ Interactive Maps
+          </Text>
+        </View>
+
+        <Button
+          title="Go Back"
+          onPress={handleGoBack}
+          variant="primary"
+          size="large"
+        />
+
+        <Text style={tw`text-gray-500 text-center mt-6 text-sm`}>
+          Stay tuned for updates!
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { ComingSoonScreen } from './ComingSoon';
+
+
+==================================================
+FILE: ArticlesList.tsx
+==================================================
+import React from 'react';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { Card } from '../../components/common';
+
+type NewsScreenNavigationProp = StackNavigationProp<any, 'News'>;
+
+interface Props {
+  navigation: NewsScreenNavigationProp;
+}
+
+interface Article {
+  id: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  author: string;
+  date: string;
+  category: string;
+}
+
+const mockArticles: Article[] = [
+  {
+    id: '1',
+    title: 'Innovative Wine Technologies at Wine Vision 2025',
+    excerpt: 'Discover the latest technological advances transforming the wine industry, from smart vineyard management to AI-powered quality control.',
+    image: 'https://via.placeholder.com/300x200',
+    author: 'Sarah Johnson',
+    date: '2025-01-20',
+    category: 'Technology',
+  },
+  {
+    id: '2',
+    title: 'Sustainable Practices in Modern Winemaking',
+    excerpt: 'Learn about eco-friendly approaches that leading wineries are adopting to reduce their environmental impact while maintaining quality.',
+    image: 'https://via.placeholder.com/300x200',
+    author: 'Michael Chen',
+    date: '2025-01-18',
+    category: 'Sustainability',
+  },
+  {
+    id: '3',
+    title: 'Market Trends: The Rise of Natural Wines',
+    excerpt: 'Explore the growing popularity of natural wines and how consumer preferences are shaping the future of wine production.',
+    image: 'https://via.placeholder.com/300x200',
+    author: 'Elena Rodriguez',
+    date: '2025-01-15',
+    category: 'Market Trends',
+  },
+];
+
+export const NewsScreen: React.FC<Props> = ({ navigation }) => {
+  const handleArticlePress = (article: Article) => {
+    // TODO: Navigate to article detail screen
+    console.log('Article pressed:', article.title);
+  };
+
+  return (
+    <ScrollView style={tw`flex-1 bg-gray-50`}>
+      <View style={tw`px-4 py-6`}>
+        <Text style={tw`text-2xl font-bold text-wine-800 mb-6`}>
+          Latest News & Articles
+        </Text>
+
+        {mockArticles.map((article) => (
+          <TouchableOpacity
+            key={article.id}
+            onPress={() => handleArticlePress(article)}
+            style={tw`mb-6`}
+          >
+            <Card variant="elevated">
+              <Image
+                source={{ uri: article.image }}
+                style={tw`w-full h-48 rounded-lg mb-4`}
+                resizeMode="cover"
+              />
+              
+              <View style={tw`flex-row items-center mb-2`}>
+                <View style={tw`bg-wine-100 px-3 py-1 rounded-full mr-3`}>
+                  <Text style={tw`text-wine-700 text-xs font-medium`}>
+                    {article.category}
+                  </Text>
+                </View>
+                <Text style={tw`text-gray-500 text-sm`}>
+                  {new Date(article.date).toLocaleDateString()}
+                </Text>
+              </View>
+
+              <Text style={tw`text-xl font-bold text-gray-900 mb-2`}>
+                {article.title}
+              </Text>
+
+              <Text style={tw`text-gray-700 leading-5 mb-3`}>
+                {article.excerpt}
+              </Text>
+
+              <View style={tw`flex-row items-center justify-between`}>
+                <Text style={tw`text-gray-600 text-sm`}>
+                  By {article.author}
+                </Text>
+                <Text style={tw`text-wine-600 font-medium text-sm`}>
+                  Read more â†’
+                </Text>
+              </View>
+            </Card>
+          </TouchableOpacity>
+        ))}
+
+        {/* Load More Button */}
+        <View style={tw`mt-4 mb-8`}>
+          <TouchableOpacity
+            style={tw`bg-wine-600 rounded-lg py-3 px-6 items-center`}
+            onPress={() => console.log('Load more articles')}
+          >
+            <Text style={tw`text-white font-semibold`}>Load More Articles</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { NewsScreen } from './ArticlesList';
+
+
+==================================================
+FILE: AnnouncementsList.tsx
+==================================================
+import React, { useState } from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { AnnouncementItem } from '../../components/notifications';
+
+type NotificationsScreenNavigationProp = StackNavigationProp<any, 'Notifications'>;
+
+interface Props {
+  navigation: NotificationsScreenNavigationProp;
+}
+
+interface Announcement {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  isRead: boolean;
+}
+
+const mockAnnouncements: Announcement[] = [
+  {
+    id: '1',
+    title: 'Welcome to Wine Vision 2025!',
+    content: 'We are excited to welcome you to the premier wine industry event of the year. Please check your schedule and don\'t miss our opening ceremony at 9:00 AM in the main hall. We have prepared an exceptional program with renowned speakers, exclusive tastings, and networking opportunities that will make this event unforgettable.',
+    date: '2025-01-20T09:00:00Z',
+    isRead: false,
+  },
+  {
+    id: '2',
+    title: 'Schedule Update: Wine Tasting Session',
+    content: 'The premium wine tasting session originally scheduled for 2:00 PM has been moved to 3:30 PM in Hall B. This change allows for better coordination with our featured vintners and ensures you have the full experience.',
+    date: '2025-01-19T14:30:00Z',
+    isRead: false,
+  },
+  {
+    id: '3',
+    title: 'New Exhibitor Added: ChÃ¢teau Excellence',
+    content: 'We are pleased to announce that ChÃ¢teau Excellence has joined our list of exhibitors. Visit their booth A-25 to discover their award-winning collection.',
+    date: '2025-01-18T11:15:00Z',
+    isRead: true,
+  },
+  {
+    id: '4',
+    title: 'Networking Lunch Tomorrow',
+    content: 'Join us for a special networking lunch featuring local cuisine paired with selected wines from our exhibitors. Limited seats available.',
+    date: '2025-01-17T12:00:00Z',
+    isRead: true,
+  },
+];
+
+export const NotificationsScreen: React.FC<Props> = ({ navigation }) => {
+  const [announcements, setAnnouncements] = useState(mockAnnouncements);
+
+  const handleMarkAsRead = (id: string) => {
+    setAnnouncements(prev =>
+      prev.map(announcement =>
+        announcement.id === id
+          ? { ...announcement, isRead: true }
+          : announcement
+      )
+    );
+    // TODO: Call API to mark as read
+  };
+
+  const unreadCount = announcements.filter(a => !a.isRead).length;
+
+  return (
+    <ScrollView style={tw`flex-1 bg-gray-50`}>
+      <View style={tw`px-4 py-6`}>
+        <View style={tw`flex-row justify-between items-center mb-6`}>
+          <Text style={tw`text-2xl font-bold text-wine-800`}>
+            Announcements
+          </Text>
+          {unreadCount > 0 && (
+            <View style={tw`bg-red-500 rounded-full px-3 py-1`}>
+              <Text style={tw`text-white text-sm font-bold`}>
+                {unreadCount} New
+              </Text>
+            </View>
+          )}
+        </View>
+
+        {announcements.length === 0 ? (
+          <View style={tw`flex-1 justify-center items-center py-12`}>
+            <Text style={tw`text-gray-500 text-center text-lg`}>
+              No announcements yet
+            </Text>
+            <Text style={tw`text-gray-400 text-center mt-2`}>
+              Check back later for updates
+            </Text>
+          </View>
+        ) : (
+          announcements.map((announcement) => (
+            <AnnouncementItem
+              key={announcement.id}
+              id={announcement.id}
+              title={announcement.title}
+              content={announcement.content}
+              date={announcement.date}
+              isRead={announcement.isRead}
+              onMarkAsRead={handleMarkAsRead}
+            />
+          ))
+        )}
+      </View>
+    </ScrollView>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { NotificationsScreen } from './AnnouncementsList';
+
+
+==================================================
+FILE: EditProfile.tsx
+==================================================
+import React, { useState } from 'react';
+import { View, Text, ScrollView, TextInput, Alert } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { Button, LoadingSpinner } from '../../components/common';
+
+type EditProfileScreenNavigationProp = StackNavigationProp<any, 'EditProfile'>;
+
+interface Props {
+  navigation: EditProfileScreenNavigationProp;
+}
+
+export const EditProfileScreen: React.FC<Props> = ({ navigation }) => {
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    phone: '+1 (555) 123-4567',
+    company: 'Wine Enthusiasts LLC',
+    position: 'Wine Consultant',
+  });
+
+  const handleSave = async () => {
+    setLoading(true);
+    try {
+      // TODO: Implement save logic with Redux
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+      Alert.alert('Success', 'Profile updated successfully!', [
+        { text: 'OK', onPress: () => navigation.goBack() }
+      ]);
+    } catch (error) {
+      Alert.alert('Error', 'Failed to update profile. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const updateField = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  if (loading) {
+    return <LoadingSpinner text="Updating profile..." />;
+  }
+
+  return (
+    <ScrollView style={tw`flex-1 bg-white`}>
+      <View style={tw`px-6 py-4`}>
+        <Text style={tw`text-xl font-bold text-wine-800 mb-6`}>
+          Edit Profile Information
+        </Text>
+
+        {/* Personal Information */}
+        <View style={tw`mb-6`}>
+          <Text style={tw`text-lg font-semibold mb-4`}>Personal Information</Text>
+          
+          <View style={tw`mb-4`}>
+            <Text style={tw`text-gray-700 font-medium mb-2`}>First Name</Text>
+            <TextInput
+              style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+              value={formData.firstName}
+              onChangeText={(value) => updateField('firstName', value)}
+              placeholder="Enter your first name"
+            />
+          </View>
+
+          <View style={tw`mb-4`}>
+            <Text style={tw`text-gray-700 font-medium mb-2`}>Last Name</Text>
+            <TextInput
+              style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+              value={formData.lastName}
+              onChangeText={(value) => updateField('lastName', value)}
+              placeholder="Enter your last name"
+            />
+          </View>
+
+          <View style={tw`mb-4`}>
+            <Text style={tw`text-gray-700 font-medium mb-2`}>Email</Text>
+            <TextInput
+              style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+              value={formData.email}
+              onChangeText={(value) => updateField('email', value)}
+              placeholder="Enter your email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </View>
+
+          <View style={tw`mb-4`}>
+            <Text style={tw`text-gray-700 font-medium mb-2`}>Phone</Text>
+            <TextInput
+              style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+              value={formData.phone}
+              onChangeText={(value) => updateField('phone', value)}
+              placeholder="Enter your phone number"
+              keyboardType="phone-pad"
+            />
+          </View>
+        </View>
+
+        {/* Professional Information */}
+        <View style={tw`mb-6`}>
+          <Text style={tw`text-lg font-semibold mb-4`}>Professional Information</Text>
+          
+          <View style={tw`mb-4`}>
+            <Text style={tw`text-gray-700 font-medium mb-2`}>Company</Text>
+            <TextInput
+              style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+              value={formData.company}
+              onChangeText={(value) => updateField('company', value)}
+              placeholder="Enter your company name"
+            />
+          </View>
+
+          <View style={tw`mb-4`}>
+            <Text style={tw`text-gray-700 font-medium mb-2`}>Position</Text>
+            <TextInput
+              style={tw`border border-gray-300 rounded-lg px-4 py-3 text-base`}
+              value={formData.position}
+              onChangeText={(value) => updateField('position', value)}
+              placeholder="Enter your position"
+            />
+          </View>
+        </View>
+
+        {/* Action Buttons */}
+        <View style={tw`flex-row justify-between mt-8 mb-6`}>
+          <Button
+            title="Cancel"
+            onPress={handleCancel}
+            variant="outline"
+            size="medium"
+          />
+          <Button
+            title="Save Changes"
+            onPress={handleSave}
+            variant="primary"
+            size="medium"
+            disabled={loading}
+          />
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export { ProfileScreen } from './ViewProfile';
+export { EditProfileScreen } from './EditProfile';
+
+
+==================================================
+FILE: ViewProfile.tsx
+==================================================
+import React from 'react';
+import { View, Text, ScrollView, Image } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import tw from 'twrnc';
+import { Button, Card } from '../../components/common';
+
+type ProfileScreenNavigationProp = StackNavigationProp<any, 'Profile'>;
+
+interface Props {
+  navigation: ProfileScreenNavigationProp;
+}
+
+export const ProfileScreen: React.FC<Props> = ({ navigation }) => {
+  // TODO: Get user data from Redux store
+  const userData = {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    phone: '+1 (555) 123-4567',
+    company: 'Wine Enthusiasts LLC',
+    position: 'Wine Consultant',
+    role: 'Visitor',
+    avatar: 'https://via.placeholder.com/120',
+  };
+
+  const handleEditProfile = () => {
+    navigation.navigate('EditProfile');
+  };
+
+  const handleLogout = () => {
+    // TODO: Implement logout logic
+    console.log('Logging out...');
+  };
+
+  return (
+    <ScrollView style={tw`flex-1 bg-gray-50`}>
+      <View style={tw`px-4 py-6`}>
+        {/* Profile Header */}
+        <Card variant="elevated">
+          <View style={tw`items-center`}>
+            <Image
+              source={{ uri: userData.avatar }}
+              style={tw`w-24 h-24 rounded-full mb-4`}
+            />
+            <Text style={tw`text-2xl font-bold text-wine-800 mb-1`}>
+              {userData.firstName} {userData.lastName}
+            </Text>
+            <Text style={tw`text-wine-600 font-medium mb-2`}>
+              {userData.role}
+            </Text>
+            <Text style={tw`text-gray-600 text-center`}>
+              {userData.company}
+            </Text>
+          </View>
+        </Card>
+
+        {/* Contact Information */}
+        <View style={tw`mt-6`}>
+          <Text style={tw`text-lg font-semibold mb-4`}>Contact Information</Text>
+          
+          <Card variant="outlined">
+            <View style={tw`mb-4`}>
+              <Text style={tw`text-gray-600 text-sm mb-1`}>Email</Text>
+              <Text style={tw`text-gray-900 font-medium`}>{userData.email}</Text>
+            </View>
+            
+            <View style={tw`mb-4`}>
+              <Text style={tw`text-gray-600 text-sm mb-1`}>Phone</Text>
+              <Text style={tw`text-gray-900 font-medium`}>{userData.phone}</Text>
+            </View>
+            
+            <View>
+              <Text style={tw`text-gray-600 text-sm mb-1`}>Position</Text>
+              <Text style={tw`text-gray-900 font-medium`}>{userData.position}</Text>
+            </View>
+          </Card>
+        </View>
+
+        {/* Actions */}
+        <View style={tw`mt-6 space-y-4`}>
+          <Button
+            title="Edit Profile"
+            onPress={handleEditProfile}
+            variant="primary"
+            size="large"
+          />
+          
+          <View style={tw`mt-4`}>
+            <Button
+              title="Logout"
+              onPress={handleLogout}
+              variant="outline"
+              size="large"
+            />
+          </View>
+        </View>
+
+        {/* Additional Information */}
+        <View style={tw`mt-6`}>
+          <Text style={tw`text-lg font-semibold mb-4`}>Event Details</Text>
+          
+          <Card variant="outlined">
+            <View style={tw`mb-4`}>
+              <Text style={tw`text-gray-600 text-sm mb-1`}>Registration Date</Text>
+              <Text style={tw`text-gray-900 font-medium`}>January 15, 2025</Text>
+            </View>
+            
+            <View style={tw`mb-4`}>
+              <Text style={tw`text-gray-600 text-sm mb-1`}>Ticket Type</Text>
+              <Text style={tw`text-gray-900 font-medium`}>Professional Access</Text>
+            </View>
+            
+            <View>
+              <Text style={tw`text-gray-600 text-sm mb-1`}>Badge ID</Text>
+              <Text style={tw`text-gray-900 font-medium`}>WV2025-12345</Text>
+            </View>
+          </Card>
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './slices/userSlice';
+import notificationsReducer from './slices/notificationsSlice';
+
+export const store = configureStore({
+  reducer: {
+    user: userReducer,
+    notifications: notificationsReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'],
+      },
+    }),
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+// Export actions
+export * from './actions';
+
+// Export slice actions
+export * from './slices/userSlice';
+export * from './slices/notificationsSlice';
+
+
+==================================================
+FILE: index.ts
+==================================================
+export * from './userActions';
+export * from './notificationsActions';
+
+
+==================================================
+FILE: notificationsActions.ts
+==================================================
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import apiClient, { endpoints } from '../../api';
+import { setNotificationsLoading, setNotifications, setNotificationsError, markAsRead } from '../slices/notificationsSlice';
+
+// Fetch notifications
+export const fetchNotifications = createAsyncThunk(
+  'notifications/fetchNotifications',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setNotificationsLoading(true));
+      
+      const response = await apiClient.get(endpoints.notifications.announcements);
+      const notifications = response.data;
+      
+      dispatch(setNotifications(notifications));
+      return notifications;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to fetch notifications';
+      dispatch(setNotificationsError(message));
+      return rejectWithValue(message);
+    } finally {
+      dispatch(setNotificationsLoading(false));
+    }
+  }
+);
+
+// Mark notification as read
+export const markNotificationAsRead = createAsyncThunk(
+  'notifications/markAsRead',
+  async (notificationId: string, { dispatch, rejectWithValue }) => {
+    try {
+      await apiClient.post(endpoints.notifications.markRead(parseInt(notificationId)));
+      
+      dispatch(markAsRead(notificationId));
+      return notificationId;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to mark as read';
+      dispatch(setNotificationsError(message));
+      return rejectWithValue(message);
+    }
+  }
+);
+
+
+==================================================
+FILE: userActions.ts
+==================================================
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as SecureStore from 'expo-secure-store';
+import apiClient, { endpoints } from '../../api';
+import { setLoading, setUser, setError, clearUser } from '../slices/userSlice';
+
+// Login action
+export const loginUser = createAsyncThunk(
+  'user/login',
+  async (credentials: { email: string; password: string }, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true));
+      
+      const response = await apiClient.post(endpoints.auth.login, credentials);
+      const { user, token } = response.data;
+      
+      // Store token securely
+      await SecureStore.setItemAsync('authToken', token);
+      
+      dispatch(setUser(user));
+      return user;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Login failed';
+      dispatch(setError(message));
+      return rejectWithValue(message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+// Register action
+export const registerUser = createAsyncThunk(
+  'user/register',
+  async (userData: any, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true));
+      
+      const response = await apiClient.post(endpoints.auth.register, userData);
+      const { user, token } = response.data;
+      
+      // Store token securely
+      await SecureStore.setItemAsync('authToken', token);
+      
+      dispatch(setUser(user));
+      return user;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Registration failed';
+      dispatch(setError(message));
+      return rejectWithValue(message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+// Fetch user profile
+export const fetchProfile = createAsyncThunk(
+  'user/fetchProfile',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true));
+      
+      const response = await apiClient.get(endpoints.user.profile);
+      const user = response.data;
+      
+      dispatch(setUser(user));
+      return user;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to fetch profile';
+      dispatch(setError(message));
+      return rejectWithValue(message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+// Update user profile
+export const updateProfile = createAsyncThunk(
+  'user/updateProfile',
+  async (userData: any, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setLoading(true));
+      
+      const response = await apiClient.put(endpoints.user.updateProfile, userData);
+      const user = response.data;
+      
+      dispatch(setUser(user));
+      return user;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to update profile';
+      dispatch(setError(message));
+      return rejectWithValue(message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+// Logout action
+export const logoutUser = createAsyncThunk(
+  'user/logout',
+  async (_, { dispatch }) => {
+    try {
+      // Remove token from secure store
+      await SecureStore.deleteItemAsync('authToken');
+      
+      // Clear user data
+      dispatch(clearUser());
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Still clear user data even if token removal fails
+      dispatch(clearUser());
+    }
+  }
+);
+
+// Check authentication status on app start
+export const checkAuthStatus = createAsyncThunk(
+  'user/checkAuthStatus',
+  async (_, { dispatch }) => {
+    try {
+      const token = await SecureStore.getItemAsync('authToken');
+      
+      if (token) {
+        // Token exists, fetch user profile
+        dispatch(fetchProfile());
+      }
+    } catch (error) {
+      console.error('Auth check error:', error);
+      // Clear any invalid tokens
+      await SecureStore.deleteItemAsync('authToken');
+    }
+  }
+);
+
+
+==================================================
+FILE: notificationsSlice.ts
+==================================================
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+export interface Notification {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  isRead: boolean;
+  type: 'announcement' | 'system' | 'event';
+}
+
+interface NotificationsState {
+  notifications: Notification[];
+  loading: boolean;
+  error: string | null;
+  unreadCount: number;
+}
+
+const initialState: NotificationsState = {
+  notifications: [],
+  loading: false,
+  error: null,
+  unreadCount: 0,
+};
+
+const notificationsSlice = createSlice({
+  name: 'notifications',
+  initialState,
+  reducers: {
+    setNotificationsLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
+    setNotifications: (state, action: PayloadAction<Notification[]>) => {
+      state.notifications = action.payload;
+      state.unreadCount = action.payload.filter(n => !n.isRead).length;
+      state.error = null;
+    },
+    addNotification: (state, action: PayloadAction<Notification>) => {
+      state.notifications.unshift(action.payload);
+      if (!action.payload.isRead) {
+        state.unreadCount += 1;
+      }
+    },
+    markAsRead: (state, action: PayloadAction<string>) => {
+      const notification = state.notifications.find(n => n.id === action.payload);
+      if (notification && !notification.isRead) {
+        notification.isRead = true;
+        state.unreadCount = Math.max(0, state.unreadCount - 1);
+      }
+    },
+    markAllAsRead: (state) => {
+      state.notifications.forEach(notification => {
+        notification.isRead = true;
+      });
+      state.unreadCount = 0;
+    },
+    removeNotification: (state, action: PayloadAction<string>) => {
+      const index = state.notifications.findIndex(n => n.id === action.payload);
+      if (index !== -1) {
+        const notification = state.notifications[index];
+        if (!notification.isRead) {
+          state.unreadCount = Math.max(0, state.unreadCount - 1);
+        }
+        state.notifications.splice(index, 1);
+      }
+    },
+    setNotificationsError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+    clearNotificationsError: (state) => {
+      state.error = null;
+    },
+  },
+});
+
+export const {
+  setNotificationsLoading,
+  setNotifications,
+  addNotification,
+  markAsRead,
+  markAllAsRead,
+  removeNotification,
+  setNotificationsError,
+  clearNotificationsError,
+} = notificationsSlice.actions;
+
+export default notificationsSlice.reducer;
+
+
+==================================================
+FILE: userSlice.ts
+==================================================
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone?: string;
+  company?: string;
+  position?: string;
+  role: 'visitor' | 'exhibitor' | 'organizer';
+  avatar?: string;
+}
+
+interface UserState {
+  user: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: UserState = {
+  user: null,
+  isAuthenticated: false,
+  loading: false,
+  error: null,
+};
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.isAuthenticated = true;
+      state.error = null;
+    },
+    updateUser: (state, action: PayloadAction<Partial<User>>) => {
+      if (state.user) {
+        state.user = { ...state.user, ...action.payload };
+      }
+    },
+    clearUser: (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+      state.error = null;
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+    clearError: (state) => {
+      state.error = null;
+    },
+  },
+});
+
+export const {
+  setLoading,
+  setUser,
+  updateUser,
+  clearUser,
+  setError,
+  clearError,
+} = userSlice.actions;
+
+export default userSlice.reducer;
+
+
+==================================================
+FILE: constants.ts
+==================================================
+// WordPress API endpoints
+export const WP_API_BASE = 'https://dev6.dushan887mob3.com/wp-json/';
+
+export const API_ENDPOINTS = {
+  // WordPress REST API v2
+  WP_V2: `${WP_API_BASE}wp/v2/`,
+  
+  // Custom auth endpoints (if using JWT or custom auth plugin)
+  AUTH: {
+    LOGIN: `${WP_API_BASE}wp/v2/auth/login`,
+    REGISTER: `${WP_API_BASE}wp/v2/auth/register`,
+    REFRESH: `${WP_API_BASE}wp/v2/auth/refresh`,
+    LOGOUT: `${WP_API_BASE}wp/v2/auth/logout`,
+  },
+  
+  // User endpoints
+  USERS: {
+    ME: `${WP_API_BASE}wp/v2/users/me`,
+    PROFILE: `${WP_API_BASE}wp/v2/users/me`,
+    UPDATE: `${WP_API_BASE}wp/v2/users/me`,
+  },
+  
+  // Content endpoints
+  POSTS: `${WP_API_BASE}wp/v2/posts`,
+  PAGES: `${WP_API_BASE}wp/v2/pages`,
+  MEDIA: `${WP_API_BASE}wp/v2/media`,
+  
+  // Custom post types (if defined in WordPress)
+  EXHIBITORS: `${WP_API_BASE}wp/v2/exhibitors`,
+  EVENTS: `${WP_API_BASE}wp/v2/events`,
+  ANNOUNCEMENTS: `${WP_API_BASE}wp/v2/announcements`,
+};
+
+// Wine Vision specific color palette
+export const COLORS = {
+  // Primary wine colors
+  wine: {
+    50: '#fdf2f8',
+    100: '#fce7f3',
+    200: '#fbcfe8',
+    300: '#f9a8d4',
+    400: '#f472b6',
+    500: '#ec4899',
+    600: '#7c2d12', // Main wine color
+    700: '#451a03',
+    800: '#292524',
+    900: '#1c1917',
+  },
+  
+  // Secondary colors
+  gold: {
+    50: '#fffbeb',
+    100: '#fef3c7',
+    200: '#fde68a',
+    300: '#fcd34d',
+    400: '#fbbf24',
+    500: '#f59e0b',
+    600: '#d97706',
+    700: '#b45309',
+    800: '#92400e',
+    900: '#78350f',
+  },
+  
+  // Neutral colors
+  gray: {
+    50: '#f9fafb',
+    100: '#f3f4f6',
+    200: '#e5e7eb',
+    300: '#d1d5db',
+    400: '#9ca3af',
+    500: '#6b7280',
+    600: '#4b5563',
+    700: '#374151',
+    800: '#1f2937',
+    900: '#111827',
+  },
+  
+  // Status colors
+  success: '#10b981',
+  warning: '#f59e0b',
+  error: '#ef4444',
+  info: '#3b82f6',
+};
+
+// Typography
+export const TYPOGRAPHY = {
+  fonts: {
+    primary: 'Inter', // Main font
+    secondary: 'Wine-Vision', // Custom font from Icomoon
+  },
+  sizes: {
+    xs: 12,
+    sm: 14,
+    base: 16,
+    lg: 18,
+    xl: 20,
+    '2xl': 24,
+    '3xl': 30,
+    '4xl': 36,
+  },
+};
+
+// Spacing
+export const SPACING = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  '2xl': 48,
+  '3xl': 64,
+};
+
+// Screen breakpoints
+export const BREAKPOINTS = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+};
+
+// App configuration
+export const APP_CONFIG = {
+  name: 'Wine Vision',
+  version: '1.0.0',
+  apiTimeout: 10000,
+  refreshTokenThreshold: 5 * 60 * 1000, // 5 minutes
+  
+  // Feature flags
+  features: {
+    push_notifications: true,
+    offline_mode: false,
+    analytics: true,
+  },
+  
+  // Storage keys
+  storage: {
+    auth_token: 'authToken',
+    user_data: 'userData',
+    app_settings: 'appSettings',
+  },
+};
+
+
+==================================================
+FILE: index.ts
+==================================================
+export * from './roles';
+export * from './constants';
+
+
+==================================================
+FILE: roles.ts
+==================================================
+// User role constants from WordPress
+export const USER_ROLES = {
+  VISITOR: 'visitor',
+  EXHIBITOR: 'exhibitor',
+  ORGANIZER: 'organizer',
+  ADMIN: 'administrator',
+} as const;
+
+export type UserRole = typeof USER_ROLES[keyof typeof USER_ROLES];
+
+// Role check functions
+export const isVisitor = (role: string): boolean => {
+  return role === USER_ROLES.VISITOR;
+};
+
+export const isExhibitor = (role: string): boolean => {
+  return role === USER_ROLES.EXHIBITOR;
+};
+
+export const isOrganizer = (role: string): boolean => {
+  return role === USER_ROLES.ORGANIZER;
+};
+
+export const isAdmin = (role: string): boolean => {
+  return role === USER_ROLES.ADMIN;
+};
+
+// Check if user has elevated privileges
+export const hasElevatedAccess = (role: string): boolean => {
+  return isOrganizer(role) || isAdmin(role);
+};
+
+// Check if user can manage exhibitors
+export const canManageExhibitors = (role: string): boolean => {
+  return isOrganizer(role) || isAdmin(role);
+};
+
+// Check if user can access exhibitor features
+export const canAccessExhibitorFeatures = (role: string): boolean => {
+  return isExhibitor(role) || hasElevatedAccess(role);
+};
+
+// Get user role display name
+export const getRoleDisplayName = (role: string): string => {
+  switch (role) {
+    case USER_ROLES.VISITOR:
+      return 'Visitor';
+    case USER_ROLES.EXHIBITOR:
+      return 'Exhibitor';
+    case USER_ROLES.ORGANIZER:
+      return 'Organizer';
+    case USER_ROLES.ADMIN:
+      return 'Administrator';
+    default:
+      return 'Unknown';
+  }
+};
+
+// Get available roles for registration
+export const getAvailableRoles = (): Array<{ value: string; label: string }> => {
+  return [
+    { value: USER_ROLES.VISITOR, label: 'Visitor' },
+    { value: USER_ROLES.EXHIBITOR, label: 'Exhibitor' },
+    // Note: Organizer and Admin roles are typically assigned by administrators
+  ];
+};
+
+
+==================================================
+FILE: wineVisionDesign.ts
+==================================================
+/**
+ * Wine Vision Design System Utilities
+ * 
+ * This file provides utility functions and examples for using the Wine Vision
+ * color palette, fonts, and design system in React Native components.
+ */
+
+import tw from 'twrnc';
+
+// Wine Vision Color Categories
+export const WineVisionColors = {
+  // Carbon (Dark theme base)
+  carbon: {
+    primary: 'c',           // rgb(11,5,28) - Darkest
+    lighter: 'c_95',        // rgb(23,18,39)
+    light: 'c_90',          // rgb(35,30,51)
+    medium: 'c_80',         // rgb(60,55,73)
+    muted: 'c_50',          // rgb(133,130,142)
+    pale: 'c_20',           // rgb(206,205,210)
+    minimal: 'c_10',        // rgb(231,230,232)
+  },
+
+  // Velvet (Exhibitors - Purple)
+  velvet: {
+    dark: 'v_dark',         // rgb(50,10,100)
+    primary: 'v',           // rgb(110,15,215)
+    medium: 'v_80',         // rgb(139,63,223)
+    light: 'v_70',          // rgb(154,87,227)
+    pale: 'v_20',           // rgb(226,207,247)
+    minimal: 'v_10',        // rgb(241,231,251)
+  },
+
+  // Ultramarine (Upcoming Meetings - Blue)
+  ultramarine: {
+    primary: 'u',           // rgb(40,70,190)
+    light: 'u_85',          // rgb(72,98,200)
+    medium: 'u_60',         // rgb(126,144,216)
+    pale: 'u_40',           // rgb(169,181,229)
+    minimal: 'u_20',        // rgb(212,218,242)
+  },
+
+  // Status Colors
+  status: {
+    success: 'g',           // rgb(0,200,100) - Green
+    info: 'b',              // rgb(0,135,255) - Blue
+    warning: 'y',           // rgb(250,165,0) - Yellow
+    error: 'r',             // rgb(235,0,55) - Red
+    danger: 'h',            // rgb(255,20,40) - Hot
+  },
+
+  // Role Colors
+  roles: {
+    visitor: 'r',           // Red gradient
+    exhibitor: 'v',         // Velvet gradient
+    buyer: 'y',             // Yellow/Terracotta gradient
+  },
+
+  // Product Colors
+  wine: {
+    white: 'wine-white',    // rgb(200,160,120)
+    rose: 'wine-rose',      // rgb(255,140,170)
+    orange: 'wine-orange',  // rgb(250,110,60)
+    red: 'wine-red',        // rgb(220,20,60)
+    sparkling: 'wine-sparkling', // rgb(145,150,170)
+  },
+
+  spirits: {
+    plum: 'plum',           // rgb(110,85,200)
+    quince: 'quince',       // rgb(200,150,20)
+    pear: 'pear',           // rgb(180,180,90)
+    grape: 'grape',         // rgb(140,190,140)
+  }
+};
+
+// Wine Vision Font Utilities
+export const WineVisionFonts = {
+  primary: 'font-inter-tight',
+  primaryItalic: 'font-inter-tight-italic',
+  icons: 'font-wine-vision',
+  fallback: 'font-inter',
+};
+
+// Common Style Combinations
+export const WineVisionStyles = {
+  // Headers
+  h1: tw`text-32 font-inter-tight font-700 text-c leading-1-2`,
+  h2: tw`text-24 font-inter-tight font-600 text-c leading-1-25`,
+  h3: tw`text-20 font-inter-tight font-600 text-c_80 leading-1-3`,
+  h4: tw`text-18 font-inter-tight font-500 text-c_80 leading-1-3`,
+
+  // Body Text
+  body: tw`text-16 font-inter-tight font-400 text-c_80 leading-1-5`,
+  bodySmall: tw`text-14 font-inter-tight font-400 text-c_70 leading-1-4`,
+  caption: tw`text-12 font-inter-tight font-400 text-c_50 leading-1-3`,
+
+  // Buttons
+  primaryButton: tw`bg-v text-w font-inter-tight font-600 text-16 px-24 py-12 rounded-8`,
+  secondaryButton: tw`bg-c_10 text-c font-inter-tight font-500 text-16 px-24 py-12 rounded-8 border-1 border-c_20`,
+  
+  // Cards
+  card: tw`bg-w rounded-12 p-20 shadow-lg border-1 border-c_10`,
+  cardHeader: tw`text-18 font-inter-tight font-600 text-c mb-12`,
+  
+  // Status Badges
+  successBadge: tw`bg-g_15 text-g px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
+  errorBadge: tw`bg-h_10 text-h px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
+  warningBadge: tw`bg-y_10 text-y px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
+  infoBadge: tw`bg-b_10 text-b px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
+
+  // Gradients (use with backgroundImage)
+  carbonGradient: 'bg-carbon-gradient-up',
+  velvetGradient: 'bg-exhibitor-gradient-light',
+  visitorGradient: 'bg-visitor-gradient',
+  buyerGradient: 'bg-buyer-gradient',
+  headerGradient: 'bg-header-gradient',
+  wineVisionGradient: 'bg-wv-gradient',
+};
+
+// Utility Functions
+export const getColorByRole = (role: 'visitor' | 'exhibitor' | 'buyer'): string => {
+  switch (role) {
+    case 'visitor': return WineVisionColors.roles.visitor;
+    case 'exhibitor': return WineVisionColors.roles.exhibitor;
+    case 'buyer': return WineVisionColors.roles.buyer;
+    default: return WineVisionColors.carbon.medium;
+  }
+};
+
+export const getStatusColor = (status: 'success' | 'error' | 'warning' | 'info'): string => {
+  return WineVisionColors.status[status] || WineVisionColors.carbon.medium;
+};
+
+// Screen Size Responsive Utilities
+export const responsive = {
+  text: (baseSize: number) => ({
+    fontSize: `${baseSize}px`,
+    // Add scaling logic based on screen size if needed
+  }),
+  spacing: (basePx: number) => `${basePx}px`,
+  percentage: (percent: number) => `${percent}%`,
+};
+
+// Icon Utilities (for Wine Vision icon font)
+export const WineVisionIcons = {
+  // Add icon character codes here when you have the font
+  // Example: wine: '\ue001',
+  // Use with: <Text style={tw`font-wine-vision`}>{WineVisionIcons.wine}</Text>
+};
+
+export default {
+  WineVisionColors,
+  WineVisionFonts,
+  WineVisionStyles,
+  getColorByRole,
+  getStatusColor,
+  responsive,
+  WineVisionIcons,
+};
+
+
