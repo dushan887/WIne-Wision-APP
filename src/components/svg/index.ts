@@ -1,0 +1,1 @@
+export { InteractiveHall } from './InteractiveHall';
