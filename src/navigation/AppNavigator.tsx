@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import type { RootState } from '../store/index';
 
 // Import screens
 import { LoginScreen } from '../screens/Auth';
@@ -30,7 +30,7 @@ export type MainStackParamList = {
 
 export type RootStackParamList = AuthStackParamList & MainStackParamList;
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppNavigator: React.FC = () => {
   const { user, isAuthenticated } = useSelector((state: RootState) => state.user);
