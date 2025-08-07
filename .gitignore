@@ -59,3 +59,7 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Project structure exports
+structure.txt
+

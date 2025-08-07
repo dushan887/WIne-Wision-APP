@@ -1,144 +1,135 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import tw from 'twrnc';
-import { Button } from '../../components/common';
-import { useMultiStepRegistration } from '../../features/auth';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../navigation/AppNavigator';
+import { registerUser } from '../../store/actions/userActions';
+import { RootState, AppDispatch } from '../../store';
 
-type RegisterScreenNavigationProp = StackNavigationProp<any, 'Register'>;
+// Generic navigation prop to allow navigation to any app screen
+type NavigationProp = StackNavigationProp<RootStackParamList>;
 
-interface Props {
-  navigation: RegisterScreenNavigationProp;
-}
+const RegisterScreen = () => {
+  const navigation = useNavigation<NavigationProp>();
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading } = useSelector((state: RootState) => state.user);
+  
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    first_name: '',
+    last_name: '',
+  });
 
-export const RegisterScreen: React.FC<Props> = ({ navigation }) => {
-  const {
-    currentStep,
-    steps,
-    registrationData,
-    nextStep,
-    prevStep,
-    updateData,
-    canProceed,
-    isFirstStep,
-    isLastStep,
-  } = useMultiStepRegistration();
-
-  const handleNext = () => {
-    if (isLastStep) {
-      // TODO: Submit registration
-      console.log('Submitting registration:', registrationData);
-      navigation.navigate('Login');
-    } else {
-      nextStep();
-    }
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleBack = () => {
-    if (isFirstStep) {
-      navigation.goBack();
-    } else {
-      prevStep();
+  const handleRegister = async () => {
+    // Basic validation
+    if (!formData.username || !formData.email || !formData.password) {
+      Alert.alert('Error', 'Please fill in all required fields');
+      return;
     }
-  };
 
-  const renderStepContent = () => {
-    switch (currentStep) {
-      case 1:
-        return (
-          <View>
-            <Text style={tw`text-lg font-semibold mb-4`}>Account Details</Text>
-            {/* TODO: Add form fields for step 1 */}
-            <Text style={tw`text-gray-600`}>
-              Email, password, and confirm password fields will go here.
-            </Text>
-          </View>
-        );
-      case 2:
-        return (
-          <View>
-            <Text style={tw`text-lg font-semibold mb-4`}>Personal Information</Text>
-            {/* TODO: Add form fields for step 2 */}
-            <Text style={tw`text-gray-600`}>
-              First name, last name, and phone fields will go here.
-            </Text>
-          </View>
-        );
-      case 3:
-        return (
-          <View>
-            <Text style={tw`text-lg font-semibold mb-4`}>Professional Details</Text>
-            {/* TODO: Add form fields for step 3 */}
-            <Text style={tw`text-gray-600`}>
-              Company, position, and industry fields will go here.
-            </Text>
-          </View>
-        );
-      case 4:
-        return (
-          <View>
-            <Text style={tw`text-lg font-semibold mb-4`}>Role Selection</Text>
-            {/* TODO: Add role selection */}
-            <Text style={tw`text-gray-600`}>
-              Role selection (visitor, exhibitor, organizer) will go here.
-            </Text>
-          </View>
-        );
-      case 5:
-        return (
-          <View>
-            <Text style={tw`text-lg font-semibold mb-4`}>Preferences</Text>
-            {/* TODO: Add preferences */}
-            <Text style={tw`text-gray-600`}>
-              Interests and notification preferences will go here.
-            </Text>
-          </View>
-        );
-      default:
-        return null;
+    if (formData.password !== formData.confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
+
+    try {
+      await dispatch(registerUser(formData)).unwrap();
+      Alert.alert('Success', 'Registration successful!', [
+        { text: 'OK', onPress: () => navigation.navigate('Profile') }
+      ]);
+    } catch (error: any) {
+      Alert.alert('Registration Failed', error || 'Please try again');
     }
   };
 
   return (
-    <ScrollView style={tw`flex-1 bg-white`}>
-      <View style={tw`px-6 py-4`}>
-        {/* Progress indicator */}
-        <View style={tw`flex-row mb-6`}>
-          {steps.map((step) => (
-            <View
-              key={step.id}
-              style={tw`flex-1 mx-1 h-2 rounded ${
-                step.id <= currentStep ? 'bg-wine-600' : 'bg-gray-200'
-              }`}
-            />
-          ))}
-        </View>
+    <ScrollView style={tw`flex-1 bg-[#0b051c] p-4`}>
+      <Text style={tw`text-white text-2xl font-bold mb-6 text-center`}>Create Account</Text>
+      
+      <Text style={tw`text-gray-300 mb-2`}>Username *</Text>
+      <TextInput
+        style={tw`w-full bg-gray-800 text-white p-4 rounded-lg mb-4`}
+        placeholder="Enter username"
+        placeholderTextColor="gray"
+        value={formData.username}
+        onChangeText={(value) => handleInputChange('username', value)}
+      />
 
-        <Text style={tw`text-2xl font-bold text-wine-800 mb-2`}>
-          Step {currentStep} of {steps.length}
+      <Text style={tw`text-gray-300 mb-2`}>Email *</Text>
+      <TextInput
+        style={tw`w-full bg-gray-800 text-white p-4 rounded-lg mb-4`}
+        placeholder="Enter email"
+        placeholderTextColor="gray"
+        value={formData.email}
+        onChangeText={(value) => handleInputChange('email', value)}
+        keyboardType="email-address"
+      />
+
+      <Text style={tw`text-gray-300 mb-2`}>First Name</Text>
+      <TextInput
+        style={tw`w-full bg-gray-800 text-white p-4 rounded-lg mb-4`}
+        placeholder="Enter first name"
+        placeholderTextColor="gray"
+        value={formData.first_name}
+        onChangeText={(value) => handleInputChange('first_name', value)}
+      />
+
+      <Text style={tw`text-gray-300 mb-2`}>Last Name</Text>
+      <TextInput
+        style={tw`w-full bg-gray-800 text-white p-4 rounded-lg mb-4`}
+        placeholder="Enter last name"
+        placeholderTextColor="gray"
+        value={formData.last_name}
+        onChangeText={(value) => handleInputChange('last_name', value)}
+      />
+
+      <Text style={tw`text-gray-300 mb-2`}>Password *</Text>
+      <TextInput
+        style={tw`w-full bg-gray-800 text-white p-4 rounded-lg mb-4`}
+        placeholder="Enter password"
+        placeholderTextColor="gray"
+        value={formData.password}
+        onChangeText={(value) => handleInputChange('password', value)}
+        secureTextEntry
+      />
+
+      <Text style={tw`text-gray-300 mb-2`}>Confirm Password *</Text>
+      <TextInput
+        style={tw`w-full bg-gray-800 text-white p-4 rounded-lg mb-6`}
+        placeholder="Confirm password"
+        placeholderTextColor="gray"
+        value={formData.confirmPassword}
+        onChangeText={(value) => handleInputChange('confirmPassword', value)}
+        secureTextEntry
+      />
+
+      <TouchableOpacity 
+        style={tw`w-full bg-purple-600 p-4 rounded-lg mb-4 ${loading ? 'opacity-50' : ''}`}
+        onPress={handleRegister}
+        disabled={loading}
+      >
+        <Text style={tw`text-white text-center font-bold`}>
+          {loading ? 'Creating Account...' : 'Create Account'}
         </Text>
-        <Text style={tw`text-gray-600 mb-6`}>
-          {steps[currentStep - 1]?.description}
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={tw`text-gray-400 text-center`}>
+          Already have an account?{' '}
+          <Text style={tw`text-purple-400 font-bold`}>Sign In</Text>
         </Text>
-
-        {renderStepContent()}
-
-        <View style={tw`flex-row justify-between mt-8`}>
-          <Button
-            title={isFirstStep ? 'Cancel' : 'Back'}
-            onPress={handleBack}
-            variant="outline"
-            size="medium"
-          />
-          <Button
-            title={isLastStep ? 'Complete' : 'Next'}
-            onPress={handleNext}
-            variant="primary"
-            size="medium"
-            disabled={!canProceed}
-          />
-        </View>
-      </View>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
+
+export default RegisterScreen;

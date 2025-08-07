@@ -1,1 +1,1 @@
-export { NewsScreen } from './ArticlesList';
+export { default as NewsScreen } from './ArticlesList';

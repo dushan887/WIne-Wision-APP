@@ -1,1 +1,1 @@
-export { NotificationsScreen } from './AnnouncementsList';
+export { default as NotificationsScreen } from './AnnouncementsList';

@@ -268,9 +268,6 @@ module.exports = {
       },
       // Fonts
       fontFamily: {
-        'inter': ['Inter_400Regular'],
-        'inter-semibold': ['Inter_600SemiBold'],
-        'inter-bold': ['Inter_700Bold'],
         'inter-tight': ['InterTight-VariableFont_wght', 'sans-serif'],
         'inter-tight-italic': ['InterTight-Italic-VariableFont_wght', 'sans-serif'],
         'wine-vision': ['Wine-Vision'],

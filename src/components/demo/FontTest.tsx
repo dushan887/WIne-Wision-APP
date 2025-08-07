@@ -110,20 +110,6 @@ export const FontTest: React.FC = () => {
           </View>
         </View>
 
-        {/* Fallback Font Test */}
-        <View style={tw`mb-32`}>
-          <Text style={[WineVisionStyles.h3, tw`mb-16`]}>Fallback Fonts Test</Text>
-          <Text style={tw`font-inter font-400 text-16 text-c_80 mb-8`}>
-            Inter Regular (Fallback) - Should load if Inter Tight fails
-          </Text>
-          <Text style={tw`font-inter-semibold font-600 text-16 text-c_80 mb-8`}>
-            Inter Semi Bold (Fallback)
-          </Text>
-          <Text style={tw`font-inter-bold font-700 text-16 text-c_80 mb-8`}>
-            Inter Bold (Fallback)
-          </Text>
-        </View>
-
         {/* Wine Vision Brand Colors with Fonts */}
         <View style={tw`mb-32`}>
           <Text style={[WineVisionStyles.h3, tw`mb-16`]}>Brand Integration Test</Text>

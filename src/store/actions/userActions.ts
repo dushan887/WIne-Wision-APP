@@ -10,8 +10,11 @@ export const loginUser = createAsyncThunk(
     try {
       dispatch(setLoading(true));
       
-      const response = await apiClient.post(endpoints.auth.login, credentials);
-      const { user, token } = response.data;
+      const response = await apiClient.post(endpoints.auth.login, { 
+        username: credentials.email, 
+        password: credentials.password 
+      });
+      const { token, user } = response.data;
       
       // Store token securely
       await SecureStore.setItemAsync('authToken', token);
@@ -36,7 +39,7 @@ export const registerUser = createAsyncThunk(
       dispatch(setLoading(true));
       
       const response = await apiClient.post(endpoints.auth.register, userData);
-      const { user, token } = response.data;
+      const { token, user } = response.data;
       
       // Store token securely
       await SecureStore.setItemAsync('authToken', token);
@@ -61,10 +64,10 @@ export const fetchProfile = createAsyncThunk(
       dispatch(setLoading(true));
       
       const response = await apiClient.get(endpoints.user.profile);
-      const user = response.data;
+      const { user, meta } = response.data;
       
-      dispatch(setUser(user));
-      return user;
+      dispatch(setUser({ ...user, ...meta }));
+      return { ...user, ...meta };
     } catch (error: any) {
       const message = error.response?.data?.message || 'Failed to fetch profile';
       dispatch(setError(message));
@@ -82,11 +85,15 @@ export const updateProfile = createAsyncThunk(
     try {
       dispatch(setLoading(true));
       
-      const response = await apiClient.put(endpoints.user.updateProfile, userData);
-      const user = response.data;
+      const response = await apiClient.post(endpoints.user.updateProfile, userData);
+      const { success } = response.data;
       
-      dispatch(setUser(user));
-      return user;
+      if (success) {
+        // Fetch updated profile
+        dispatch(fetchProfile());
+      }
+      
+      return response.data;
     } catch (error: any) {
       const message = error.response?.data?.message || 'Failed to update profile';
       dispatch(setError(message));

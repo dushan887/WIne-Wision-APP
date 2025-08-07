@@ -49,13 +49,13 @@ export default apiClient;
 // API endpoints
 export const endpoints = {
   auth: {
-    login: '/wp/v2/auth/login',
-    register: '/wp/v2/auth/register',
+    login: 'jwt-auth/v1/token',
+    register: 'wv/v1/register',
     refresh: '/wp/v2/auth/refresh',
   },
   user: {
-    profile: '/wp/v2/users/me',
-    updateProfile: '/wp/v2/users/me',
+    profile: 'wv/v1/profile',
+    updateProfile: 'wv/v1/profile',
   },
   news: {
     articles: '/wp/v2/posts',

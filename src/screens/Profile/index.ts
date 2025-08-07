@@ -1,2 +1,2 @@
-export { ProfileScreen } from './ViewProfile';
-export { EditProfileScreen } from './EditProfile';
+export { default as ProfileScreen } from './ViewProfile';
+export { default as EditProfileScreen } from './EditProfile';
