@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store';
 import { logoutUser } from '../../store/actions/userActions';
 import WVLogo from '../../../assets/images/wv_logo-official.svg';
+import MessageArea from './MessageArea';
 
 // Interactive header with togglable menu and logout for Wine Vision app
 interface CustomHeaderProps {
@@ -52,66 +53,69 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({ isAuthenticated }) => {
   if (!isAuthenticated) {
     // Simple header for guests with conditional navigation
     return (
-      <LinearGradient
-        colors={[colors.c_90, colors.c]}
-        style={tw``}
-      >
-        <SafeAreaView style={tw``}>
-          <StatusBar barStyle="light-content" backgroundColor={colors.c_90} />
-          <View style={tw`flex-row justify-between items-center px-4 py-4 relative min-h-16`}>  
-          {/* Left side - Back or About */}
-          {shouldShowBackButton ? (
-            <TouchableOpacity onPress={handleBackNavigation} style={tw`flex-row items-center flex-1`}>
-              <View style={[tw`relative w-6 h-6 mr-1 justify-center items-center`, { transform: [{ rotate: '180deg' }] }]}>
-                <Text style={[tw`font-medium text-lg absolute`, { 
-                  fontFamily: 'Wine-Vision', 
-                  color: colors.c_20
-                }]}>&#xe94e;</Text>
-                <Text style={[tw`text-white font-medium text-lg absolute`, { 
-                  fontFamily: 'Wine-Vision', 
-                  color: colors.c
-                }]}>&#xe94f;</Text>
-              </View>
-              <Text style={[tw`font-medium`, { color: colors.c_20 }]}>Back</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={() => navigation.navigate('About' as never)} style={tw`flex-row items-center flex-1`}>
-              <View style={tw`relative w-6 h-6 mr-1 justify-center items-center`}>
-                <Text style={[tw`font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c_20 }]}>&#xe9a1;</Text>
-                <Text style={[tw`text-white font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c }]}>&#xe9a2;</Text>
-              </View>
-              <Text style={[tw`font-medium`, { color: colors.c_20 }]}>About</Text>
-            </TouchableOpacity>
-          )}
-          
-          {/* Centered Logo */}
-          <View style={tw`absolute left-0 right-0 top-0 bottom-0 justify-center items-center z-10`} pointerEvents="none">
-            <TouchableOpacity 
-              onPress={() => navigation.navigate('Landing' as never)} 
-            >
-              <WVLogo width={40} height={40} />
-            </TouchableOpacity>
+      <View>
+        <LinearGradient
+          colors={[colors.c_90, colors.c]}
+          style={tw``}
+        >
+          <SafeAreaView style={tw``}>
+            <StatusBar barStyle="light-content" backgroundColor={colors.c_90} />
+            <View style={tw`flex-row justify-between items-center px-4 py-4 relative min-h-16`}>  
+            {/* Left side - Back or About */}
+            {shouldShowBackButton ? (
+              <TouchableOpacity onPress={handleBackNavigation} style={tw`flex-row items-center flex-1`}>
+                <View style={[tw`relative w-6 h-6 mr-1 justify-center items-center`, { transform: [{ rotate: '180deg' }] }]}>
+                  <Text style={[tw`font-medium text-lg absolute`, { 
+                    fontFamily: 'Wine-Vision', 
+                    color: colors.c_20
+                  }]}>&#xe94e;</Text>
+                  <Text style={[tw`text-white font-medium text-lg absolute`, { 
+                    fontFamily: 'Wine-Vision', 
+                    color: colors.c
+                  }]}>&#xe94f;</Text>
+                </View>
+                <Text style={[tw`font-medium`, { color: colors.c_20 }]}>Back</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => navigation.navigate('About' as never)} style={tw`flex-row items-center flex-1`}>
+                <View style={tw`relative w-6 h-6 mr-1 justify-center items-center`}>
+                  <Text style={[tw`font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c_20 }]}>&#xe9a1;</Text>
+                  <Text style={[tw`text-white font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c }]}>&#xe9a2;</Text>
+                </View>
+                <Text style={[tw`font-medium`, { color: colors.c_20 }]}>About</Text>
+              </TouchableOpacity>
+            )}
+            
+            {/* Centered Logo */}
+            <View style={tw`absolute left-0 right-0 top-0 bottom-0 justify-center items-center z-10`} pointerEvents="none">
+              <TouchableOpacity 
+                onPress={() => navigation.navigate('Landing' as never)} 
+              >
+                <WVLogo width={40} height={40} />
+              </TouchableOpacity>
+            </View>
+            
+            {/* Right side - Register or Sign In */}
+            {isOnLoginPage ? (
+              <TouchableOpacity onPress={() => navigation.navigate('Register' as never)} style={tw`flex-row items-center justify-end flex-1`}>
+                <Text style={[tw`font-medium mr-1`, { color: colors.c_20 }]}>Register</Text>
+                <View style={tw`relative w-6 h-6 justify-center items-center`}>
+                  <Text style={[tw`text-white font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c_20 }]}>&#xe91a;</Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => navigation.navigate('Login' as never)} style={tw`flex-row items-center justify-end flex-1`}>
+                <Text style={[tw`font-medium mr-1`, { color: colors.c_20 }]}>Sign In</Text>
+                <View style={tw`relative w-6 h-6 justify-center items-center`}>
+                  <Text style={[tw`text-white font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c_20 }]}>&#xe91a;</Text>
+                </View>
+              </TouchableOpacity>
+            )}
           </View>
-          
-          {/* Right side - Register or Sign In */}
-          {isOnLoginPage ? (
-            <TouchableOpacity onPress={() => navigation.navigate('Register' as never)} style={tw`flex-row items-center justify-end flex-1`}>
-              <Text style={[tw`font-medium mr-1`, { color: colors.c_20 }]}>Register</Text>
-              <View style={tw`relative w-6 h-6 justify-center items-center`}>
-                <Text style={[tw`text-white font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c_20 }]}>&#xe91a;</Text>
-              </View>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={() => navigation.navigate('Login' as never)} style={tw`flex-row items-center justify-end flex-1`}>
-              <Text style={[tw`font-medium mr-1`, { color: colors.c_20 }]}>Sign In</Text>
-              <View style={tw`relative w-6 h-6 justify-center items-center`}>
-                <Text style={[tw`text-white font-medium text-lg absolute`, { fontFamily: 'Wine-Vision', color: colors.c_20 }]}>&#xe91a;</Text>
-              </View>
-            </TouchableOpacity>
-          )}
-        </View>
-      </SafeAreaView>
-    </LinearGradient>
+        </SafeAreaView>
+      </LinearGradient>
+      <MessageArea />
+      </View>
     );
   }
 
@@ -272,6 +276,7 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({ isAuthenticated }) => {
           </View>
         </View>
       )}
+      <MessageArea />
     </View>
   );
 };

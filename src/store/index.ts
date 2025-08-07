@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
 import notificationsReducer from './slices/notificationsSlice';
+import messagesReducer from './slices/messagesSlice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     notifications: notificationsReducer,
+    messages: messagesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -24,3 +26,4 @@ export * from './actions';
 // Export slice actions
 export * from './slices/userSlice';
 export * from './slices/notificationsSlice';
+export * from './slices/messagesSlice';

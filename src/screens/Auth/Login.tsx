@@ -10,6 +10,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/AppNavigator';
 import { loginUser } from '../../store/actions/userActions';
 import { RootState, AppDispatch } from '../../store';
+import { useMessages } from '../../hooks';
 import HeaderLogoLight from '../../../assets/images/Header_Logo_Info_LIGHT.svg';
 
 type LoginNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
@@ -18,6 +19,7 @@ const LoginScreen = () => {
   const navigation = useNavigation<LoginNavigationProp>();
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error } = useSelector((state: RootState) => state.user);
+  const messages = useMessages();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -36,15 +38,16 @@ const LoginScreen = () => {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
+      messages.showError(messages.patterns.VALIDATION_ERROR, 'Missing Information');
       return;
     }
 
     try {
       await dispatch(loginUser({ email, password })).unwrap();
+      messages.showSuccess(messages.patterns.LOGIN_SUCCESS);
       navigation.navigate('Profile');
     } catch (error: any) {
-      Alert.alert('Login Failed', error || 'Please check your credentials');
+      messages.showError(error || messages.patterns.LOGIN_ERROR, 'Login Failed');
     }
   };
 
