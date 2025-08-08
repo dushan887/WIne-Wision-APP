@@ -5,3 +5,5 @@ export { Card } from './Card';
 export { UnreadBadge } from './UnreadBadge';
 export { default as MessageArea } from './MessageArea';
 export { HTMLText } from './HTMLText';
+export { default as StepHeader } from './StepHeader';
+export * from './ThemedControls';

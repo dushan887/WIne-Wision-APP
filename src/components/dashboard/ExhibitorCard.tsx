@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import tw from 'twrnc';
 import { Card } from '../common';
+const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
 
 interface ExhibitorCardProps {
   name: string;
@@ -35,7 +36,7 @@ export const ExhibitorCard: React.FC<ExhibitorCardProps> = ({
             {name}
           </Text>
           {category && (
-            <Text style={tw`text-wine-600 text-sm font-medium mb-1`}>
+            <Text style={[tw`text-sm font-medium mb-1`, { color: colors['wine-red'] }]}>
               {category}
             </Text>
           )}

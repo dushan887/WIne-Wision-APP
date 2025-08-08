@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 import { Card, UnreadBadge } from '../common';
+const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
 
 interface AnnouncementItemProps {
   id: string;
@@ -59,7 +60,7 @@ export const AnnouncementItem: React.FC<AnnouncementItemProps> = ({
 
         {content.length > 100 && (
           <TouchableOpacity style={tw`mt-2`} onPress={handlePress}>
-            <Text style={tw`text-wine-600 text-sm font-medium`}>
+            <Text style={[tw`text-sm font-medium`, { color: colors['wine-red'] }]}>
               {isExpanded ? 'Show less' : 'Read more'}
             </Text>
           </TouchableOpacity>

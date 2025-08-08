@@ -1,11 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import tw from 'twrnc';
+const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'link';
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   loading?: boolean;
@@ -28,15 +29,26 @@ export const Button: React.FC<ButtonProps> = ({
       large: 'px-8 py-4',
     };
 
-    const variantStyles = {
-      primary: 'bg-wine-600',
-      secondary: 'bg-gray-600',
-      outline: 'border-2 border-wine-600 bg-transparent',
-    };
-
     const disabledStyles = disabled || loading ? 'opacity-50' : '';
+    // Link buttons have minimal padding
+    if (variant === 'link') return `px-2 py-1 ${disabledStyles}`;
 
-    return `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${disabledStyles}`;
+    return `${baseStyles} ${sizeStyles[size]} ${disabledStyles}`;
+  };
+
+  const getButtonBackgroundStyle = () => {
+    switch (variant) {
+      case 'primary':
+        return { backgroundColor: colors['wine-red'] };
+      case 'secondary':
+        return { backgroundColor: '#4B5563' }; // gray-600
+      case 'outline':
+        return { backgroundColor: 'transparent', borderWidth: 2, borderColor: colors['wine-red'] };
+      case 'link':
+        return { backgroundColor: 'transparent' };
+      default:
+        return { backgroundColor: colors['wine-red'] };
+    }
   };
 
   const getTextStyles = () => {
@@ -48,29 +60,35 @@ export const Button: React.FC<ButtonProps> = ({
       large: 'text-lg',
     };
 
-    const variantStyles = {
-      primary: 'text-white',
-      secondary: 'text-white',
-      outline: 'text-wine-600',
-    };
+    return `${baseStyles} ${sizeStyles[size]}`;
+  };
 
-    return `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]}`;
+  const getTextColor = () => {
+    switch (variant) {
+      case 'primary':
+      case 'secondary':
+        return { color: '#ffffff' };
+      case 'outline':
+        return { color: colors['wine-red'] };
+      default:
+        return { color: '#ffffff' };
+    }
   };
 
   return (
     <TouchableOpacity
-      style={tw`${getButtonStyles()}`}
+      style={[tw`${getButtonStyles()}`, getButtonBackgroundStyle()]}
       onPress={onPress}
       disabled={disabled || loading}
     >
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === 'outline' ? '#7c2d12' : '#ffffff'}
+          color={variant === 'outline' ? colors['wine-red'] : '#ffffff'}
           style={tw`mr-2`}
         />
       ) : null}
-      <Text style={tw`${getTextStyles()}`}>{title}</Text>
+      <Text style={[tw`${getTextStyles()}`, getTextColor()]}>{title}</Text>
     </TouchableOpacity>
   );
 };
