@@ -31,7 +31,7 @@ const StepStart: React.FC<StepStartProps> = ({ savedData, onSelectProfile, profi
   const selectionColors = getSelectionColors();
 
   return (
-    <View style={tw`px-6 py-2`}>  
+    <View style={tw`px-6 pb-2`}>  
         {/* Header */}
         {headerTitle && headerSubtitle && (
           <StepHeader title={headerTitle} subtitle={headerSubtitle} />
@@ -44,7 +44,7 @@ const StepStart: React.FC<StepStartProps> = ({ savedData, onSelectProfile, profi
           // Get background styling for the specific option being rendered
           const getOptionBackgroundStyling = () => {
             if (!selected) {
-              return { useImage: false, backgroundColor: colors.c_5 };
+              return { useImage: false, backgroundColor: 'rgba(255,255,255,0.5)' };
             }
             
             // Get the theme colors for this specific option

@@ -127,39 +127,39 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
     case 'Exhibitor':
       return [
         { id: 'start', title: 'Profile Selection', description: 'CHOOSE PROFILE', fields: ['wv_profileSelection'], headerTitle: 'Exhibitor, Pro-Buyer or Visitor?', headerSubtitle: 'Choose single option' },
-        { id: 'ex-step-1', title: 'Field of Work', description: 'Select field', fields: ['wv_fieldOfWork'], headerTitle: 'Field of Work', headerSubtitle: 'Choose single option' },
-        { id: 'ex-step-2', title: 'Participation Model', description: 'Select model', fields: ['wv_participationModel'], headerTitle: 'Participation Model', headerSubtitle: 'Choose single option' },
-        { id: 'ex-step-3', title: 'User Category', description: 'Select category', fields: ['wv_userCategory'], headerTitle: 'User Category', headerSubtitle: 'Choose single option' },
-        { id: 'ex-step-4', title: 'Category Description', description: 'Describe if other', fields: ['wv_userCategoryOtherDescription'], headerTitle: 'Category Description', headerSubtitle: 'Describe your category' },
-        { id: 'ex-step-5', title: 'Exhibiting Products', description: 'Select option', fields: ['wv_exhibitingProducts'], headerTitle: 'Exhibiting Products', headerSubtitle: 'Choose single option' },
-        { id: 'ex-step-6', title: 'Company Description', description: 'Describe company', fields: ['wv_companyDescription'], headerTitle: 'Company Description', headerSubtitle: 'Tell us about your company' },
-        { id: 'ex-step-7', title: 'Company Details', description: 'Enter company info', fields: ['wv_company_name', 'wv_company_pobRegion', 'wv_company_country', 'wv_company_email', 'wv_company_city', 'wv_company_website', 'wv_company_address', 'wv_company_phone', 'wv_annualProductionLiters', 'wv_currentStockLiters'], headerTitle: 'Company Details', headerSubtitle: 'Complete all required fields' },
-        { id: 'ex-step-8', title: 'Financial Details', description: 'Enter financial info', fields: ['wv_company_idRegistryNumber', 'wv_company_vatRegistryNumber', 'wv_company_iban', 'wv_company_foreignBank', 'wv_company_domesticBank', 'wv_company_foreignAccountNumber', 'wv_company_domesticAccountNumber', 'wv_company_foreignSwift', 'wv_company_domesticSwift'], headerTitle: 'Financial Details', headerSubtitle: 'Enter your banking information' },
-        { id: 'ex-step-9', title: 'Social Media', description: 'Enter social links', fields: ['wv_socInstagram', 'wv_socLinkedin', 'wv_socFacebook', 'wv_socX'], headerTitle: 'Social Media', headerSubtitle: 'Connect your social profiles' },
-        { id: 'ex-step-10', title: 'Personal Details', description: 'Enter personal info', fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber'], headerTitle: 'Personal Details', headerSubtitle: 'Complete all required fields' },
+        { id: 'wv-ex-step-1', title: 'Field of Work', description: 'Select field', fields: ['wv_fieldOfWork'], headerTitle: 'Wine, Spirits or Food?', headerSubtitle: 'FIELD OF WORK' },
+        { id: 'wv-ex-step-2', title: 'Participation Model', description: 'PARTICIPATION MODEL', fields: ['wv_participationModel'], headerTitle: 'You are applying as:', headerSubtitle: 'CHOOSE SINGLE OPTION' },
+        { id: 'wv-ex-step-3', title: 'User Category', description: 'PROFESSIONAL ACTIVITIES CATEGORY', fields: ['wv_userCategory'], headerTitle: 'Select your category', headerSubtitle: 'PROFESSIONAL ACTIVITIES CATEGORY • CHOOSE SINGLE OPTION' },
+        { id: 'wv-ex-step-4', title: 'Category Description', description: 'PROFESSIONAL ACTIVITIES CATEGORY', fields: ['wv_userCategoryOtherDescription'], headerTitle: 'Describe your category', headerSubtitle: 'PROFESSIONAL ACTIVITIES CATEGORY • IN WRITTEN WORDS, UP TO 200 CHARACTERS' },
+        { id: 'wv-ex-step-5', title: 'Exhibiting Products', description: 'EXHIBITOR PRODUCTS', fields: ['wv_exhibitingProducts'], headerTitle: 'Are you exhibiting products?', headerSubtitle: 'EXHIBITOR PRODUCTS • CHOOSE SINGLE OPTION' },
+        { id: 'wv-ex-step-6', title: 'Company Description', description: 'COMPANY DESCRIPTION', fields: ['wv_companyDescription'], headerTitle: 'About your company', headerSubtitle: 'COMPANY DESCRIPTION • IN WRITTEN WORDS, UP TO 700 CHARACTERS' },
+        { id: 'wv-ex-step-7', title: 'Company Details', description: 'Enter company info', fields: ['wv_company_name', 'wv_company_pobRegion', 'wv_company_country', 'wv_company_email', 'wv_company_city', 'wv_company_website', 'wv_company_address', 'wv_company_phone', 'wv_annualProductionLiters', 'wv_currentStockLiters'], headerTitle: 'Company Details', headerSubtitle: 'Complete all required fields' },
+        { id: 'wv-ex-step-8', title: 'Financial Details', description: 'Enter financial info', fields: ['wv_company_idRegistryNumber', 'wv_company_vatRegistryNumber', 'wv_company_iban', 'wv_company_foreignBank', 'wv_company_domesticBank', 'wv_company_foreignAccountNumber', 'wv_company_domesticAccountNumber', 'wv_company_foreignSwift', 'wv_company_domesticSwift'], headerTitle: 'Financial Details', headerSubtitle: 'Enter your banking information' },
+        { id: 'wv-ex-step-9', title: 'Social Media', description: 'Enter social links', fields: ['wv_socInstagram', 'wv_socLinkedin', 'wv_socFacebook', 'wv_socX'], headerTitle: 'Social Media', headerSubtitle: 'Connect your social profiles' },
+        { id: 'wv-ex-step-10', title: 'Personal Details', description: 'Enter personal info', fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber'], headerTitle: 'Personal Details', headerSubtitle: 'Complete all required fields' },
         ...commonSteps,
       ];
     case 'Buyer':
       return [
         { id: 'start', title: 'Profile Selection', description: 'Choose your profile', fields: ['wv_profileSelection'], headerTitle: 'Exhibitor, Pro-Buyer or Visitor?', headerSubtitle: 'Choose single option' },
-        { id: 'pb-step-1', title: 'User Category', description: 'Select category', fields: ['wv_userCategory'], headerTitle: 'User Category', headerSubtitle: 'Choose single option' },
-        { id: 'pb-step-2', title: 'Category Description', description: 'Describe if other', fields: ['wv_userCategoryOtherDescription'], headerTitle: 'Category Description', headerSubtitle: 'Describe your category' },
-        { id: 'pb-step-3', title: 'Reasons for Visiting', description: 'Select reasons', fields: ['wv_reasonsForVisiting'], headerTitle: 'Reasons for Visiting', headerSubtitle: 'Choose multiple options' },
-        { id: 'pb-step-4', title: 'Other Reasons', description: 'Enter other reasons', fields: ['wv_otherReasonsForVisiting'], headerTitle: 'Other Reasons', headerSubtitle: 'Describe additional reasons' },
-        { id: 'pb-step-5', title: 'Points of Interest', description: 'Select interests', fields: ['wv_pointsOfInterest'], headerTitle: 'Points of Interest', headerSubtitle: 'Choose multiple options' },
-        { id: 'pb-step-6', title: 'Company Description', description: 'Describe company', fields: ['wv_companyDescription'], headerTitle: 'Company Description', headerSubtitle: 'Tell us about your company' },
-        { id: 'pb-step-7', title: 'Company Details', description: 'Enter company info', fields: ['wv_company_name', 'wv_company_pobRegion', 'wv_company_country', 'wv_company_email', 'wv_company_city', 'wv_company_website', 'wv_company_address', 'wv_company_phone', 'wv_governmentSupport'], headerTitle: 'Company Details', headerSubtitle: 'Complete all required fields' },
-        { id: 'pb-step-8', title: 'Reason for Applying', description: 'Enter reason', fields: ['wv_reasonForApplying'], headerTitle: 'Reason for Applying', headerSubtitle: 'Tell us why you are applying' },
-        { id: 'pb-step-9', title: 'Social Media', description: 'Enter social links', fields: ['wv_socInstagram', 'wv_socLinkedin', 'wv_socFacebook', 'wv_socX'], headerTitle: 'Social Media', headerSubtitle: 'Connect your social profiles' },
-        { id: 'pb-step-10', title: 'Personal Details', description: 'Enter personal info', fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber'], headerTitle: 'Personal Details', headerSubtitle: 'Complete all required fields' },
+        { id: 'wv-pb-step-1', title: 'User Category', description: 'Select category', fields: ['wv_userCategory'], headerTitle: 'User Category', headerSubtitle: 'Choose single option' },
+        { id: 'wv-pb-step-2', title: 'Category Description', description: 'Describe if other', fields: ['wv_userCategoryOtherDescription'], headerTitle: 'Category Description', headerSubtitle: 'Describe your category' },
+        { id: 'wv-pb-step-3', title: 'Reasons for Visiting', description: 'Select reasons', fields: ['wv_reasonsForVisiting'], headerTitle: 'Reasons for Visiting', headerSubtitle: 'Choose multiple options' },
+        { id: 'wv-pb-step-4', title: 'Other Reasons', description: 'Enter other reasons', fields: ['wv_otherReasonsForVisiting'], headerTitle: 'Other Reasons', headerSubtitle: 'Describe additional reasons' },
+        { id: 'wv-pb-step-5', title: 'Points of Interest', description: 'Select interests', fields: ['wv_pointsOfInterest'], headerTitle: 'Points of Interest', headerSubtitle: 'Choose multiple options' },
+        { id: 'wv-pb-step-6', title: 'Company Description', description: 'Describe company', fields: ['wv_companyDescription'], headerTitle: 'Company Description', headerSubtitle: 'Tell us about your company' },
+        { id: 'wv-pb-step-7', title: 'Company Details', description: 'Enter company info', fields: ['wv_company_name', 'wv_company_pobRegion', 'wv_company_country', 'wv_company_email', 'wv_company_city', 'wv_company_website', 'wv_company_address', 'wv_company_phone', 'wv_governmentSupport'], headerTitle: 'Company Details', headerSubtitle: 'Complete all required fields' },
+        { id: 'wv-pb-step-8', title: 'Reason for Applying', description: 'Enter reason', fields: ['wv_reasonForApplying'], headerTitle: 'Reason for Applying', headerSubtitle: 'Tell us why you are applying' },
+        { id: 'wv-pb-step-9', title: 'Social Media', description: 'Enter social links', fields: ['wv_socInstagram', 'wv_socLinkedin', 'wv_socFacebook', 'wv_socX'], headerTitle: 'Social Media', headerSubtitle: 'Connect your social profiles' },
+        { id: 'wv-pb-step-10', title: 'Personal Details', description: 'Enter personal info', fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber'], headerTitle: 'Personal Details', headerSubtitle: 'Complete all required fields' },
         ...commonSteps,
       ];
     case 'Visitor':
       return [
         { id: 'start', title: 'Profile Selection', description: 'Choose your profile', fields: ['wv_profileSelection'], headerTitle: 'Exhibitor, Pro-Buyer or Visitor?', headerSubtitle: 'Choose single option' },
-        { id: 'vs-step-1', title: 'Participation Model', description: 'Select model', fields: ['wv_participationModel'], headerTitle: 'Participation Model', headerSubtitle: 'Choose single option' },
-        { id: 'vs-step-2', title: 'Points of Interest', description: 'Select interests', fields: ['wv_pointsOfInterest'], headerTitle: 'Points of Interest', headerSubtitle: 'Choose multiple options' },
-        { id: 'vs-step-3', title: 'Personal Details', description: 'Enter personal info', fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber', 'wv_company_country', 'wv_company_city'], headerTitle: 'Personal Details', headerSubtitle: 'Complete all required fields' },
+        { id: 'wv-vs-step-1', title: 'Participation Model', description: 'Select model', fields: ['wv_participationModel'], headerTitle: 'Participation Model', headerSubtitle: 'Choose single option' },
+        { id: 'wv-vs-step-2', title: 'Points of Interest', description: 'Select interests', fields: ['wv_pointsOfInterest'], headerTitle: 'Points of Interest', headerSubtitle: 'Choose multiple options' },
+        { id: 'wv-vs-step-3', title: 'Personal Details', description: 'Enter personal info', fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber', 'wv_company_country', 'wv_company_city'], headerTitle: 'Personal Details', headerSubtitle: 'Complete all required fields' },
         ...commonSteps,
       ];
     default:
@@ -214,7 +214,7 @@ export const getFieldType = (fieldName: string): 'text' | 'email' | 'password' |
 export const useMultiStepRegistration = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [registrationData, setRegistrationData] = useState<RegistrationData>({
-    wv_profileSelection: 'Exhibitor',
+    wv_profileSelection: '' as any, // No preselection - user must choose
     wv_user_password: '',
     wv_password_confirm: '',
     terms_conditions: false,
@@ -222,7 +222,9 @@ export const useMultiStepRegistration = () => {
     wv_pointsOfInterest: [],
     wv_reasonsForVisiting: [],
   } as RegistrationData);
-  const [steps, setSteps] = useState<RegistrationStep[]>(getStepsForProfile('Exhibitor'));
+  const [steps, setSteps] = useState<RegistrationStep[]>([
+    { id: 'start', title: 'Profile Selection', description: 'CHOOSE PROFILE', fields: ['wv_profileSelection'], headerTitle: 'Exhibitor, Pro-Buyer or Visitor?', headerSubtitle: 'Choose single option' }
+  ]);
   const [emailAvailable, setEmailAvailable] = useState<boolean | null>(null);
 
   const updateData = (data: Partial<RegistrationData>) => {
@@ -233,8 +235,8 @@ export const useMultiStepRegistration = () => {
     }
   };
 
-  const nextStep = () => {
-    if (currentStepIndex < steps.length - 1 && isStepValid(steps[currentStepIndex])) {
+  const nextStep = (bypassValidation = false) => {
+    if (currentStepIndex < steps.length - 1 && (bypassValidation || isStepValid(steps[currentStepIndex]))) {
       setCurrentStepIndex(currentStepIndex + 1);
     }
   };

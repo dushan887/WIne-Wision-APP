@@ -82,15 +82,61 @@ const RegisterScreen = () => {
           <StepExStep1 
             savedData={registrationData} 
             onUpdateData={updateData} 
+            onNext={nextStep}
             headerTitle={currentStep.headerTitle} 
             headerSubtitle={currentStep.headerSubtitle} 
           />
         );
-      case 'wv-ex-step-2': return <StepExStep2 />;
-      case 'wv-ex-step-3': return <StepExStep3 />;
-      case 'wv-ex-step-4': return <StepExStep4 />;
-      case 'wv-ex-step-5': return <StepExStep5 />;
-      case 'wv-ex-step-6': return <StepExStep6 />;
+      case 'wv-ex-step-2': 
+        return (
+          <StepExStep2 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            headerTitle={currentStep.headerTitle} 
+            headerSubtitle={currentStep.headerSubtitle} 
+          />
+        );
+      case 'wv-ex-step-3': 
+        return (
+          <StepExStep3 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            headerTitle={currentStep.headerTitle} 
+            headerSubtitle={currentStep.headerSubtitle} 
+          />
+        );
+      case 'wv-ex-step-4': 
+        return (
+          <StepExStep4 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            headerTitle={currentStep.headerTitle} 
+            headerSubtitle={currentStep.headerSubtitle} 
+          />
+        );
+      case 'wv-ex-step-5': 
+        return (
+          <StepExStep5 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            headerTitle={currentStep.headerTitle} 
+            headerSubtitle={currentStep.headerSubtitle} 
+          />
+        );
+      case 'wv-ex-step-6': 
+        return (
+          <StepExStep6 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            headerTitle={currentStep.headerTitle} 
+            headerSubtitle={currentStep.headerSubtitle} 
+          />
+        );
       case 'wv-ex-step-7': return <StepExStep7 />;
       case 'wv-ex-step-8': return <StepExStep8 />;
       case 'wv-ex-step-9': return <StepExStep9 />;
@@ -290,53 +336,7 @@ const RegisterScreen = () => {
         </View>
 
         {/* Render step-specific component */}
-        {(() => {
-        switch (currentStep.id) {
-          case 'start':
-            return (
-              <StepStart
-                savedData={registrationData}
-                onSelectProfile={(val) => { updateData({ wv_profileSelection: val }); nextStep(); }}
-                profileConfig={profileConfig}
-                headerTitle={currentStep.headerTitle}
-                headerSubtitle={currentStep.headerSubtitle}
-              />
-            );
-          case 'wv-ex-step-1': return <StepExStep1 savedData={registrationData} onUpdateData={updateData} headerTitle={currentStep.headerTitle} headerSubtitle={currentStep.headerSubtitle} />;
-          case 'wv-ex-step-2': return <StepExStep2 />;
-          case 'wv-ex-step-3': return <StepExStep3 />;
-          case 'wv-ex-step-4': return <StepExStep4 />;
-          case 'wv-ex-step-5': return <StepExStep5 />;
-          case 'wv-ex-step-6': return <StepExStep6 />;
-          case 'wv-ex-step-7': return <StepExStep7 />;
-          case 'wv-ex-step-8': return <StepExStep8 />;
-          case 'wv-ex-step-9': return <StepExStep9 />;
-          case 'wv-ex-step-10': return <StepExStep10 />;
-          // Buyer steps
-          case 'wv-pb-step-1': return <StepPbStep1 />;
-          case 'wv-pb-step-2': return <StepPbStep2 />;
-          case 'wv-pb-step-3': return <StepPbStep3 />;
-          case 'wv-pb-step-4': return <StepPbStep4 />;
-          case 'wv-pb-step-5': return <StepPbStep5 />;
-          case 'wv-pb-step-6': return <StepPbStep6 />;
-          case 'wv-pb-step-7': return <StepPbStep7 />;
-          case 'wv-pb-step-8': return <StepPbStep8 />;
-          case 'wv-pb-step-9': return <StepPbStep9 />;
-          case 'wv-pb-step-10': return <StepPbStep10 />;
-          // Visitor steps
-          case 'wv-vs-step-1': return <StepVsStep1 />;
-          case 'wv-vs-step-2': return <StepVsStep2 />;
-          case 'wv-vs-step-3': return <StepVsStep3 />;
-          
-          default:
-            return currentStep.fields.map(field => (
-              <View key={field}>
-                <Text style={[tw`mb-2`, { color: colors.c_70 }]}>{field.replace('wv_', '').replace(/_/g, ' ')}</Text>
-                {renderField(field)}
-              </View>
-            ));
-        }
-      })()}
+        {renderStepComponent()}
 
       {/* Navigation Button Container */}
       <View style={tw`mt-8 px-4`}>
@@ -363,9 +363,9 @@ const RegisterScreen = () => {
             )}
           </View>
 
-          {/* Center: Submit Button (only on last step) */}
+          {/* Center: Submit Button (only on last step) - HIDDEN FOR NOW */}
           <View style={tw`flex-1 items-center`}>
-            {isLastStep && (
+            {false && isLastStep && (
               <TouchableOpacity 
                 onPress={handleRegister}
                 disabled={loading || !canProceed}
@@ -395,7 +395,7 @@ const RegisterScreen = () => {
           <View style={tw`flex-1 items-end pb-2`}>
             {!isLastStep && (
               <TouchableOpacity 
-                onPress={nextStep}
+                onPress={() => nextStep()}
                 disabled={!canProceed}
                 style={tw`flex-row items-center px-4 py-3`}
               >
