@@ -56,8 +56,8 @@ const StepPbStep8: React.FC<StepPbStep8Props> = ({
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Your reasons for applying'} 
-        subtitle={headerSubtitle || 'IN WRITTEN WORDS, UP TO 300 CHARACTERS'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Input Section */}

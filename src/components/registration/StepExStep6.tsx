@@ -47,8 +47,8 @@ const StepExStep6: React.FC<StepExStep6Props> = ({ savedData, onUpdateData, onNe
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'About your company'} 
-        subtitle={headerSubtitle || 'COMPANY DESCRIPTION • IN WRITTEN WORDS, UP TO 700 CHARACTERS'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Input Section */}

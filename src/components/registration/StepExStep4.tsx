@@ -47,8 +47,8 @@ const StepExStep4: React.FC<StepExStep4Props> = ({ savedData, onUpdateData, onNe
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Describe your category'} 
-        subtitle={headerSubtitle || 'PROFESSIONAL ACTIVITIES CATEGORY • IN WRITTEN WORDS, UP TO 200 CHARACTERS'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Input Section */}

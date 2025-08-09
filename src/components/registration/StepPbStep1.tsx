@@ -84,8 +84,8 @@ const StepPbStep1: React.FC<StepPbStep1Props> = ({ savedData, onUpdateData, onNe
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Select your category'} 
-        subtitle={headerSubtitle || 'PROFESSIONAL ACTIVITIES CATEGORY • CHOOSE SINGLE OPTION'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Option Cards - Horizontal layout with icons */}

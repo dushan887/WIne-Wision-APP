@@ -47,8 +47,8 @@ const StepPbStep4: React.FC<StepPbStep4Props> = ({ savedData, onUpdateData, onNe
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Taking part in WVOB25'} 
-        subtitle={headerSubtitle || 'PARTICIPATION • IN WRITTEN WORDS, UP TO 200 CHARACTERS'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Input Section */}

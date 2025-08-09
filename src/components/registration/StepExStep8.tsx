@@ -84,8 +84,8 @@ const StepExStep8: React.FC<StepExStep8Props> = ({
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Company Credentials'} 
-        subtitle={headerSubtitle || 'MARKED FIELDS (*) ARE COMPULSORY'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Form Fields */}

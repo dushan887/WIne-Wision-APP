@@ -185,8 +185,8 @@ const StepPbStep5: React.FC<StepPbStep5Props> = ({ savedData, onUpdateData, onNe
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Your interests'} 
-        subtitle={headerSubtitle || 'PARTICIPATION • CHOOSE MULTIPLE OPTIONS'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Input Section */}

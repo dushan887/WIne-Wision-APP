@@ -49,8 +49,8 @@ const StepExStep5: React.FC<StepExStep5Props> = ({ savedData, onUpdateData, onNe
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Are you exhibiting products?'} 
-        subtitle={headerSubtitle || 'EXHIBITOR PRODUCTS • CHOOSE SINGLE OPTION'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Option Cards - Same style as StepExStep2 */}

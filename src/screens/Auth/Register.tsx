@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Switch, Image, ActivityIndicator, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, ImageBackground } from 'react-native';
 import tw from 'twrnc';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +9,7 @@ const { theme: { extend: { colors } } } = require('../../../tailwind.config.js')
 import apiClient from '../../api';
 import * as SecureStore from 'expo-secure-store';
 import { useMessages } from '../../hooks';
-import { useMultiStepRegistration, getFieldType } from '../../features/auth';
+import { useMultiStepRegistration } from '../../features/auth';
 import { getProfileTheme } from '../../utils/profileTheming';
 import { Button } from '../../components/common';
 // Import step components
@@ -180,6 +180,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
         />
       );
       case 'wv-pb-step-2': return (
@@ -187,6 +189,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
         />
       );
       case 'wv-pb-step-3': return (
@@ -194,6 +198,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
         />
       );
       case 'wv-pb-step-4': return (
@@ -201,6 +207,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
         />
       );
       case 'wv-pb-step-5': return (
@@ -208,6 +216,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
         />
       );
       case 'wv-pb-step-6': return (
@@ -215,6 +225,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
         />
       );
       case 'wv-pb-step-7': return (
@@ -222,6 +234,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
           profile={registrationData?.wv_profileSelection}
         />
       );
@@ -230,6 +244,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
           profile={registrationData?.wv_profileSelection}
         />
       );
@@ -238,6 +254,8 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
           profile={registrationData?.wv_profileSelection}
         />
       );
@@ -246,14 +264,40 @@ const RegisterScreen = () => {
           savedData={registrationData}
           onUpdateData={updateData}
           onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
           profile={registrationData?.wv_profileSelection}
         />
       );
       
       // Visitor Steps
-      case 'wv-vs-step-1': return <StepVsStep1 />;
-      case 'wv-vs-step-2': return <StepVsStep2 />;
-      case 'wv-vs-step-3': return <StepVsStep3 />;
+      case 'wv-vs-step-1': return (
+        <StepVsStep1 
+          savedData={registrationData} 
+          onUpdateData={updateData} 
+          onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
+        />
+      );
+      case 'wv-vs-step-2': return (
+        <StepVsStep2 
+          savedData={registrationData} 
+          onUpdateData={updateData} 
+          onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
+        />
+      );
+      case 'wv-vs-step-3': return (
+        <StepVsStep3 
+          savedData={registrationData} 
+          onUpdateData={updateData} 
+          onNext={nextStep}
+          headerTitle={currentStep.headerTitle}
+          headerSubtitle={currentStep.headerSubtitle}
+        />
+      );
       
       // Common Steps (TODO: Implement these)
       case 'photos-company': 
@@ -283,106 +327,7 @@ const RegisterScreen = () => {
     }
   };
 
-  const renderField = (field: string) => {
-    const value = (registrationData as any)[field];
-    const update = (val: any) => updateData({ [field]: val });
-    const fieldType = getFieldType(field);
-
-    switch (fieldType) {
-      case 'email':
-        return (
-          <TextInput
-            style={[tw`p-4 rounded mb-4`, { backgroundColor: colors.c_90, color: colors.w }]}
-            value={value || ''}
-            onChangeText={update}
-            keyboardType="email-address"
-            placeholder="Enter email"
-            placeholderTextColor={colors.c_50}
-          />
-        );
-      
-      case 'password':
-        return (
-          <TextInput
-            style={[tw`p-4 rounded mb-4`, { backgroundColor: colors.c_90, color: colors.w }]}
-            value={value || ''}
-            onChangeText={update}
-            secureTextEntry
-            placeholder="Enter password"
-            placeholderTextColor={colors.c_50}
-          />
-        );
-      
-      case 'boolean':
-        return (
-          <View style={tw`flex-row items-center mb-4`}>
-            <Switch value={value || false} onValueChange={update} />
-            <Text style={[tw`ml-2`, { color: colors.c_70 }]}>
-              {field.includes('terms') ? 'I agree' : 'Enable'}
-            </Text>
-          </View>
-        );
-      
-      case 'textarea':
-        return (
-          <TextInput
-            style={[tw`p-4 rounded mb-4 h-24`, { backgroundColor: colors.c_90, color: colors.w }]}
-            value={value || ''}
-            onChangeText={update}
-            multiline
-            numberOfLines={4}
-            textAlignVertical="top"
-            placeholder="Enter description"
-            placeholderTextColor={colors.c_50}
-          />
-        );
-      
-      case 'multiselect':
-        return (
-          <View style={tw`mb-4`}>
-            <Text style={[tw`p-4 rounded`, { color: colors.c_50, backgroundColor: colors.c_90 }]}>
-              Multi-select component (implement checkboxes)
-            </Text>
-          </View>
-        );
-      
-      case 'select':
-        return (
-          <View style={tw`mb-4`}>
-            <Text style={[tw`p-4 rounded`, { color: colors.c_50, backgroundColor: colors.c_90 }]}>
-              Select: {value || 'Choose option'}
-            </Text>
-          </View>
-        );
-      
-      case 'image':
-        return (
-          <TouchableOpacity 
-            onPress={() => pickImage(field as 'wv_user_logo' | 'wv_user_avatar')}
-            style={tw`mb-4 items-center`}
-          >
-            <View style={[tw`w-20 h-20 rounded-lg items-center justify-center`, { backgroundColor: colors.c_90 }]}>
-              {value ? (
-                <Image source={{ uri: value }} style={tw`w-20 h-20 rounded-lg`} />
-              ) : (
-                <Text style={[tw`text-xs text-center`, { color: colors.c_50 }]}>Tap to upload</Text>
-              )}
-            </View>
-          </TouchableOpacity>
-        );
-      
-      default:
-        return (
-          <TextInput
-            style={[tw`p-4 rounded mb-4`, { backgroundColor: colors.c_90, color: colors.w }]}
-            value={value || ''}
-            onChangeText={update}
-            placeholder={`Enter ${field.replace('wv_', '').replace(/_/g, ' ')}`}
-            placeholderTextColor={colors.c_50}
-          />
-        );
-    }
-  };
+  // Get the profile theme for the current registration
 
   return (
     <View style={tw`flex-1`}>

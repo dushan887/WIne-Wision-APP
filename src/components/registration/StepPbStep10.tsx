@@ -320,8 +320,8 @@ const StepPbStep10: React.FC<StepPbStep10Props> = ({
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Your representative at the fair'} 
-        subtitle={headerSubtitle || 'MARKED FIELDS (*) ARE COMPULSORY'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Form Fields */}

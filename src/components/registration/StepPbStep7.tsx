@@ -358,8 +358,8 @@ const StepPbStep7: React.FC<StepPbStep7Props> = ({
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Your general information'} 
-        subtitle={headerSubtitle || 'COMPANY CREDENTIALS • MARKED FIELDS (*) ARE COMPULSORY'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Form Fields */}

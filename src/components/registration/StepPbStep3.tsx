@@ -116,8 +116,8 @@ const StepPbStep3: React.FC<StepPbStep3Props> = ({ savedData, onUpdateData, onNe
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Taking part in WVOB25'} 
-        subtitle={headerSubtitle || 'PARTICIPATION • CHOOSE MULTIPLE OPTIONS'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Input Section */}

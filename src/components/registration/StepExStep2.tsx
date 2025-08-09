@@ -55,7 +55,7 @@ const StepExStep2: React.FC<StepExStep2Props> = ({ savedData, onUpdateData, onNe
   return (
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
-      <StepHeader title={headerTitle || 'You are applying as:'} subtitle={headerSubtitle || 'PARTICIPATION MODEL'} />
+      <StepHeader title={headerTitle || ''} subtitle={headerSubtitle || ''} />
       
       {/* Option Cards - Same style as StepStart */}
       <View>

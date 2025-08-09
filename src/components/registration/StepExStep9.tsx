@@ -74,8 +74,8 @@ const StepExStep9: React.FC<StepExStep9Props> = ({
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Your social networks'} 
-        subtitle={headerSubtitle || 'ALL FIELDS ARE OPTIONAL'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Form Fields */}

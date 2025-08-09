@@ -318,8 +318,8 @@ const StepExStep10: React.FC<StepExStep10Props> = ({
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
       <StepHeader 
-        title={headerTitle || 'Representative Credentials'} 
-        subtitle={headerSubtitle || 'YOUR REPRESENTATIVE AT THE FAIR • MARKED FIELDS (*) ARE COMPULSORY'} 
+        title={headerTitle || ''} 
+        subtitle={headerSubtitle || ''} 
       />
       
       {/* Form Fields */}

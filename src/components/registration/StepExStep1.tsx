@@ -39,9 +39,7 @@ const StepExStep1: React.FC<StepExStep1Props> = ({ savedData, onUpdateData, onNe
   return (
     <View style={tw`px-6 pb-2`}>  
       {/* Header */}
-      {headerTitle && headerSubtitle && (
-        <StepHeader title={headerTitle} subtitle={headerSubtitle} />
-      )}
+      <StepHeader title={headerTitle || ''} subtitle={headerSubtitle || ''} />
       
       {/* Option Cards - Same style as StepStart */}
       <View>
