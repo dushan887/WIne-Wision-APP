@@ -137,10 +137,10 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
         { 
           id: 'wv-ex-step-1', 
           title: 'Field of Work', 
-          description: 'Select field', 
+          description: 'FIELD OF WORK', 
           fields: ['wv_fieldOfWork'], 
           headerTitle: 'Wine, Spirits or Food?', 
-          headerSubtitle: 'FIELD OF WORK' 
+          headerSubtitle: 'CHOOSE SINGLE OPTION' 
         },
         { 
           id: 'wv-ex-step-2', 
@@ -156,7 +156,7 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
           description: 'PROFESSIONAL ACTIVITIES CATEGORY', 
           fields: ['wv_userCategory'], 
           headerTitle: 'Select your category', 
-          headerSubtitle: 'PROFESSIONAL ACTIVITIES CATEGORY • CHOOSE SINGLE OPTION' 
+          headerSubtitle: 'CHOOSE SINGLE OPTION' 
         },
         { 
           id: 'wv-ex-step-4', 
@@ -164,7 +164,7 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
           description: 'PROFESSIONAL ACTIVITIES CATEGORY', 
           fields: ['wv_userCategoryOtherDescription'], 
           headerTitle: 'Describe your category', 
-          headerSubtitle: 'PROFESSIONAL ACTIVITIES CATEGORY • IN WRITTEN WORDS, UP TO 200 CHARACTERS' 
+          headerSubtitle: 'IN WRITTEN WORDS, UP TO 200 CHARACTERS' 
         },
         { 
           id: 'wv-ex-step-5', 
@@ -172,7 +172,7 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
           description: 'EXHIBITOR PRODUCTS', 
           fields: ['wv_exhibitingProducts'], 
           headerTitle: 'Are you exhibiting products?', 
-          headerSubtitle: 'EXHIBITOR PRODUCTS • CHOOSE SINGLE OPTION' 
+          headerSubtitle: 'CHOOSE SINGLE OPTION' 
         },
         { 
           id: 'wv-ex-step-6', 
@@ -180,39 +180,39 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
           description: 'COMPANY DESCRIPTION', 
           fields: ['wv_companyDescription'], 
           headerTitle: 'About your company', 
-          headerSubtitle: 'COMPANY DESCRIPTION • IN WRITTEN WORDS, UP TO 700 CHARACTERS' 
+          headerSubtitle: 'IN WRITTEN WORDS, UP TO 700 CHARACTERS' 
         },
         { 
           id: 'wv-ex-step-7', 
           title: 'Company Details', 
-          description: 'Enter company info', 
+          description: 'COMPANY CREDENTIALS', 
           fields: ['wv_company_name', 'wv_company_pobRegion', 'wv_company_country', 'wv_company_email', 'wv_company_city', 'wv_company_website', 'wv_company_address', 'wv_company_phone', 'wv_annualProductionLiters', 'wv_currentStockLiters'], 
-          headerTitle: 'Company Details', 
-          headerSubtitle: 'Complete all required fields' 
+          headerTitle: 'Your general information', 
+          headerSubtitle: 'MARKED FIELDS (*) ARE COMPULSORY' 
         },
         { 
           id: 'wv-ex-step-8', 
           title: 'Financial Details', 
-          description: 'Enter financial info', 
+          description: 'COMPANY CREDENTIALS', 
           fields: ['wv_company_idRegistryNumber', 'wv_company_vatRegistryNumber', 'wv_company_iban', 'wv_company_foreignBank', 'wv_company_domesticBank', 'wv_company_foreignAccountNumber', 'wv_company_domesticAccountNumber', 'wv_company_foreignSwift', 'wv_company_domesticSwift'], 
-          headerTitle: 'Financial Details', 
-          headerSubtitle: 'Enter your banking information' 
+          headerTitle: 'Your general information', 
+          headerSubtitle: 'ALL FIELDS ARE OPTIONAL' 
         },
         { 
           id: 'wv-ex-step-9', 
           title: 'Social Media', 
-          description: 'Enter social links', 
+          description: 'COMPANY CREDENTIALS', 
           fields: ['wv_socInstagram', 'wv_socLinkedin', 'wv_socFacebook', 'wv_socX'], 
-          headerTitle: 'Social Media', 
-          headerSubtitle: 'Connect your social profiles' 
+          headerTitle: 'Your social networks', 
+          headerSubtitle: 'ALL FIELDS ARE OPTIONAL' 
         },
         { 
           id: 'wv-ex-step-10', 
           title: 'Personal Details', 
-          description: 'Enter personal info', 
+          description: 'REPRESENTATIVE CREDENTIALS', 
           fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber'], 
-          headerTitle: 'Personal Details', 
-          headerSubtitle: 'Complete all required fields' 
+          headerTitle: 'Your representative at the fair', 
+          headerSubtitle: 'MARKED FIELDS (*) ARE COMPULSORY' 
         },
         ...commonSteps,
       ];
@@ -221,7 +221,7 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
         { 
           id: 'start', 
           title: 'Profile Selection', 
-          description: 'Choose your profile', 
+          description: 'CHOOSE PROFILE', 
           fields: ['wv_profileSelection'], 
           headerTitle: 'Exhibitor, Pro-Buyer or Visitor?', 
           headerSubtitle: 'Choose single option' 
@@ -229,82 +229,82 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
         { 
           id: 'wv-pb-step-1', 
           title: 'User Category', 
-          description: 'Select category', 
+          description: 'PROFESSIONAL ACTIVITIES CATEGORY', 
           fields: ['wv_userCategory'], 
-          headerTitle: 'User Category', 
-          headerSubtitle: 'Choose single option' 
+          headerTitle: 'Select your category', 
+          headerSubtitle: 'CHOOSE SINGLE OPTION' 
         },
         { 
           id: 'wv-pb-step-2', 
           title: 'Category Description', 
-          description: 'Describe if other', 
+          description: 'PROFESSIONAL ACTIVITIES CATEGORY', 
           fields: ['wv_userCategoryOtherDescription'], 
-          headerTitle: 'Category Description', 
-          headerSubtitle: 'Describe your category' 
+          headerTitle: 'Describe your category', 
+          headerSubtitle: 'IN WRITTEN WORDS, UP TO 200 CHARACTERS' 
         },
         { 
           id: 'wv-pb-step-3', 
           title: 'Reasons for Visiting', 
-          description: 'Select reasons', 
+          description: 'PARTICIPATION', 
           fields: ['wv_reasonsForVisiting'], 
-          headerTitle: 'Reasons for Visiting', 
-          headerSubtitle: 'Choose multiple options' 
+          headerTitle: 'Taking part in WVOB25', 
+          headerSubtitle: 'CHOOSE MULTIPLE OPTIONS' 
         },
         { 
           id: 'wv-pb-step-4', 
           title: 'Other Reasons', 
-          description: 'Enter other reasons', 
+          description: 'PARTICIPATION', 
           fields: ['wv_otherReasonsForVisiting'], 
-          headerTitle: 'Other Reasons', 
-          headerSubtitle: 'Describe additional reasons' 
+          headerTitle: 'Taking part in WVOB25', 
+          headerSubtitle: 'IN WRITTEN WORDS, UP TO 200 CHARACTERS' 
         },
         { 
           id: 'wv-pb-step-5', 
           title: 'Points of Interest', 
-          description: 'Select interests', 
+          description: 'POINTS OF INTEREST', 
           fields: ['wv_pointsOfInterest'], 
-          headerTitle: 'Points of Interest', 
-          headerSubtitle: 'Choose multiple options' 
+          headerTitle: 'Points of interest', 
+          headerSubtitle: 'CHOOSE MULTIPLE OPTIONS' 
         },
         { 
           id: 'wv-pb-step-6', 
           title: 'Company Description', 
-          description: 'Describe company', 
+          description: 'COMPANY DESCRIPTION', 
           fields: ['wv_companyDescription'], 
-          headerTitle: 'Company Description', 
-          headerSubtitle: 'Tell us about your company' 
+          headerTitle: 'About your company', 
+          headerSubtitle: 'IN WRITTEN WORDS, UP TO 700 CHARACTERS' 
         },
         { 
           id: 'wv-pb-step-7', 
           title: 'Company Details', 
-          description: 'Enter company info', 
+          description: 'COMPANY CREDENTIALS', 
           fields: ['wv_company_name', 'wv_company_pobRegion', 'wv_company_country', 'wv_company_email', 'wv_company_city', 'wv_company_website', 'wv_company_address', 'wv_company_phone', 'wv_governmentSupport'], 
-          headerTitle: 'Company Details', 
-          headerSubtitle: 'Complete all required fields' 
+          headerTitle: 'Your general information', 
+          headerSubtitle: 'MARKED FIELDS (*) ARE COMPULSORY' 
         },
         { 
           id: 'wv-pb-step-8', 
           title: 'Reason for Applying', 
-          description: 'Enter reason', 
+          description: 'WINE VISION HOSTED BUYERS PROGRAM', 
           fields: ['wv_reasonForApplying'], 
-          headerTitle: 'Reason for Applying', 
-          headerSubtitle: 'Tell us why you are applying' 
+          headerTitle: 'Your reasons for applying', 
+          headerSubtitle: 'IN WRITTEN WORDS, UP TO 300 CHARACTERS' 
         },
         { 
           id: 'wv-pb-step-9', 
           title: 'Social Media', 
-          description: 'Enter social links', 
+          description: 'COMPANY CREDENTIALS', 
           fields: ['wv_socInstagram', 'wv_socLinkedin', 'wv_socFacebook', 'wv_socX'], 
-          headerTitle: 'Social Media', 
-          headerSubtitle: 'Connect your social profiles' 
+          headerTitle: 'Your social networks', 
+          headerSubtitle: 'ALL FIELDS ARE OPTIONAL' 
         },
         { 
           id: 'wv-pb-step-10', 
           title: 'Personal Details', 
-          description: 'Enter personal info', 
+          description: 'REPRESENTATIVE CREDENTIALS', 
           fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber'], 
-          headerTitle: 'Personal Details', 
-          headerSubtitle: 'Complete all required fields' 
+          headerTitle: 'Your representative at the fair', 
+          headerSubtitle: 'MARKED FIELDS (*) ARE COMPULSORY' 
         },
         ...commonSteps,
       ];
@@ -313,7 +313,7 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
         { 
           id: 'start', 
           title: 'Profile Selection', 
-          description: 'Choose your profile', 
+          description: 'CHOOSE PROFILE', 
           fields: ['wv_profileSelection'], 
           headerTitle: 'Exhibitor, Pro-Buyer or Visitor?', 
           headerSubtitle: 'Choose single option' 
@@ -321,26 +321,26 @@ const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): Registr
         { 
           id: 'wv-vs-step-1', 
           title: 'Participation Model', 
-          description: 'Select model', 
+          description: 'PARTICIPATION MODEL', 
           fields: ['wv_participationModel'], 
-          headerTitle: 'Participation Model', 
-          headerSubtitle: 'Choose single option' 
+          headerTitle: 'You are applying as:', 
+          headerSubtitle: 'Choose Single Option' 
         },
         { 
           id: 'wv-vs-step-2', 
           title: 'Points of Interest', 
-          description: 'Select interests', 
+          description: 'POINTS OF INTEREST', 
           fields: ['wv_pointsOfInterest'], 
-          headerTitle: 'Points of Interest', 
-          headerSubtitle: 'Choose multiple options' 
+          headerTitle: 'What are you interested in?', 
+          headerSubtitle: 'CHOOSE MULTIPLE OPTIONS' 
         },
         { 
           id: 'wv-vs-step-3', 
           title: 'Personal Details', 
-          description: 'Enter personal info', 
+          description: 'VISITOR CREDENTIALS', 
           fields: ['wv_firstName', 'wv_lastName', 'wv_professionalOccupation', 'wv_yearsOfExperience', 'wv_nationality', 'wv_email', 'wv_positionInCompany', 'wv_contactTelephone', 'wv_exhibitor_rep_whatsapp', 'wv_exhibitor_rep_viber', 'wv_company_country', 'wv_company_city'], 
-          headerTitle: 'Personal Details', 
-          headerSubtitle: 'Complete all required fields' 
+          headerTitle: 'Your general information', 
+          headerSubtitle: 'MARKED FIELDS (*) ARE COMPULSORY' 
         },
         ...commonSteps,
       ];

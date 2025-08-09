@@ -175,16 +175,80 @@ const RegisterScreen = () => {
         );
       
       // Pro-Buyer Steps
-      case 'wv-pb-step-1': return <StepPbStep1 />;
-      case 'wv-pb-step-2': return <StepPbStep2 />;
-      case 'wv-pb-step-3': return <StepPbStep3 />;
-      case 'wv-pb-step-4': return <StepPbStep4 />;
-      case 'wv-pb-step-5': return <StepPbStep5 />;
-      case 'wv-pb-step-6': return <StepPbStep6 />;
-      case 'wv-pb-step-7': return <StepPbStep7 />;
-      case 'wv-pb-step-8': return <StepPbStep8 />;
-      case 'wv-pb-step-9': return <StepPbStep9 />;
-      case 'wv-pb-step-10': return <StepPbStep10 />;
+      case 'wv-pb-step-1': return (
+        <StepPbStep1 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+        />
+      );
+      case 'wv-pb-step-2': return (
+        <StepPbStep2 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+        />
+      );
+      case 'wv-pb-step-3': return (
+        <StepPbStep3 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+        />
+      );
+      case 'wv-pb-step-4': return (
+        <StepPbStep4 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+        />
+      );
+      case 'wv-pb-step-5': return (
+        <StepPbStep5 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+        />
+      );
+      case 'wv-pb-step-6': return (
+        <StepPbStep6 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+        />
+      );
+      case 'wv-pb-step-7': return (
+        <StepPbStep7 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+          profile={registrationData?.wv_profileSelection}
+        />
+      );
+      case 'wv-pb-step-8': return (
+        <StepPbStep8 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+          profile={registrationData?.wv_profileSelection}
+        />
+      );
+      case 'wv-pb-step-9': return (
+        <StepPbStep9 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+          profile={registrationData?.wv_profileSelection}
+        />
+      );
+      case 'wv-pb-step-10': return (
+        <StepPbStep10 
+          savedData={registrationData}
+          onUpdateData={updateData}
+          onNext={nextStep}
+          profile={registrationData?.wv_profileSelection}
+        />
+      );
       
       // Visitor Steps
       case 'wv-vs-step-1': return <StepVsStep1 />;
