@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../store/actions/userActions';
 import { AppDispatch } from '../../store';
 import tw from 'twrnc';
+const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
 
 type MainDashboardNavigationProp = StackNavigationProp<RootStackParamList, 'MainDashboard'>;
 
@@ -40,10 +41,10 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
   ];
 
   const quickStats = [
-    { title: 'Registered Events', value: '3', color: '#8B5CF6' },
-    { title: 'Pending Applications', value: '2', color: '#F59E0B' },
-    { title: 'Trade Meetings', value: '7', color: '#EF4444' },
-    { title: 'Messages', value: '12', color: '#10B981' },
+    { title: 'Registered Events', value: '3', color: colors.v },
+    { title: 'Pending Applications', value: '2', color: colors.y },
+    { title: 'Trade Meetings', value: '7', color: colors.r },
+    { title: 'Messages', value: '12', color: colors.g },
   ];
 
   const upcomingEvents = [

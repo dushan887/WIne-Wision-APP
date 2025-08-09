@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import tw from 'twrnc';
+const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
 
 const TermsScreen = () => {
   return (
-    <ScrollView style={tw`flex-1 bg-[#0b051c]`}>
+    <ScrollView style={[tw`flex-1 px-6 py-8`, { backgroundColor: colors.c }]}>
       <View style={tw`p-6`}>
         <Text style={tw`text-white text-2xl font-bold mb-6`}>Terms of Service</Text>
         

@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-nativ
 import tw from 'twrnc';
 import { StepHeader } from '../common';
 import { getProfileTheme } from '../../utils/profileTheming';
+import { WineVisionIcons } from '../../utils/wineVisionDesign';
 const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
 
 interface StepPasswordProps {
@@ -118,7 +119,7 @@ const StepPassword: React.FC<StepPasswordProps> = ({
                     color: colors.c_50
                   }
                 ]}>
-                  {showPassword ? '\ue94c' : '\ue95c'}
+                  {showPassword ? WineVisionIcons.eyeOpen : WineVisionIcons.eyeClosed}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -181,7 +182,7 @@ const StepPassword: React.FC<StepPasswordProps> = ({
                     color: colors.c_50
                   }
                 ]}>
-                  {showConfirmPassword ? '\ue94c' : '\ue95c'}
+                  {showConfirmPassword ? WineVisionIcons.eyeOpen : WineVisionIcons.eyeClosed}
                 </Text>
               </TouchableOpacity>
             </View>

@@ -142,9 +142,25 @@ export const responsive = {
 
 // Icon Utilities (for Wine Vision icon font)
 export const WineVisionIcons = {
-  // Add icon character codes here when you have the font
-  // Example: wine: '\ue001',
-  // Use with: <Text style={tw`font-wine-vision`}>{WineVisionIcons.wine}</Text>
+  // Navigation & Actions
+  separator: '\ue930',        // Wine Vision separator icon
+  arrowLeft: '\ue94e',        // Arrow pointing left (outline)
+  arrowRight: '\ue94f',       // Arrow pointing right (filled)
+  loading: '\ue91a',          // Loading/spinner icon
+  
+  // Form & Input
+  eyeOpen: '\ue94c',          // Eye open (show password)
+  eyeClosed: '\ue95c',        // Eye closed (hide password)
+  
+  // Selection & Status
+  checkEmpty: '\ue949',       // Empty checkbox/radio (outline)
+  checkFilled: '\ue94a',      // Filled checkbox/radio (selected)
+  
+  // Profile & User
+  userProfile: '\ue954',      // User profile icon
+  
+  // Add more as discovered in the font file
+  // Use with: <Text style={{ fontFamily: 'Wine-Vision' }}>{WineVisionIcons.iconName}</Text>
 };
 
 export default {
