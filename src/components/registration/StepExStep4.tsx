@@ -52,7 +52,7 @@ const StepExStep4: React.FC<StepExStep4Props> = ({ savedData, onUpdateData, onNe
       />
       
       {/* Input Section */}
-      <View style={tw`mt-6`}>
+      <View style={tw`mt-0`}>
         {/* Label */}
         <View style={[
           tw`rounded-t-lg px-8 py-4`,

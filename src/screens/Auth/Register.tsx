@@ -137,10 +137,42 @@ const RegisterScreen = () => {
             headerSubtitle={currentStep.headerSubtitle} 
           />
         );
-      case 'wv-ex-step-7': return <StepExStep7 />;
-      case 'wv-ex-step-8': return <StepExStep8 />;
-      case 'wv-ex-step-9': return <StepExStep9 />;
-      case 'wv-ex-step-10': return <StepExStep10 />;
+      case 'wv-ex-step-7': 
+        return (
+          <StepExStep7 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            profile={registrationData?.wv_profileSelection}
+          />
+        );
+      case 'wv-ex-step-8': 
+        return (
+          <StepExStep8 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            profile={registrationData?.wv_profileSelection}
+          />
+        );
+      case 'wv-ex-step-9': 
+        return (
+          <StepExStep9 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            profile={registrationData?.wv_profileSelection}
+          />
+        );
+      case 'wv-ex-step-10': 
+        return (
+          <StepExStep10 
+            savedData={registrationData} 
+            onUpdateData={updateData} 
+            onNext={nextStep}
+            profile={registrationData?.wv_profileSelection}
+          />
+        );
       
       // Pro-Buyer Steps
       case 'wv-pb-step-1': return <StepPbStep1 />;
