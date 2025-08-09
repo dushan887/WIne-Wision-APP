@@ -6,3 +6,6 @@ export * from './profileTheming';
 export * from './countries';
 export * from './productionRanges';
 export * from './countryCodes';
+export * from './formFields';
+export * from './registrationFields';
+export * from './profileFields';

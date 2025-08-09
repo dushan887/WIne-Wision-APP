@@ -37,6 +37,10 @@ import StepPbStep10 from '../../components/registration/StepPbStep10';
 import StepVsStep1 from '../../components/registration/StepVsStep1';
 import StepVsStep2 from '../../components/registration/StepVsStep2';
 import StepVsStep3 from '../../components/registration/StepVsStep3';
+import StepPhotosCompany from '../../components/registration/StepPhotosCompany';
+import StepPhotosProfile from '../../components/registration/StepPhotosProfile';
+import StepPassword from '../../components/registration/StepPassword';
+import StepFinal from '../../components/registration/StepFinal';
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Register'>;
 
@@ -62,253 +66,72 @@ const RegisterScreen = () => {
   // Get profile-based configuration using utility
   const profileConfig = getProfileTheme(registrationData?.wv_profileSelection || null);
 
+  // Generic step renderer helper
+  const renderStep = (StepComponent: React.ComponentType<any>, extraProps = {}) => (
+    <StepComponent 
+      savedData={registrationData}
+      onUpdateData={updateData}
+      onNext={nextStep}
+      headerTitle={currentStep.headerTitle}
+      headerSubtitle={currentStep.headerSubtitle}
+      profile={registrationData?.wv_profileSelection}
+      {...extraProps}
+    />
+  );
+
+  // Step component mapping
+  const stepComponents = {
+    // Common steps
+    'start': () => (
+      <StepStart
+        savedData={registrationData}
+        onSelectProfile={(val) => { updateData({ wv_profileSelection: val }); nextStep(); }}
+        profileConfig={profileConfig}
+        headerTitle={currentStep.headerTitle}
+        headerSubtitle={currentStep.headerSubtitle}
+      />
+    ),
+    'photos-company': () => renderStep(StepPhotosCompany),
+    'photos-profile': () => renderStep(StepPhotosProfile),
+    'password': () => renderStep(StepPassword),
+    'final': () => renderStep(StepFinal),
+    
+    // Exhibitor steps
+    'wv-ex-step-1': () => renderStep(StepExStep1),
+    'wv-ex-step-2': () => renderStep(StepExStep2),
+    'wv-ex-step-3': () => renderStep(StepExStep3),
+    'wv-ex-step-4': () => renderStep(StepExStep4),
+    'wv-ex-step-5': () => renderStep(StepExStep5),
+    'wv-ex-step-6': () => renderStep(StepExStep6),
+    'wv-ex-step-7': () => renderStep(StepExStep7),
+    'wv-ex-step-8': () => renderStep(StepExStep8),
+    'wv-ex-step-9': () => renderStep(StepExStep9),
+    'wv-ex-step-10': () => renderStep(StepExStep10),
+    
+    // Pro-Buyer steps
+    'wv-pb-step-1': () => renderStep(StepPbStep1),
+    'wv-pb-step-2': () => renderStep(StepPbStep2),
+    'wv-pb-step-3': () => renderStep(StepPbStep3),
+    'wv-pb-step-4': () => renderStep(StepPbStep4),
+    'wv-pb-step-5': () => renderStep(StepPbStep5),
+    'wv-pb-step-6': () => renderStep(StepPbStep6),
+    'wv-pb-step-7': () => renderStep(StepPbStep7),
+    'wv-pb-step-8': () => renderStep(StepPbStep8),
+    'wv-pb-step-9': () => renderStep(StepPbStep9),
+    'wv-pb-step-10': () => renderStep(StepPbStep10),
+    
+    // Visitor steps
+    'wv-vs-step-1': () => renderStep(StepVsStep1),
+    'wv-vs-step-2': () => renderStep(StepVsStep2),
+    'wv-vs-step-3': () => renderStep(StepVsStep3),
+  };
+
   // Render step-specific components
   const renderStepComponent = () => {
-    switch (currentStep.id) {
-      case 'start':
-        return (
-          <StepStart
-            savedData={registrationData}
-            onSelectProfile={(val) => { updateData({ wv_profileSelection: val }); nextStep(); }}
-            profileConfig={profileConfig}
-            headerTitle={currentStep.headerTitle}
-            headerSubtitle={currentStep.headerSubtitle}
-          />
-        );
-      
-      // Exhibitor Steps
-      case 'wv-ex-step-1': 
-        return (
-          <StepExStep1 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            headerTitle={currentStep.headerTitle} 
-            headerSubtitle={currentStep.headerSubtitle} 
-          />
-        );
-      case 'wv-ex-step-2': 
-        return (
-          <StepExStep2 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            headerTitle={currentStep.headerTitle} 
-            headerSubtitle={currentStep.headerSubtitle} 
-          />
-        );
-      case 'wv-ex-step-3': 
-        return (
-          <StepExStep3 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            headerTitle={currentStep.headerTitle} 
-            headerSubtitle={currentStep.headerSubtitle} 
-          />
-        );
-      case 'wv-ex-step-4': 
-        return (
-          <StepExStep4 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            headerTitle={currentStep.headerTitle} 
-            headerSubtitle={currentStep.headerSubtitle} 
-          />
-        );
-      case 'wv-ex-step-5': 
-        return (
-          <StepExStep5 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            headerTitle={currentStep.headerTitle} 
-            headerSubtitle={currentStep.headerSubtitle} 
-          />
-        );
-      case 'wv-ex-step-6': 
-        return (
-          <StepExStep6 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            headerTitle={currentStep.headerTitle} 
-            headerSubtitle={currentStep.headerSubtitle} 
-          />
-        );
-      case 'wv-ex-step-7': 
-        return (
-          <StepExStep7 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            profile={registrationData?.wv_profileSelection}
-          />
-        );
-      case 'wv-ex-step-8': 
-        return (
-          <StepExStep8 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            profile={registrationData?.wv_profileSelection}
-          />
-        );
-      case 'wv-ex-step-9': 
-        return (
-          <StepExStep9 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            profile={registrationData?.wv_profileSelection}
-          />
-        );
-      case 'wv-ex-step-10': 
-        return (
-          <StepExStep10 
-            savedData={registrationData} 
-            onUpdateData={updateData} 
-            onNext={nextStep}
-            profile={registrationData?.wv_profileSelection}
-          />
-        );
-      
-      // Pro-Buyer Steps
-      case 'wv-pb-step-1': return (
-        <StepPbStep1 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-pb-step-2': return (
-        <StepPbStep2 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-pb-step-3': return (
-        <StepPbStep3 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-pb-step-4': return (
-        <StepPbStep4 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-pb-step-5': return (
-        <StepPbStep5 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-pb-step-6': return (
-        <StepPbStep6 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-pb-step-7': return (
-        <StepPbStep7 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-          profile={registrationData?.wv_profileSelection}
-        />
-      );
-      case 'wv-pb-step-8': return (
-        <StepPbStep8 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-          profile={registrationData?.wv_profileSelection}
-        />
-      );
-      case 'wv-pb-step-9': return (
-        <StepPbStep9 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-          profile={registrationData?.wv_profileSelection}
-        />
-      );
-      case 'wv-pb-step-10': return (
-        <StepPbStep10 
-          savedData={registrationData}
-          onUpdateData={updateData}
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-          profile={registrationData?.wv_profileSelection}
-        />
-      );
-      
-      // Visitor Steps
-      case 'wv-vs-step-1': return (
-        <StepVsStep1 
-          savedData={registrationData} 
-          onUpdateData={updateData} 
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-vs-step-2': return (
-        <StepVsStep2 
-          savedData={registrationData} 
-          onUpdateData={updateData} 
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      case 'wv-vs-step-3': return (
-        <StepVsStep3 
-          savedData={registrationData} 
-          onUpdateData={updateData} 
-          onNext={nextStep}
-          headerTitle={currentStep.headerTitle}
-          headerSubtitle={currentStep.headerSubtitle}
-        />
-      );
-      
-      // Common Steps (TODO: Implement these)
-      case 'photos-company': 
-      case 'photos-profile': 
-      case 'password': 
-      case 'final': 
-        return <Text style={{ color: colors.w }}>Step "{currentStep.title}" - Coming Soon</Text>;
-      
-      default:
-        return <Text style={{ color: colors.w }}>Unknown step: {currentStep.id}</Text>;
-    }
+    const stepRenderer = stepComponents[currentStep.id as keyof typeof stepComponents];
+    return stepRenderer ? stepRenderer() : (
+      <Text style={{ color: colors.w }}>Unknown step: {currentStep.id}</Text>
+    );
   };
 
   const handleRegister = async () => {
@@ -373,14 +196,14 @@ const RegisterScreen = () => {
           tw`mb-6 items-center justify-center p-5 rounded-t-lg`, 
           { backgroundColor: 'rgba(255,255,255,0.5)' }
         ]}>
-            <Text style={[tw`text-center uppercase font-bold`, { color: colors.c, letterSpacing: 1.5 }]}>{currentStep.description}</Text>
+            <Text style={[tw`text-center uppercase font-bold`, { color: colors.c, letterSpacing: 1.5 }]}>{currentStep.description} | {currentStep.id}</Text>
         </View>
 
         {/* Render step-specific component */}
         {renderStepComponent()}
 
       {/* Navigation Button Container */}
-      <View style={tw`mt-8 px-4`}>
+      <View style={tw`my-2 px-2`}>
         <View style={tw`flex-row justify-between items-center min-h-12`}>
           {/* Left: Previous Button */}
           <View style={tw`flex-1 items-start`}>
@@ -392,7 +215,7 @@ const RegisterScreen = () => {
                 <View style={[tw`relative w-6 h-6 mr-2 justify-center items-center`, { transform: [{ rotate: '180deg' }] }]}>
                   <Text style={[tw`font-medium text-lg absolute`, { 
                     fontFamily: 'Wine-Vision', 
-                    color: colors.c_20
+                    color: colors.w
                   }]}>&#xe94e;</Text>
                   <Text style={[tw`font-medium text-lg absolute`, { 
                     fontFamily: 'Wine-Vision', 
@@ -406,13 +229,13 @@ const RegisterScreen = () => {
 
           {/* Center: Submit Button (only on last step) - HIDDEN FOR NOW */}
           <View style={tw`flex-1 items-center`}>
-            {false && isLastStep && (
+            {false && isLastStep && canProceed && (
               <TouchableOpacity 
                 onPress={handleRegister}
-                disabled={loading || !canProceed}
+                disabled={loading}
                 style={[
                   tw`flex-row items-center px-6 py-3 rounded-lg`,
-                  { backgroundColor: loading || !canProceed ? colors.c_80 : colors.v }
+                  { backgroundColor: loading ? colors.c_80 : colors.v }
                 ]}
               >
                 {loading ? (
@@ -434,24 +257,20 @@ const RegisterScreen = () => {
 
           {/* Right: Next Button */}
           <View style={tw`flex-1 items-end pb-2`}>
-            {!isLastStep && (
+            {!isLastStep && canProceed && (
               <TouchableOpacity 
                 onPress={() => nextStep()}
-                disabled={!canProceed}
                 style={tw`flex-row items-center px-4 py-3`}
               >
-                <Text style={[
-                  tw`font-medium mr-2`,
-                  canProceed ? { color: colors.c } : { color: colors.c_50 }
-                ]}>Next</Text>
+                <Text style={[tw`font-medium mr-2`, { color: colors.c }]}>Next</Text>
                 <View style={tw`relative w-6 h-6 justify-center items-center`}>
                   <Text style={[tw`font-medium text-lg absolute`, { 
                     fontFamily: 'Wine-Vision', 
-                    color: canProceed ? colors.c_20 : colors.c_50
+                    color: colors.w
                   }]}>&#xe94e;</Text>
                   <Text style={[tw`font-medium text-lg absolute`, { 
                     fontFamily: 'Wine-Vision', 
-                    color: canProceed ? colors.c : colors.c_50
+                    color: colors.c
                   }]}>&#xe94f;</Text>
                 </View>
               </TouchableOpacity>

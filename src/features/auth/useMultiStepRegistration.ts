@@ -117,8 +117,8 @@ export type RegistrationData = ExhibitorData | BuyerData | VisitorData;
 
 const getStepsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor'): RegistrationStep[] => {
   const commonSteps = [
-    { id: 'photos-company', title: 'Company Logo', description: 'Upload company logo', fields: ['wv_user_logo'], headerTitle: 'Company Logo', headerSubtitle: 'Upload your company logo' },
-    { id: 'photos-profile', title: 'Profile Avatar', description: 'Upload profile avatar', fields: ['wv_user_avatar'], headerTitle: 'Profile Avatar', headerSubtitle: 'Upload your profile picture' },
+    { id: 'photos-company', title: 'Company Logo', description: 'COMPANY LOGO PICTURE', fields: ['wv_user_logo'], headerTitle: 'Your company logo', headerSubtitle: 'Shown on your stand listing and event materials' },
+    { id: 'photos-profile', title: 'Profile Avatar', description: 'PROFILE PICTURE', fields: ['wv_user_avatar'], headerTitle: 'Profile Avatar', headerSubtitle: ' Used for the personal badge and profile' },
     { id: 'password', title: 'Set Password', description: 'Create secure password', fields: ['wv_user_password', 'wv_password_confirm', 'terms_conditions'], headerTitle: 'Set Password', headerSubtitle: 'Create a secure password' },
     { id: 'final', title: 'Final Confirmation', description: 'Review and submit', fields: ['terms_conditions_final'], headerTitle: 'Final Confirmation', headerSubtitle: 'Review and submit your registration' },
   ];
@@ -374,7 +374,7 @@ const getRequiredFieldsForProfile = (profile: 'Exhibitor' | 'Buyer' | 'Visitor')
     case 'Visitor':
       return [
         ...commonRequired,
-        'wv_firstName', 'wv_lastName', 'wv_email', 'wv_contactTelephone',
+        'wv_firstName', 'wv_lastName', 'wv_email',
         'wv_company_country', 'wv_company_city', 'wv_pointsOfInterest'
       ];
     default:
