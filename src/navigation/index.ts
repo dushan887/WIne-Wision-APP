@@ -1,6 +1,4 @@
-export { AppNavigator } from './AppNavigator';
+export { default as AppNavigator } from './AppNavigator';
 export type { 
-  RootStackParamList,
-  AuthStackParamList,
-  MainStackParamList 
+  RootStackParamList
 } from './AppNavigator';

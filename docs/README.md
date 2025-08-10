@@ -15,7 +15,10 @@ Welcome to the Wine Vision App documentation! This folder contains all the techn
 - [**Message System Guide**](./MESSAGE_SYSTEM_GUIDE.md) - Complete guide to the message system implementation
 - [**HTML Message Support**](./HTML_MESSAGE_SUPPORT.md) - How to handle HTML content in messages
 
-### 🔌 **API Integration**
+### � **Registration & Authentication**
+- [**Registration Flow Validation**](./REGISTRATION_FLOW_VALIDATION.md) - Complete WordPress parity validation for registration flow system
+
+### �🔌 **API Integration**
 - [**WordPress API Integration Success**](./WORDPRESS_API_INTEGRATION_SUCCESS.md) - Backend API integration guide
 
 ## 🏗️ **Architecture Overview**
@@ -30,7 +33,7 @@ Welcome to the Wine Vision App documentation! This folder contains all the techn
 ### Key Features
 - 🎨 Custom Wine Vision typography and branding
 - 💬 Global message system with HTML support
-- 🔐 Authentication and user management
+- 🔐 Complete registration flow with WordPress parity
 - 📱 Responsive design for iOS and Android
 - 🌐 WordPress API integration
 

@@ -4,3 +4,4 @@ export * from './Profile';
 export * from './News';
 export * from './Notifications';
 export * from './Errors';
+export * from './Demo';
