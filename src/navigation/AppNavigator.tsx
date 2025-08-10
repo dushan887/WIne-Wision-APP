@@ -1,13 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/index';
+import { useAppSelector } from '../store';
+import { RegistrationProvider } from '../features/registration';
+import RegistrationFlow from '../features/registration/RegistrationFlow';
 
 // Screens
 import LandingScreen from '../screens/Landing/LandingScreen';
 import LoginScreen from '../screens/Auth/Login';
-import { RegisterScreen } from '../screens/Auth';
 import { ProfileScreen, EditProfileScreen } from '../screens/Profile';
 import { NewsScreen } from '../screens/News';
 import { NotificationsScreen } from '../screens/Notifications';
@@ -53,7 +53,7 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
-  const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
 
   return (
     <NavigationContainer>
@@ -67,7 +67,14 @@ const AppNavigator = () => {
           <>
             <Stack.Screen name="Landing" component={LandingScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen 
+              name="Register" 
+              component={() => (
+                <RegistrationProvider>
+                  <RegistrationFlow />
+                </RegistrationProvider>
+              )} 
+            />
             <Stack.Screen name="About" component={AboutScreen} />
             <Stack.Screen name="Contact" component={ContactScreen} />
             <Stack.Screen name="FAQ" component={FAQScreen} />

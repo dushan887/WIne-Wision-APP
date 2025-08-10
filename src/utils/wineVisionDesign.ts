@@ -80,32 +80,32 @@ export const WineVisionFonts = {
   fallback: 'font-sans',
 };
 
-// Common Style Combinations
+// Common Style Combinations - Using CSS-in-JS for colors
 export const WineVisionStyles = {
   // Headers
-  h1: tw`text-32 font-primary font-700 text-c leading-1-2`,
-  h2: tw`text-24 font-primary font-600 text-c leading-1-25`,
-  h3: tw`text-20 font-primary font-600 text-c_80 leading-1-3`,
-  h4: tw`text-18 font-primary font-500 text-c_80 leading-1-3`,
+  h1: [tw`text-32 font-primary font-700 leading-1-2`, { color: 'rgb(11,5,28)' }],
+  h2: [tw`text-24 font-primary font-600 leading-1-25`, { color: 'rgb(11,5,28)' }],
+  h3: [tw`text-20 font-primary font-600 leading-1-3`, { color: 'rgb(60,55,73)' }],
+  h4: [tw`text-18 font-primary font-500 leading-1-3`, { color: 'rgb(60,55,73)' }],
 
   // Body Text
-  body: tw`text-16 font-primary font-400 text-c_80 leading-1-5`,
-  bodySmall: tw`text-14 font-primary font-400 text-c_70 leading-1-4`,
-  caption: tw`text-12 font-primary font-400 text-c_50 leading-1-3`,
+  body: [tw`text-16 font-primary font-400 leading-1-5`, { color: 'rgb(60,55,73)' }],
+  bodySmall: [tw`text-14 font-primary font-400 leading-1-4`, { color: 'rgb(84,80,96)' }],
+  caption: [tw`text-12 font-primary font-400 leading-1-3`, { color: 'rgb(133,130,142)' }],
 
   // Buttons
-  primaryButton: tw`bg-v text-w font-primary font-600 text-16 px-24 py-12 rounded-8`,
-  secondaryButton: tw`bg-c_10 text-c font-primary font-500 text-16 px-24 py-12 rounded-8 border-1 border-c_20`,
+  primaryButton: [tw`font-primary font-600 text-16 px-24 py-12 rounded-8`, { backgroundColor: 'rgb(110,15,215)', color: 'rgb(255,255,255)' }],
+  secondaryButton: [tw`font-primary font-500 text-16 px-24 py-12 rounded-8 border-1`, { backgroundColor: 'rgb(231,230,232)', color: 'rgb(11,5,28)', borderColor: 'rgb(206,205,210)' }],
   
   // Cards
-  card: tw`bg-w rounded-12 p-20 shadow-lg border-1 border-c_10`,
-  cardHeader: tw`text-18 font-primary font-600 text-c mb-12`,
+  card: [tw`rounded-12 p-20 shadow-lg border-1`, { backgroundColor: 'rgb(255,255,255)', borderColor: 'rgb(231,230,232)' }],
+  cardHeader: [tw`text-18 font-primary font-600 mb-12`, { color: 'rgb(11,5,28)' }],
   
   // Status Badges
-  successBadge: tw`bg-g_15 text-g px-12 py-4 rounded-16 font-primary font-500 text-14`,
-  errorBadge: tw`bg-h_10 text-h px-12 py-4 rounded-16 font-primary font-500 text-14`,
-  warningBadge: tw`bg-y_10 text-y px-12 py-4 rounded-16 font-primary font-500 text-14`,
-  infoBadge: tw`bg-b_10 text-b px-12 py-4 rounded-16 font-primary font-500 text-14`,
+  successBadge: [tw`px-12 py-4 rounded-16 font-primary font-500 text-14`, { backgroundColor: 'rgb(217,247,232)', color: 'rgb(0,200,100)' }],
+  errorBadge: [tw`px-12 py-4 rounded-16 font-primary font-500 text-14`, { backgroundColor: 'rgb(255,232,234)', color: 'rgb(255,20,40)' }],
+  warningBadge: [tw`px-12 py-4 rounded-16 font-primary font-500 text-14`, { backgroundColor: 'rgb(255,246,230)', color: 'rgb(250,165,0)' }],
+  infoBadge: [tw`px-12 py-4 rounded-16 font-primary font-500 text-14`, { backgroundColor: 'rgb(230,243,255)', color: 'rgb(0,135,255)' }],
 
   // Gradients (use with backgroundImage)
   carbonGradient: 'bg-carbon-gradient-up',

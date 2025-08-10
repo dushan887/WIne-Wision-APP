@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import tw from 'twrnc';
-const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
+import { theme } from '../../theme';
 
 interface ButtonProps {
   title: string;
@@ -12,7 +12,7 @@ interface ButtonProps {
   loading?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = React.memo(({
   title,
   onPress,
   variant = 'primary',
@@ -20,7 +20,8 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   loading = false,
 }) => {
-  const getButtonStyles = () => {
+  // Memoize button styles for better performance
+  const buttonStyles = useMemo(() => {
     const baseStyles = 'rounded-lg flex-row items-center justify-center';
     
     const sizeStyles = {
@@ -34,24 +35,24 @@ export const Button: React.FC<ButtonProps> = ({
     if (variant === 'link') return `px-2 py-1 ${disabledStyles}`;
 
     return `${baseStyles} ${sizeStyles[size]} ${disabledStyles}`;
-  };
+  }, [variant, size, disabled, loading]);
 
-  const getButtonBackgroundStyle = () => {
+  const buttonBackgroundStyle = useMemo(() => {
     switch (variant) {
       case 'primary':
-        return { backgroundColor: colors['wine-red'] };
+        return { backgroundColor: theme.colors.red };
       case 'secondary':
-        return { backgroundColor: '#4B5563' }; // gray-600
+        return { backgroundColor: theme.colors.carbon[70] };
       case 'outline':
-        return { backgroundColor: 'transparent', borderWidth: 2, borderColor: colors['wine-red'] };
+        return { backgroundColor: 'transparent', borderWidth: 2, borderColor: theme.colors.red };
       case 'link':
         return { backgroundColor: 'transparent' };
       default:
-        return { backgroundColor: colors['wine-red'] };
+        return { backgroundColor: theme.colors.red };
     }
-  };
+  }, [variant]);
 
-  const getTextStyles = () => {
+  const textStyles = useMemo(() => {
     const baseStyles = 'font-semibold';
     
     const sizeStyles = {
@@ -61,34 +62,40 @@ export const Button: React.FC<ButtonProps> = ({
     };
 
     return `${baseStyles} ${sizeStyles[size]}`;
-  };
+  }, [size]);
 
-  const getTextColor = () => {
+  const textColor = useMemo(() => {
     switch (variant) {
       case 'primary':
       case 'secondary':
-        return { color: '#ffffff' };
+        return { color: theme.colors.white };
       case 'outline':
-        return { color: colors['wine-red'] };
+        return { color: theme.colors.red };
+      case 'link':
+        return { color: theme.colors.red };
       default:
-        return { color: '#ffffff' };
+        return { color: theme.colors.white };
     }
-  };
+  }, [variant]);
+
+  const activityIndicatorColor = useMemo(() => 
+    variant === 'outline' ? theme.colors.red : theme.colors.white
+  , [variant]);
 
   return (
     <TouchableOpacity
-      style={[tw`${getButtonStyles()}`, getButtonBackgroundStyle()]}
+      style={[tw`${buttonStyles}`, buttonBackgroundStyle]}
       onPress={onPress}
       disabled={disabled || loading}
     >
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === 'outline' ? colors['wine-red'] : '#ffffff'}
+          color={activityIndicatorColor}
           style={tw`mr-2`}
         />
       ) : null}
-      <Text style={[tw`${getTextStyles()}`, getTextColor()]}>{title}</Text>
+      <Text style={[tw`${textStyles}`, textColor]}>{title}</Text>
     </TouchableOpacity>
   );
-};
+});

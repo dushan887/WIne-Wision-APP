@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 
@@ -8,12 +8,13 @@ interface CardProps {
   variant?: 'default' | 'elevated' | 'outlined';
 }
 
-export const Card: React.FC<CardProps> = ({
+export const Card: React.FC<CardProps> = React.memo(({
   children,
   onPress,
   variant = 'default',
 }) => {
-  const getCardStyles = () => {
+  // Memoize card styles for better performance
+  const cardStyles = useMemo(() => {
     const baseStyles = 'bg-white rounded-lg p-4 m-2';
     
     const variantStyles = {
@@ -23,12 +24,12 @@ export const Card: React.FC<CardProps> = ({
     };
 
     return `${baseStyles} ${variantStyles[variant]}`;
-  };
+  }, [variant]);
 
   if (onPress) {
     return (
       <TouchableOpacity
-        style={tw`${getCardStyles()}`}
+        style={tw`${cardStyles}`}
         onPress={onPress}
         activeOpacity={0.7}
       >
@@ -38,8 +39,8 @@ export const Card: React.FC<CardProps> = ({
   }
 
   return (
-    <View style={tw`${getCardStyles()}`}>
+    <View style={tw`${cardStyles}`}>
       {children}
     </View>
   );
-};
+});

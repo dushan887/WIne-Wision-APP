@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { SafeAreaView, View, Text, Image, TouchableOpacity, TextInput, Dimensions, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import tw from 'twrnc';
-const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
+import { theme } from '../../theme';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { logoutUser } from '../../store/actions/userActions';
 import WVLogo from '../../../assets/images/wv_logo-official.svg';
 import MessageArea from './MessageArea';
@@ -14,41 +13,65 @@ import MessageArea from './MessageArea';
 interface CustomHeaderProps {
   isAuthenticated: boolean;
 }
-const { height } = Dimensions.get('window');
-const CustomHeader: React.FC<CustomHeaderProps> = ({ isAuthenticated }) => {
+
+const { height, width } = Dimensions.get('window');
+
+const CustomHeader: React.FC<CustomHeaderProps> = React.memo(({ isAuthenticated }) => {
   const navigation = useNavigation();
   const route = useRoute();
-  const dispatch = useDispatch<AppDispatch>();
-  const { user } = useSelector((state: RootState) => state.user);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Define static pages that don't require authentication
-  const staticPages = ['About', 'Contact', 'FAQ', 'Privacy', 'Terms', 'Support'];
-  const authPages = ['Login', 'Register'];
-  const isOnStaticPage = staticPages.includes(route.name);
-  const isOnAuthPage = authPages.includes(route.name);
-  const isOnLoginPage = route.name === 'Login';
+  // Memoize static values
+  const staticPages = useMemo(() => ['About', 'Contact', 'FAQ', 'Privacy', 'Terms', 'Support'], []);
+  const authPages = useMemo(() => ['Login', 'Register'], []);
+  
+  const isOnStaticPage = useMemo(() => staticPages.includes(route.name), [staticPages, route.name]);
+  const isOnAuthPage = useMemo(() => authPages.includes(route.name), [authPages, route.name]);
+  const isOnLoginPage = useMemo(() => route.name === 'Login', [route.name]);
+  
+  // Responsive padding
+  const headerPadding = useMemo(() => ({
+    paddingHorizontal: width > 768 ? 32 : 16
+  }), [width]);
   const shouldShowBackButton = isOnStaticPage || isOnAuthPage;
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const handleLogout = () => {
+  // Memoized callbacks for performance
+  const toggleMenu = useCallback(() => setIsMenuOpen(prev => !prev), []);
+  
+  const handleLogout = useCallback(() => {
     dispatch(logoutUser());
     setIsMenuOpen(false);
     navigation.navigate('Landing' as never);
-  };
+  }, [dispatch, navigation]);
 
-  const handleNavigation = (screen: string) => {
+  const handleNavigation = useCallback((screen: string) => {
     setIsMenuOpen(false);
     navigation.navigate(screen as never);
-  };
+  }, [navigation]);
 
-  const handleBackNavigation = () => {
+  const handleBackNavigation = useCallback(() => {
     if (navigation.canGoBack()) {
       navigation.goBack();
     } else {
       navigation.navigate('Landing' as never);
     }
-  };
+  }, [navigation]);
+
+  // Memoize theme colors for better performance - map old color names to new theme
+  const colors = useMemo(() => ({
+    c: theme.colors.carbon.base,      // Main carbon color
+    c_90: theme.colors.carbon[90],    // Light carbon
+    c_80: theme.colors.carbon[80],    // Medium-light carbon
+    c_70: theme.colors.carbon[70],    // Medium carbon
+    c_50: theme.colors.carbon[50],    // Medium carbon
+    c_20: theme.colors.carbon[20],    // Light text
+    c_10: theme.colors.carbon[10],    // Very light
+    v: theme.colors.velvet.base,      // Velvet color
+    r: theme.colors.red,              // Red color
+    w: theme.colors.white,            // White color
+  }), []);
 
   if (!isAuthenticated) {
     // Simple header for guests with conditional navigation
@@ -216,7 +239,7 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({ isAuthenticated }) => {
           </View>
           
           {/* Bottom border edge to edge */}
-          <View style={[tw`border-b`, { borderColor: colors.c_8-0 }]} />
+          <View style={[tw`border-b`, { borderColor: colors.c_80 }]} />
           
           {/* Centered Main Nav Items */}
           <View style={tw`items-center mb-6 px-6 pt-6`}>
@@ -279,6 +302,6 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({ isAuthenticated }) => {
       <MessageArea />
     </View>
   );
-};
+});
 
 export default CustomHeader;
