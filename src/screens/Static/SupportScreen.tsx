@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import tw from 'twrnc';
 import { Ionicons } from '@expo/vector-icons';
+import { WineVisionColors } from '../../utils/wineVisionDesign';
 const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
 
 const SupportScreen = () => {
@@ -56,21 +57,21 @@ const SupportScreen = () => {
           </Text>
         </View>
 
-        <View style={tw`mb-4 p-4 bg-gray-800 rounded-lg`}>
-          <Text style={tw`text-white text-base font-medium mb-2`}>Meeting Scheduling</Text>
-          <Text style={tw`text-gray-300 text-sm`}>
+        <View style={[tw`mb-4 p-4 rounded-lg`, { backgroundColor: colors.c_80 }]}>
+          <Text style={[tw`text-base font-medium mb-2`, { color: colors.w }]}>Meeting Scheduling</Text>
+          <Text style={[tw`text-sm`, { color: colors.c_50 }]}>
             Use the 'Meeting Requests' feature to connect with exhibitors and schedule appointments.
           </Text>
         </View>
 
-        <View style={tw`mb-4 p-4 bg-gray-800 rounded-lg`}>
-          <Text style={tw`text-white text-base font-medium mb-2`}>Profile Updates</Text>
-          <Text style={tw`text-gray-300 text-sm`}>
+        <View style={[tw`mb-4 p-4 rounded-lg`, { backgroundColor: colors.c_80 }]}>
+          <Text style={[tw`text-base font-medium mb-2`, { color: colors.w }]}>Profile Updates</Text>
+          <Text style={[tw`text-sm`, { color: colors.c_50 }]}>
             Update your profile information in the Profile section to ensure accurate networking.
           </Text>
         </View>
 
-        <Text style={tw`text-gray-300 text-sm text-center mt-6`}>
+        <Text style={[tw`text-sm text-center mt-6`, { color: colors.c_50 }]}>
           Support hours: Monday-Friday, 9:00-17:00 CET
         </Text>
       </View>

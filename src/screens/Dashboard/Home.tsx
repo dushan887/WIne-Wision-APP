@@ -4,18 +4,19 @@ import tw from 'twrnc';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../navigation/AppNavigator';
+import { WineVisionColors } from '../../utils/wineVisionDesign';
 
-type HomeNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type HomeNavigationProp = StackNavigationProp<RootStackParamList, 'Profile'>;
 
 const HomeScreen = () => {
   const navigation = useNavigation<HomeNavigationProp>();
 
   return (
-    <ScrollView style={tw`flex-1 bg-[#0b051c]`}>
+    <ScrollView style={tw`flex-1 bg-${WineVisionColors.carbon.primary}`}>
       {/* Header with time */}
-      <View style={tw`p-4 bg-gradient-to-r from-purple-900 to-indigo-900`}>
+      <View style={tw`p-4 bg-${WineVisionColors.velvet.primary}`}>
         <Text style={tw`text-white text-2xl font-bold`}>Welcome, John</Text>
-        <Text style={tw`text-gray-300`}>13:30</Text>
+        <Text style={tw`text-${WineVisionColors.carbon.muted}`}>13:30</Text>
       </View>
 
       {/* Application Status */}
@@ -44,7 +45,7 @@ const HomeScreen = () => {
       <View style={tw`p-4`}>
         <Text style={tw`text-white text-xl mb-4`}>Discover Wine Vision</Text>
         <Image source={{ uri: 'https://placehold.co/300x200?text=Welcome+Image' }} style={tw`w-full h-50 mb-4`} />
-        <Text style={tw`text-gray-300`}>Explore our events, connect with exhibitors, and more.</Text>
+        <Text style={tw`text-${WineVisionColors.carbon.muted}`}>Explore our events, connect with exhibitors, and more.</Text>
       </View>
     </ScrollView>
   );

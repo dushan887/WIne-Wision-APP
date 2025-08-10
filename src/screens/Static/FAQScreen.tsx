@@ -2,8 +2,9 @@ import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 import { Ionicons } from '@expo/vector-icons';
+import { WineVisionColors } from '../../utils/wineVisionDesign';
 
-const FAQScreen = () => {
+const FAQScreen = React.memo(() => {
   const faqs = [
     {
       question: "When is Wine Vision 2025?",
@@ -32,19 +33,19 @@ const FAQScreen = () => {
   ];
 
   return (
-    <ScrollView style={tw`flex-1 bg-[#0b051c]`}>
+    <ScrollView style={tw`flex-1 bg-${WineVisionColors.carbon.primary}`}>
       <View style={tw`p-6`}>
         <Text style={tw`text-white text-2xl font-bold mb-6`}>Frequently Asked Questions</Text>
         
         {faqs.map((faq, index) => (
-          <View key={index} style={tw`mb-4 p-4 bg-gray-800 rounded-lg`}>
+          <View key={index} style={tw`mb-4 p-4 bg-${WineVisionColors.carbon.light} rounded-lg`}>
             <View style={tw`flex-row items-start mb-2`}>
-              <Ionicons name="help-circle-outline" size={20} color="#6e0fd7" style={tw`mr-2 mt-1`} />
+              <Ionicons name="help-circle-outline" size={20} color="rgb(110,15,215)" style={tw`mr-2 mt-1`} />
               <Text style={tw`text-white text-lg font-semibold flex-1`}>
                 {faq.question}
               </Text>
             </View>
-            <Text style={tw`text-gray-300 text-base leading-6 ml-7`}>
+            <Text style={tw`text-${WineVisionColors.carbon.muted} text-base leading-6 ml-7`}>
               {faq.answer}
             </Text>
           </View>
@@ -52,6 +53,6 @@ const FAQScreen = () => {
       </View>
     </ScrollView>
   );
-};
+});
 
 export default FAQScreen;

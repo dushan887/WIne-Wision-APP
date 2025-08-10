@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from '../../store/actions/userActions';
 import { RootState, AppDispatch } from '../../store';
+import { WineVisionColors } from '../../utils/wineVisionDesign';
 
 const EditProfileScreen = () => {
   const navigation = useNavigation();
@@ -32,26 +33,26 @@ const EditProfileScreen = () => {
   };
 
   return (
-    <ScrollView style={tw`flex-1 bg-[#0b051c] p-4`}>
+    <ScrollView style={tw`flex-1 bg-${WineVisionColors.carbon.primary} p-4`}>
       <Text style={tw`text-white text-xl mb-4`}>Edit Profile</Text>
 
-      <Text style={tw`text-gray-300 mb-2`}>Name</Text>
+      <Text style={tw`text-${WineVisionColors.carbon.muted} mb-2`}>Name</Text>
       <TextInput 
-        style={tw`bg-gray-800 text-white p-4 rounded-lg mb-4`} 
+        style={tw`bg-${WineVisionColors.carbon.light} text-white p-4 rounded-lg mb-4`} 
         value={name} 
         onChangeText={setName} 
       />
 
-      <Text style={tw`text-gray-300 mb-2`}>Email</Text>
+      <Text style={tw`text-${WineVisionColors.carbon.muted} mb-2`}>Email</Text>
       <TextInput 
-        style={tw`bg-gray-800 text-white p-4 rounded-lg mb-4`} 
+        style={tw`bg-${WineVisionColors.carbon.light} text-white p-4 rounded-lg mb-4`} 
         value={email} 
         onChangeText={setEmail} 
       />
 
-      <Text style={tw`text-gray-300 mb-2`}>Phone</Text>
+      <Text style={tw`text-${WineVisionColors.carbon.muted} mb-2`}>Phone</Text>
       <TextInput 
-        style={tw`bg-gray-800 text-white p-4 rounded-lg mb-8`} 
+        style={tw`bg-${WineVisionColors.carbon.light} text-white p-4 rounded-lg mb-8`} 
         value={phone} 
         onChangeText={setPhone} 
       />

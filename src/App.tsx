@@ -5,6 +5,7 @@ import AppNavigator from './navigation/AppNavigator';
 import { useFonts } from 'expo-font';
 import { Text, View } from 'react-native';
 import tw from 'twrnc';
+import { WineVisionColors } from './utils/wineVisionDesign';
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -14,7 +15,7 @@ const App = () => {
   });
 
   if (!fontsLoaded) {
-    return <View style={tw`flex-1 justify-center items-center bg-[#0b051c]`}><Text style={tw`text-white`}>Loading fonts...</Text></View>;
+    return <View style={tw`flex-1 justify-center items-center bg-${WineVisionColors.carbon.primary}`}><Text style={tw`text-white`}>Loading fonts...</Text></View>;
   }
 
   return (

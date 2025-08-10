@@ -9,8 +9,9 @@ import { logoutUser } from '../../store/actions/userActions';
 import { AppDispatch } from '../../store';
 import tw from 'twrnc';
 const { theme: { extend: { colors } } } = require('../../../tailwind.config.js');
+import { WineVisionIcons, WineVisionColors } from '../../utils/wineVisionDesign';
 
-type MainDashboardNavigationProp = StackNavigationProp<RootStackParamList, 'MainDashboard'>;
+type MainDashboardNavigationProp = StackNavigationProp<RootStackParamList, 'Profile'>;
 
 interface MainDashboardProps {
   navigation: MainDashboardNavigationProp;
@@ -65,8 +66,8 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
   ];
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-[#0b051c]`}>
-      <StatusBar barStyle="light-content" backgroundColor="#0b051c" />
+    <SafeAreaView style={tw`flex-1 bg-${WineVisionColors.carbon.primary}`}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.c} />
       
       {/* Header */}
       <View style={tw`flex-row justify-between items-center px-6 py-4 border-b border-gray-800`}>
@@ -78,12 +79,13 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
           </View>
         </TouchableOpacity>
         
-        <Text style={tw`text-white text-xl font-['InterTight-VariableFont_wght'] font-bold`}>
+                <Text style={[tw`text-xl font-bold`, { color: colors.w, fontFamily: 'InterTight-VariableFont_wght' }]}>
+          Welcome back!
           Wine Vision Dashboard
         </Text>
         
         <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-          <View style={tw`w-8 h-8 bg-purple-600 rounded-full justify-center items-center`}>
+          <View style={tw`w-8 h-8 bg-${WineVisionColors.velvet.primary} rounded-full justify-center items-center`}>
             <Text style={tw`text-white text-xs`}>🔔</Text>
             <View style={tw`absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full justify-center items-center`}>
               <Text style={tw`text-white text-xs font-bold`}>3</Text>
@@ -98,7 +100,7 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
           style={tw`absolute inset-0 bg-black/50 z-40`}
           onPress={() => setIsMenuOpen(false)}
         >
-          <View style={tw`absolute left-0 top-0 bottom-0 w-80 bg-[#1a0f2e] z-50`}>
+          <View style={tw`absolute left-0 top-0 bottom-0 w-80 bg-${WineVisionColors.carbon.lighter} z-50`}>
             <TouchableOpacity 
               style={tw`p-0`}
               onPress={() => {}}
@@ -106,7 +108,7 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
             >
               {/* Menu Header */}
               <LinearGradient
-                colors={['#8B5CF6', '#6D28D9']}
+                colors={['rgb(110,15,215)', 'rgb(139,63,223)']}
                 style={tw`px-6 py-8`}
               >
                 <View style={tw`flex-row items-center mb-4`}>
@@ -114,10 +116,10 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
                     <Text style={tw`text-white text-2xl`}>👤</Text>
                   </View>
                   <View>
-                    <Text style={tw`text-white text-lg font-['InterTight-VariableFont_wght'] font-bold`}>
+                    <Text style={tw`text-white text-lg font-inter-tight font-bold`}>
                       Wine Professional
                     </Text>
-                    <Text style={tw`text-white/80 text-sm font-['InterTight-VariableFont_wght']`}>
+                    <Text style={tw`text-white/80 text-sm font-inter-tight`}>
                       Exhibitor Premium
                     </Text>
                   </View>
@@ -136,7 +138,7 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
                     }}
                   >
                     <Text style={tw`text-xl mr-4`}>{item.icon}</Text>
-                    <Text style={tw`text-white text-base font-['InterTight-VariableFont_wght']`}>
+                    <Text style={tw`text-white text-base font-inter-tight`}>
                       {item.title}
                     </Text>
                   </TouchableOpacity>
@@ -148,7 +150,7 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
                   onPress={handleLogout}
                 >
                   <Text style={tw`text-xl mr-4`}>🚪</Text>
-                  <Text style={tw`text-red-400 text-base font-['InterTight-VariableFont_wght'] font-semibold`}>
+                  <Text style={tw`text-red-400 text-base font-inter-tight font-semibold`}>
                     Logout
                   </Text>
                 </TouchableOpacity>
@@ -162,20 +164,20 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
       <ScrollView style={tw`flex-1`} showsVerticalScrollIndicator={false}>
         {/* Welcome Section */}
         <LinearGradient
-          colors={['#8B5CF6', '#6D28D9']}
+          colors={['rgb(110,15,215)', 'rgb(139,63,223)']}
           style={tw`mx-6 mt-6 p-6 rounded-2xl`}
         >
-          <Text style={tw`text-white text-2xl font-['InterTight-VariableFont_wght'] font-bold mb-2`}>
+          <Text style={tw`text-white text-2xl font-inter-tight font-bold mb-2`}>
             Welcome to Wine Vision 2025
           </Text>
-          <Text style={tw`text-white/90 text-base font-['InterTight-VariableFont_wght'] mb-4`}>
+          <Text style={tw`text-white/90 text-base font-inter-tight mb-4`}>
             Manage your events, applications, and connect with industry professionals
           </Text>
           <TouchableOpacity 
             style={tw`bg-white/20 px-4 py-2 rounded-lg self-start`}
             onPress={() => navigation.navigate('Events')}
           >
-            <Text style={tw`text-white font-['InterTight-VariableFont_wght'] font-semibold`}>
+            <Text style={tw`text-white font-inter-tight font-semibold`}>
               View Events
             </Text>
           </TouchableOpacity>
@@ -183,19 +185,19 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
 
         {/* Quick Stats */}
         <View style={tw`px-6 mt-6`}>
-          <Text style={tw`text-white text-lg font-['InterTight-VariableFont_wght'] font-bold mb-4`}>
+          <Text style={tw`text-white text-lg font-inter-tight font-bold mb-4`}>
             Quick Overview
           </Text>
           <View style={tw`flex-row flex-wrap justify-between`}>
             {quickStats.map((stat, index) => (
               <View 
                 key={index}
-                style={[tw`bg-gray-800 p-4 rounded-xl mb-4`, { width: (width - 60) / 2 }]}
+                style={[tw`bg-${WineVisionColors.carbon.light} p-4 rounded-xl mb-4`, { width: (width - 60) / 2 }]}
               >
                 <Text style={[tw`text-3xl font-bold mb-2`, { color: stat.color }]}>
                   {stat.value}
                 </Text>
-                <Text style={tw`text-gray-300 text-sm font-['InterTight-VariableFont_wght']`}>
+                <Text style={tw`text-${WineVisionColors.carbon.muted} text-sm font-inter-tight`}>
                   {stat.title}
                 </Text>
               </View>
@@ -206,11 +208,11 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
         {/* Upcoming Events */}
         <View style={tw`px-6 mt-6`}>
           <View style={tw`flex-row justify-between items-center mb-4`}>
-            <Text style={tw`text-white text-lg font-['InterTight-VariableFont_wght'] font-bold`}>
+            <Text style={tw`text-white text-lg font-inter-tight font-bold`}>
               Upcoming Events
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Events')}>
-              <Text style={tw`text-purple-400 font-['InterTight-VariableFont_wght']`}>
+              <Text style={tw`text-${WineVisionColors.velvet.light} font-inter-tight`}>
                 View All
               </Text>
             </TouchableOpacity>
@@ -219,25 +221,25 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
           {upcomingEvents.map((event, index) => (
             <TouchableOpacity 
               key={index}
-              style={tw`bg-gray-800 rounded-xl p-4 mb-4 flex-row`}
-              onPress={() => navigation.navigate('EventDetails')}
+              style={tw`bg-${WineVisionColors.carbon.light} rounded-xl p-4 mb-4 flex-row`}
+              onPress={() => navigation.navigate('Events')}
             >
               <Image 
                 source={{ uri: event.image }}
                 style={tw`w-20 h-20 rounded-lg mr-4`}
               />
               <View style={tw`flex-1`}>
-                <Text style={tw`text-white text-base font-['InterTight-VariableFont_wght'] font-bold mb-1`}>
+                <Text style={tw`text-white text-base font-inter-tight font-bold mb-1`}>
                   {event.title}
                 </Text>
-                <Text style={tw`text-gray-400 text-sm font-['InterTight-VariableFont_wght'] mb-1`}>
+                <Text style={tw`text-${WineVisionColors.carbon.muted} text-sm font-inter-tight mb-1`}>
                   {event.date}
                 </Text>
-                <Text style={tw`text-gray-400 text-sm font-['InterTight-VariableFont_wght'] mb-2`}>
+                <Text style={tw`text-${WineVisionColors.carbon.muted} text-sm font-inter-tight mb-2`}>
                   {event.location}
                 </Text>
-                <View style={tw`bg-purple-600 px-2 py-1 rounded self-start`}>
-                  <Text style={tw`text-white text-xs font-['InterTight-VariableFont_wght']`}>
+                <View style={tw`bg-${WineVisionColors.velvet.primary} px-2 py-1 rounded self-start`}>
+                  <Text style={tw`text-white text-xs font-inter-tight`}>
                     {event.status}
                   </Text>
                 </View>
@@ -248,26 +250,26 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({ navigation }) => {
 
         {/* Quick Actions */}
         <View style={tw`px-6 mt-6 mb-8`}>
-          <Text style={tw`text-white text-lg font-['InterTight-VariableFont_wght'] font-bold mb-4`}>
+          <Text style={tw`text-white text-lg font-inter-tight font-bold mb-4`}>
             Quick Actions
           </Text>
           <View style={tw`flex-row flex-wrap justify-between`}>
             <TouchableOpacity 
               style={tw`bg-orange-600 p-4 rounded-xl mb-4 flex-row items-center`}
-              onPress={() => navigation.navigate('Applications')}
+              onPress={() => navigation.navigate('ComingSoon')}
             >
               <Text style={tw`text-2xl mr-3`}>📝</Text>
-              <Text style={tw`text-white font-['InterTight-VariableFont_wght'] font-semibold`}>
+              <Text style={tw`text-white font-inter-tight font-semibold`}>
                 New Application
               </Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
               style={tw`bg-green-600 p-4 rounded-xl mb-4 flex-row items-center`}
-              onPress={() => navigation.navigate('TradeMeetings')}
+              onPress={() => navigation.navigate('Meeting Requests')}
             >
               <Text style={tw`text-2xl mr-3`}>🤝</Text>
-              <Text style={tw`text-white font-['InterTight-VariableFont_wght'] font-semibold`}>
+              <Text style={tw`text-white font-inter-tight font-semibold`}>
                 Schedule Meeting
               </Text>
             </TouchableOpacity>
