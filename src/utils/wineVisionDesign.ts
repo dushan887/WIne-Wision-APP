@@ -74,38 +74,38 @@ export const WineVisionColors = {
 
 // Wine Vision Font Utilities
 export const WineVisionFonts = {
-  primary: 'font-inter-tight',
-  primaryItalic: 'font-inter-tight-italic',
-  icons: 'font-wine-vision',
-  fallback: 'font-inter',
+  primary: 'font-primary',
+  primaryItalic: 'font-primary-italic',
+  icons: 'font-brand',
+  fallback: 'font-sans',
 };
 
 // Common Style Combinations
 export const WineVisionStyles = {
   // Headers
-  h1: tw`text-32 font-inter-tight font-700 text-c leading-1-2`,
-  h2: tw`text-24 font-inter-tight font-600 text-c leading-1-25`,
-  h3: tw`text-20 font-inter-tight font-600 text-c_80 leading-1-3`,
-  h4: tw`text-18 font-inter-tight font-500 text-c_80 leading-1-3`,
+  h1: tw`text-32 font-primary font-700 text-c leading-1-2`,
+  h2: tw`text-24 font-primary font-600 text-c leading-1-25`,
+  h3: tw`text-20 font-primary font-600 text-c_80 leading-1-3`,
+  h4: tw`text-18 font-primary font-500 text-c_80 leading-1-3`,
 
   // Body Text
-  body: tw`text-16 font-inter-tight font-400 text-c_80 leading-1-5`,
-  bodySmall: tw`text-14 font-inter-tight font-400 text-c_70 leading-1-4`,
-  caption: tw`text-12 font-inter-tight font-400 text-c_50 leading-1-3`,
+  body: tw`text-16 font-primary font-400 text-c_80 leading-1-5`,
+  bodySmall: tw`text-14 font-primary font-400 text-c_70 leading-1-4`,
+  caption: tw`text-12 font-primary font-400 text-c_50 leading-1-3`,
 
   // Buttons
-  primaryButton: tw`bg-v text-w font-inter-tight font-600 text-16 px-24 py-12 rounded-8`,
-  secondaryButton: tw`bg-c_10 text-c font-inter-tight font-500 text-16 px-24 py-12 rounded-8 border-1 border-c_20`,
+  primaryButton: tw`bg-v text-w font-primary font-600 text-16 px-24 py-12 rounded-8`,
+  secondaryButton: tw`bg-c_10 text-c font-primary font-500 text-16 px-24 py-12 rounded-8 border-1 border-c_20`,
   
   // Cards
   card: tw`bg-w rounded-12 p-20 shadow-lg border-1 border-c_10`,
-  cardHeader: tw`text-18 font-inter-tight font-600 text-c mb-12`,
+  cardHeader: tw`text-18 font-primary font-600 text-c mb-12`,
   
   // Status Badges
-  successBadge: tw`bg-g_15 text-g px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
-  errorBadge: tw`bg-h_10 text-h px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
-  warningBadge: tw`bg-y_10 text-y px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
-  infoBadge: tw`bg-b_10 text-b px-12 py-4 rounded-16 font-inter-tight font-500 text-14`,
+  successBadge: tw`bg-g_15 text-g px-12 py-4 rounded-16 font-primary font-500 text-14`,
+  errorBadge: tw`bg-h_10 text-h px-12 py-4 rounded-16 font-primary font-500 text-14`,
+  warningBadge: tw`bg-y_10 text-y px-12 py-4 rounded-16 font-primary font-500 text-14`,
+  infoBadge: tw`bg-b_10 text-b px-12 py-4 rounded-16 font-primary font-500 text-14`,
 
   // Gradients (use with backgroundImage)
   carbonGradient: 'bg-carbon-gradient-up',

@@ -84,11 +84,11 @@ export const WineVisionDemo: React.FC = () => {
           <Text style={WineVisionStyles.h2}>Button Styles</Text>
           
           <TouchableOpacity style={[WineVisionStyles.primaryButton, tw`mt-16`]}>
-            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Primary Button</Text>
+            <Text style={tw`text-w font-primary font-600 text-center`}>Primary Button</Text>
           </TouchableOpacity>
           
           <TouchableOpacity style={[WineVisionStyles.secondaryButton, tw`mt-12`]}>
-            <Text style={tw`text-c font-inter-tight font-500 text-center`}>Secondary Button</Text>
+            <Text style={tw`text-c font-primary font-500 text-center`}>Secondary Button</Text>
           </TouchableOpacity>
         </View>
 
@@ -117,15 +117,15 @@ export const WineVisionDemo: React.FC = () => {
           <Text style={WineVisionStyles.h2}>Gradient Backgrounds</Text>
           
           <View style={tw`bg-carbon-gradient-up p-20 rounded-12 mt-16 mb-12`}>
-            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Carbon Gradient</Text>
+            <Text style={tw`text-w font-primary font-600 text-center`}>Carbon Gradient</Text>
           </View>
           
           <View style={tw`bg-exhibitor-gradient-light p-20 rounded-12 mb-12`}>
-            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Velvet Gradient</Text>
+            <Text style={tw`text-w font-primary font-600 text-center`}>Velvet Gradient</Text>
           </View>
           
           <View style={tw`bg-wv-gradient p-20 rounded-12 mb-12`}>
-            <Text style={tw`text-w font-inter-tight font-600 text-center`}>Wine Vision Brand Gradient</Text>
+            <Text style={tw`text-w font-primary font-600 text-center`}>Wine Vision Brand Gradient</Text>
           </View>
         </View>
 

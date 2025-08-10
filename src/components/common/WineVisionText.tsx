@@ -41,7 +41,7 @@ export const WineVisionText = React.memo<WineVisionTextProps>(({
     }
 
     // Font family
-    baseStyle += 'font-inter-tight ';
+    baseStyle += 'font-primary ';
 
     // Variant colors and weights
     switch (variant) {

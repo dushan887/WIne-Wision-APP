@@ -2,6 +2,8 @@ export * from './roles';
 export * from './constants';
 export * from './messageHelpers';
 export * from './htmlSanitizer';
+export * from './wineVisionDesign';
+export * from './wineVisionColors';
 export * from './profileTheming';
 export * from './countries';
 export * from './productionRanges';

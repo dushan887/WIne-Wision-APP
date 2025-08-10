@@ -272,6 +272,10 @@ module.exports = {
         'inter-tight-italic': ['InterTight-Italic-VariableFont_wght', 'sans-serif'],
         'wine-vision': ['Wine-Vision'],
         icons: ['Wine-Vision'],
+        // Additional aliases for easier usage
+        'primary': ['InterTight-VariableFont_wght', 'sans-serif'],
+        'primary-italic': ['InterTight-Italic-VariableFont_wght', 'sans-serif'],
+        'brand': ['Wine-Vision'],
       },
     },
   },
